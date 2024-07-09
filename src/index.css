@@ -7,4 +7,39 @@ html,body,#root {
   padding: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: 'DNFBitBitv2';
+  src: url('./assets/fonts/DNFBitBitv2.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DungGeunMo';
+  src: url('./assets/fonts/DungGeunMo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #F6FEEE, #90D985);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-border {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  -webkit-text-stroke: 4px black; 
+}
+
+.text-border-norm {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  -webkit-text-stroke: 3px black; 
 }
