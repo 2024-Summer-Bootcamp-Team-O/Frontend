@@ -15,7 +15,8 @@ module.exports = {
         'dnf':['DNFBitBitv2']
       },
       fontSize: {
-        '9xl': '12rem',
+        '9xl': '9.375rem',
+        '6xl': '4.375rem'
       }
     },
   },
