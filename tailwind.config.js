@@ -12,7 +12,8 @@ module.exports = {
         '355': '355deg',
       },
       fontFamily: {
-        'dnf':['DNFBitBitv2']
+        'dnf':['DNFBitBitv2'],
+        'dng':['DungGeunMo']
       },
       fontSize: {
         '9xl': '12rem',

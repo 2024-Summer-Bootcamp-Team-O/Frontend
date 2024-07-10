@@ -8,3 +8,31 @@ html,body,#root {
   width: 100%;
   height: 100%;
 }
+
+@font-face {
+  font-family: 'DungGeunMo';
+  src: url('./assets/fonts/DungGeunMo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Custom Scrollbar Styles */
+.webpage-scrollbar::-webkit-scrollbar {
+  width: 2.2rem;
+}
+
+.webpage-scrollbar::-webkit-scrollbar-track {
+  background: url('./assets/images/scrollbar_track.png') no-repeat center center; /* Background image for the track */
+  background-size: 2.2rem 45.19763rem;
+}
+
+.webpage-scrollbar::-webkit-scrollbar-thumb {
+  background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image for the thumb */
+  background-size: 2.2rem 5.5rem; 
+}
+
+.webpage-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image when hovered */
+  background-size: 2.2rem 5.5rem;
+}
+
