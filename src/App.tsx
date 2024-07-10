@@ -1,10 +1,15 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import StartPage from './pages/StartPage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import './index.css'
 
-function App() {
-  return (
-      <></>
-  );
-}
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    {/*<StartPage />*/}
+    <LoginPage />
+    {/*<RegisterPage />*/}
+  </React.StrictMode>,
+)
 
-export default App;
