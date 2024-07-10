@@ -28,7 +28,7 @@ function LoginPage() {
                 className="text-xl rounded-[0.875rem] w-[32rem] h-16 bg-[#F0F0F0] text-[#B2B2B2] font-dgm mb-24"
               />
             </div>
-            <button className="rounded-[5rem] w-56 h-14 font-dgm text-[1.625rem] bg-black text-white cursor-pointer mb-5"> 로그인</button>
+            <button className="rounded-[5rem] w-56 h-14 font-dgm text-[1.625rem] bg-[#2C2C2C] text-white cursor-pointer mb-5"> 로그인</button>
             <div>
               <a href="#">
                 <span className="text-2xl text-[#B2B2B2] font-dgm underline underline-offset-1">
