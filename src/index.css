@@ -32,14 +32,33 @@ html,body,#root {
 
 .text-border {
   position: relative;
-  display: inline-block;
   color: transparent;
+  display: inline-block;
   -webkit-text-stroke: 4px black; 
 }
 
 .text-border-norm {
   position: relative;
-  display: inline-block;
   color: transparent;
+  display: inline-block;
   -webkit-text-stroke: 3px black; 
+}
+/* Custom Scrollbar Styles */
+.webpage-scrollbar::-webkit-scrollbar {
+  width: 2.2rem;
+}
+
+.webpage-scrollbar::-webkit-scrollbar-track {
+  background: url('./assets/images/scrollbar_track.png') no-repeat center center; /* Background image for the track */
+  background-size: 2.2rem 45.19763rem;
+}
+
+.webpage-scrollbar::-webkit-scrollbar-thumb {
+  background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image for the thumb */
+  background-size: 2.2rem 5.5rem; 
+}
+
+.webpage-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image when hovered */
+  background-size: 2.2rem 5.5rem;
 }

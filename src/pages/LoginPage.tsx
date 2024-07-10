@@ -1,7 +1,8 @@
 import React from 'react';
 import '../index.css'; 
 
-function LoginPage() {
+const LoginPage: React.FC = () => {
+
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-cover bg-main_h">
       <div className="flex items-center justify-center">
@@ -31,7 +32,7 @@ function LoginPage() {
             <button className="rounded-[5rem] w-56 h-14 font-dgm text-[1.625rem] bg-[#2C2C2C] text-white cursor-pointer mb-5"> 로그인</button>
             <div>
               <a href="#">
-                <span className="text-2xl text-[#B2B2B2] font-dgm underline underline-offset-1">
+                <span className="text-[1.20rem] text-[#B2B2B2] font-dgm underline underline-offset-1">
                   회원가입 하러가기
                 </span>
               </a>

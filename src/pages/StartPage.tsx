@@ -1,7 +1,9 @@
 import React from 'react';
 import '../index.css'; 
 
-function StartPage() {
+
+const StartPage: React.FC = () => {
+
   return (
     <div className="relative flex flex-col items-center justify-center w-screen h-screen bg-cover bg-main_s">
       <div className="relative w-full h-full">
