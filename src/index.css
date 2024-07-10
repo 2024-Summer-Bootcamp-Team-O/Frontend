@@ -7,6 +7,14 @@ html,body,#root {
   padding: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: 'DNFBitBitv2';
+  src: url('./assets/fonts/DNFBitBitv2.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
@@ -16,6 +24,25 @@ html,body,#root {
   font-style: normal;
 }
 
+.gradient-text {
+  background: linear-gradient(to right, #F6FEEE, #90D985);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-border {
+  position: relative;
+  color: transparent;
+  display: inline-block;
+  -webkit-text-stroke: 4px black; 
+}
+
+.text-border-norm {
+  position: relative;
+  color: transparent;
+  display: inline-block;
+  -webkit-text-stroke: 3px black; 
+}
 /* Custom Scrollbar Styles */
 .webpage-scrollbar::-webkit-scrollbar {
   width: 2.2rem;
@@ -35,4 +62,3 @@ html,body,#root {
   background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image when hovered */
   background-size: 2.2rem 5.5rem;
 }
-

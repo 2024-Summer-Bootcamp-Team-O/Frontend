@@ -13,11 +13,18 @@ module.exports = {
       },
       fontFamily: {
         'dnf':['DNFBitBitv2'],
-        'dng':['DungGeunMo']
+        'dgm':['DungGeunMo']
       },
       fontSize: {
-        '9xl': '12rem',
-      }
+        '9xl': '9.375rem',
+        '6xl': '4.375rem'
+      },
+      boxShadow: {
+        'shadow_tr': '16.5px -10px 28.2px 0px rgba(0, 0, 0, 0.25)',
+      },
+      dropShadow: {
+        'shadow_d': '30px 30px 4px rgba(0, 0, 0, 0.25)',
+      },
     },
   },
   variants: {

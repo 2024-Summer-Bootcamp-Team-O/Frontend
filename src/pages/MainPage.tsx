@@ -45,7 +45,7 @@ const MainPage: React.FC = () => {
         <div className="relative h-screen w-screen flex" style={{backgroundImage: `url(${backgroundImg})`,backgroundSize:'cover'}}>
             <div className="flex flex-col w-[37.5rem] h-[69.81rem] justify-end ">
                 <div className="relative w-[28.1rem] h-[13.28rem] ml-[5.7rem] mr-[3.33rem] pt-[1.1rem] pb-[2.16rem]" style={{ backgroundImage: `url(${duckBubble})`, backgroundSize: 'cover' }}>
-                    <p className="text-black text-center font-dng text-[1.625rem] not-italic font-normal leading-normal tracking-[-0.04875rem] whitespace-pre-line">
+                    <p className="text-black text-center font-dgm text-[1.625rem] not-italic font-normal leading-normal tracking-[-0.04875rem] whitespace-pre-line">
                         나는 MZ요정일세 ! <br />
                         자네는 깨어있는 MZ라고 생각하나? <br />
                         내가 한번 시험해보겠네.
@@ -70,7 +70,7 @@ const MainPage: React.FC = () => {
                     </div>
                 </div> 
                 <div className="absolute bottom-4 right-4">
-                    <button className="flex items-center text-black text-[2.5rem] font-dng mb-[1.7rem] mr-[3.0rem]">
+                    <button className="flex items-center text-black text-[2.5rem] font-dgm mb-[1.7rem] mr-[3.0rem]">
                         <span>시뮬레이션 하러가기 !</span>
                         <img src={startIcon} alt="startIcon" className="w-[3.75rem] h-[3.75rem] mr-2"/>
                     </button>
