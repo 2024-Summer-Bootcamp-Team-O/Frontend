@@ -1,14 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import StartPage from './pages/StartPage'
-import LoginPage from './pages/LoginPage'
-import RegisterPage from './pages/RegisterPage'
-import CaseSelectPage from './pages/CaseSelectPage'
-import './index.css'
-
+import App from './App'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    {/*<StartPage />*/}
-    <CaseSelectPage />
+    <App />
   </React.StrictMode>,
 )

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../index.css'; 
 
-function RegisterPage() {
+const RegisterPage: React.FC = () => {
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-cover bg-main_h">
       <div className="flex items-center justify-center">
@@ -19,7 +19,7 @@ function RegisterPage() {
                     placeholder="  영문+숫자"
                     className="text-xl rounded-[0.875rem] w-80 h-16 bg-[#F0F0F0] text-[#B2B2B2] font-dgm mb-3."
                 />
-                <button className="rounded-[0.875rem] w-36 h-16 ml-[1.35] font-dgm text-[1.125rem] bg-[#505050] text-white cursor-pointer">중복확인</button>
+                <button className="rounded-[0.875rem] w-36 h-16 ml-[1.35] font-dgm text-[1.25rem] bg-[#505050] text-white cursor-pointer">중복확인</button>
               </div>
             </div>
             <div className='flex flex-col mb-9'>
@@ -43,7 +43,7 @@ function RegisterPage() {
             <div className='flex flex-col items-center mb-10'>
                 <button className="rounded-[5rem] w-56 h-[3.8rem] font-dgm text-[1.625rem] bg-[#2C2C2C] text-white cursor-pointer mb-5"> 다음 </button>
                 <a href="#">
-                    <span className="text-[1.125rem] text-[#B2B2B2] font-dgm underline underline-offset-1">
+                    <span className="text-[1.20rem] text-[#B2B2B2] font-dgm underline underline-offset-1">                    
                     로그인 하러가기
                     </span>
                 </a>
@@ -52,8 +52,8 @@ function RegisterPage() {
         </div>
       </div>
       <div className="absolute inset-0 flex items-end justify-between">
-        <img src="src/assets/images/bg_stand5.png" alt="" />
-        <img src="src/assets/images/bg_stand6.png" alt="" />
+        <img src="src/assets/images/background/bg_stand5.png" alt="" />
+        <img src="src/assets/images/background/bg_stand6.png" alt="" />
       </div>
     </div>
   );
