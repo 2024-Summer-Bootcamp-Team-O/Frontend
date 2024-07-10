@@ -4,9 +4,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'main_s': "url('src/assets/images/background_s.png')",
-        'main_h': "url('src/assets/images/background_h.png')",
-        'main_v': "url('src/assets/images/background_v.png')",
+        'main_s': "url('src/assets/images/background/background_s.png')",
+        'main_h': "url('src/assets/images/background/background_h.png')",
+        'main_v': "url('src/assets/images/background/background_v.png')",
       },
       rotate: {
         '355': '355deg',
