@@ -12,7 +12,7 @@ import cardSd_c from "../assets/images/Character/cardSd_c.png";
 import cardSd_d from "../assets/images/Character/cardSd_d.png";
 import cardSd_e from "../assets/images/Character/cardSd_e.png";
 import characterPageImg from "../assets/images/Character/characterPage.png";
-import backgroundImg from "../assets/images/background_h.png"
+import backgroundImg from "../assets/images/background/background_h.png"
 import duckImg from "../assets/images/Duck.png";
 import duckBubble from "../assets/images/DuckBubble.png";
 
@@ -42,7 +42,7 @@ const cardSdImages = [
 
 const MainPage: React.FC = () => {
     return (
-        <div className="relative h-screen w-screen flex" style={{backgroundImage: `url(${backgroundImg})`,backgroundSize:'cover'}}>
+        <div className="relative flex w-screen h-screen" style={{backgroundImage: `url(${backgroundImg})`,backgroundSize:'cover'}}>
             <div className="flex flex-col w-[37.5rem] h-[69.81rem] justify-end ">
                 <div className="relative w-[28.1rem] h-[13.28rem] ml-[5.7rem] mr-[3.33rem] pt-[1.1rem] pb-[2.16rem]" style={{ backgroundImage: `url(${duckBubble})`, backgroundSize: 'cover' }}>
                     <p className="text-black text-center font-dgm text-[1.625rem] not-italic font-normal leading-normal tracking-[-0.04875rem] whitespace-pre-line">
