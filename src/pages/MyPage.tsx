@@ -1,6 +1,6 @@
 import React from "react";
 import '../index.css';
-import startIcon from "../assets/images/startIcon.png";
+import startIcon from "../assets/images/icon/startIcon.png";
 import cardSd_1 from "../assets/images/Character/cardSd_1.png";
 import cardSd_2 from "../assets/images/Character/cardSd_2.png";
 import cardSd_3 from "../assets/images/Character/cardSd_3.png";
@@ -11,10 +11,10 @@ import cardSd_b from "../assets/images/Character/cardSd_b.png";
 import cardSd_c from "../assets/images/Character/cardSd_c.png";
 import cardSd_d from "../assets/images/Character/cardSd_d.png";
 import cardSd_e from "../assets/images/Character/cardSd_e.png";
-import myPageImg from "../assets/images/myPage.png";
-import backgroundImg from "../assets/images/background_h.png"
-import duckImg from "../assets/images/Duck.png";
-import duckBubble from "../assets/images/DuckBubble.png";
+import myPageImg from "../assets/images/background/myPage.png";
+import backgroundImg from "../assets/images/background/background_h.png"
+import duckImg from "../assets/images/Duck/Duck.png";
+import duckBubble from "../assets/images/Duck/DuckBubble.png";
 
 
 const cardSdImages = [

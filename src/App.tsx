@@ -10,6 +10,8 @@ import DLoadingPage from './pages/DLoadingPage';
 import ALoadingPage from './pages/ALoadingPage';
 import MainPage from './pages/MainPage'
 import SelectPage from './pages/SelectPage';
+import MyPage from './pages/MyPage';
+import ResultPage from './pages/ResultPage';
 
 const App: React.FC = () => {
   return (
@@ -18,11 +20,14 @@ const App: React.FC = () => {
         <Route path="/" element={<StartPage/>} />
         <Route path="/signup" element={<RegisterPage/>} />
         <Route path="/login" element={<LoginPage/>} />
-        <Route path="/lloading" element={<LLoadingPage/>} />
-        <Route path="/dloading" element={<DLoadingPage/>} />
-        <Route path="/aloading" element={<ALoadingPage/>} />
         <Route path="/main" element={<MainPage/>} />
         <Route path="/select" element={<SelectPage/>} />
+        <Route path="/myPage" element={<MyPage/>} />
+        <Route path="/ResultPage" element={<ResultPage/>} />
+        <Route path="/lloading" element={<LLoadingPage/>} />
+        <Route path="/select" element={<CaseSelectPage/>} />
+        <Route path="/aloading" element={<ALoadingPage/>} />
+        <Route path="/dloading" element={<DLoadingPage/>} />
       </Routes>
     </Router>
   );
