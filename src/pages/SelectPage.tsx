@@ -1,10 +1,10 @@
 import React from 'react';
 import '../index.css'; 
 
-function SelectPage(){
+const SelectPage: React.FC = () => {
     return(
 		<div className="flex flex-col items-center justify-start w-screen h-screen bg-cover bg-main_v">
-			<div className="flex justify-center items-end w-[108rem] h-[50rem] bg-cover bg-[url('src/assets/images/background/office_m.png')]">
+			<div className="flex justify-center items-end w-full h-[50rem] bg-cover bg-[url('src/assets/images/background/office_m.png')]">
 				<img src="src/assets/images/standing/office_nice.png" alt="man" className="w-[37rem] h-[47.125rem]" />
 			</div>
 			<div className="flex mt-12 space-x-32">
