@@ -23,9 +23,9 @@ const App: React.FC = () => {
         <Route path="/myPage" element={<MyPage/>} />
         <Route path="/ResultPage" element={<ResultPage/>} />
         <Route path="/lloading" element={<LLoadingPage/>} />
-        <Route path="/Dloading" element={<DLoadingPage/>} />
-        <Route path="/Aloading" element={<ALoadingPage/>} />
-        
+        <Route path="/select" element={<CaseSelectPage/>} />
+        <Route path="/aloading" element={<ALoadingPage/>} />
+        <Route path="/dloading" element={<DLoadingPage/>} />
       </Routes>
     </Router>
   );

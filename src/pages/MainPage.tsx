@@ -13,8 +13,8 @@ import cardSd_d from "../assets/images/Character/cardSd_d.png";
 import cardSd_e from "../assets/images/Character/cardSd_e.png";
 import characterPageImg from "../assets/images/Character/characterPage.png";
 import backgroundImg from "../assets/images/background/background_h.png"
-import duckImg from "../assets/images/Duck/Duck.png";
-import duckBubble from "../assets/images/Duck/DuckBubble.png";
+import duckImg from "../assets/images/Duck.png";
+import duckBubble from "../assets/images/DuckBubble.png";
 
 
 const cardSdImages = [
