@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom/client'
 import StartPage from './pages/StartPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import LLoadingPage from './pages/LLoadingPage';
+import DLoadingPage from './pages/DLoadingPage';
+import ALoadingPage from './pages/ALoadingPage';
 import MainPage from './pages/MainPage'
 import MyPage from './pages/MyPage';
 
@@ -15,13 +18,13 @@ const App: React.FC = () => {
         <Route path="/" element={<StartPage/>} />
         <Route path="/signup" element={<RegisterPage/>} />
         <Route path="/login" element={<LoginPage/>} />
-        <Route path="/main" element={<MainPage/>} />
-        <Route path="/myPage" element={<MyPage/>} />
+        <Route path="/lloading" element={<LLoadingPage/>} />
+        <Route path="/Dloading" element={<DLoadingPage/>} />
+        <Route path="/Aloading" element={<ALoadingPage/>} />
       </Routes>
     </Router>
   );
 };
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <App />
 );

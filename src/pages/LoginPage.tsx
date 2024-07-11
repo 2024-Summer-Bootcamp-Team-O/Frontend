@@ -2,7 +2,6 @@ import React from 'react';
 import '../index.css'; 
 
 const LoginPage: React.FC = () => {
-
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-cover bg-main_h">
       <div className="flex items-center justify-center">
@@ -41,8 +40,8 @@ const LoginPage: React.FC = () => {
         </div>
       </div>
       <div className="absolute inset-0 flex items-end justify-between">
-        <img src="src/assets/images/bg_stand5.png" alt="" />
-        <img src="src/assets/images/bg_stand6.png" alt="" />
+        <img src="src/assets/images/background/bg_stand5.png" alt="" />
+        <img src="src/assets/images/background/bg_stand6.png" alt="" />
       </div>
     </div>
   );
