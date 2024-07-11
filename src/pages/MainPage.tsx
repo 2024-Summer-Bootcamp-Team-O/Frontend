@@ -1,6 +1,6 @@
 import React from "react";
 import '../index.css';
-import startIcon from "../assets/images/startIcon.png";
+import startIcon from "../assets/images/icon/startIcon.png";
 import cardSd_1 from "../assets/images/Character/cardSd_1.png";
 import cardSd_2 from "../assets/images/Character/cardSd_2.png";
 import cardSd_3 from "../assets/images/Character/cardSd_3.png";
@@ -61,7 +61,7 @@ const MainPage: React.FC = () => {
                     {/*상단바 div*/}
                     <div className="w-full h-[5.3125rem]"></div> 
                     {/*카드 스크롤 div*/}
-                    <div className="  w-[67rem] h-[45.9rem]">
+                    <div className="w-[67rem] h-[45.9rem]">
                         <div className=" webpage-scrollbar overflow-y-auto h-[45.75rem] pt-[2.5rem] pr-[3.5rem] pl-[3.5rem] grid grid-cols-3 gap-7">
                             {cardSdImages.map((image,index) => (
                                 <div key={index} className="mb-1">
