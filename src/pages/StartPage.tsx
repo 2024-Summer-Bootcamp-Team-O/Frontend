@@ -1,25 +1,21 @@
 import React from 'react';
-import '../index.css'; 
+import '../index.css';
 
 const StartPage: React.FC = () => { 
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen bg-cover bg-main_s">
-      <div className="relative w-full h-full">
-        <div className="absolute inset-0 flex items-end justify-center">
-          <img src="src/assets/images/background/bg_stand1.png" alt="" className="relative z-10 " />
-          <img src="src/assets/images/background/bg_stand2.png" alt="" className="relative z-20 -ml-56" />
-          <img src="src/assets/images/background/bg_stand3.png" alt="" className="relative z-30 -ml-20" />
-          <img src="src/assets/images/background/bg_stand4.png" alt="" className="relative -ml-32 z-25" />
-        </div>
-        <h1 className="absolute z-40 ml-12 font-normal text-center transform -translate-x-1/2 top-8 left-1/2 text-9xl gradient-text font-dnf rotate-355 text-border">
+        <h1 className="z-40 ml-24 font-normal text-center translate-y-48 text-9xl gradient-text font-dnf rotate-355 text-border">
           걔, 킹받네 ?
         </h1>
-        <div className="absolute inset-0 flex flex-col items-center justify-end pb-20">
-          <button className="z-40 mb-10 ml-20 text-6xl font-normal text-center gradient-text font-dnf text-border-norm">
-            시작하기
-          </button>
+        <div className="flex flex-row justify-end">
+          <img src="src/assets/images/background/bg_stand1.png" alt="male_a" className="z-10" />
+          <img src="src/assets/images/background/bg_stand2.png" alt="female_a" className="z-20 -ml-56" />
+          <img src="src/assets/images/background/bg_stand3.png" alt="female_b" className="z-30 -ml-20" />
+          <img src="src/assets/images/background/bg_stand4.png" alt="male_b" className="-ml-32 z-25" />
         </div>
-      </div>
+        <button className="z-40 mb-10 text-6xl ml-[4.2rem] -translate-y-[13rem] font-normal text-center gradient-text font-dnf text-border-norm">
+          시작하기
+        </button>
     </div>
   );
 }
