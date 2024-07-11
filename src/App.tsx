@@ -8,8 +8,8 @@ import RegisterPage from './pages/RegisterPage'
 import LLoadingPage from './pages/LLoadingPage';
 import DLoadingPage from './pages/DLoadingPage';
 import ALoadingPage from './pages/ALoadingPage';
-import MainPage from './pages/MainPage';
-import CaseSelectPage from './pages/CaseSelectPage';
+import MainPage from './pages/MainPage'
+import MyPage from './pages/MyPage';
 
 const App: React.FC = () => {
   return (
