@@ -1,7 +1,6 @@
 import React from "react";
 import '../index.css'; 
 
-
 const CaseSelectPage: React.FC = () => {
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-cover bg-main_h">

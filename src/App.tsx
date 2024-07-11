@@ -9,6 +9,7 @@ import LLoadingPage from './pages/LLoadingPage';
 import DLoadingPage from './pages/DLoadingPage';
 import ALoadingPage from './pages/ALoadingPage';
 import MainPage from './pages/MainPage'
+import SelectPage from './pages/SelectPage';
 import MyPage from './pages/MyPage';
 import ResultPage from './pages/ResultPage';
 
@@ -20,6 +21,7 @@ const App: React.FC = () => {
         <Route path="/signup" element={<RegisterPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/main" element={<MainPage/>} />
+        <Route path="/select" element={<SelectPage/>} />
         <Route path="/myPage" element={<MyPage/>} />
         <Route path="/ResultPage" element={<ResultPage/>} />
         <Route path="/lloading" element={<LLoadingPage/>} />

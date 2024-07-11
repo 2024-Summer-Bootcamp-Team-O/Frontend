@@ -42,7 +42,7 @@ const cardSdImages = [
 
 const MyPage: React.FC = () => {
     return (
-        <div className="h-screen w-screen  flex justify-center" style={{backgroundImage: `url(${backgroundImg})`,backgroundSize:'cover'}}>
+        <div className="flex justify-center w-screen h-screen" style={{backgroundImage: `url(${backgroundImg})`,backgroundSize:'cover'}}>
             <div className="flex w-[108rem] max-w-[108rem] place-content-between">
                 <div className="flex flex-col w-[37.5rem] h-[69.81rem] justify-end ">
                     <div className="w-[28.1rem] h-[13.28rem] ml-[5.7rem] mr-[3.33rem] pt-[1.1rem] pb-[2.16rem]" style={{ backgroundImage: `url(${duckBubble})`, backgroundSize: 'cover' }}>
