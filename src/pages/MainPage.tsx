@@ -1,6 +1,6 @@
 import React from "react";
 import '../index.css';
-import startIcon from "../assets/images/startIcon.png";
+import startIcon from "../assets/images/icon/startIcon.png";
 import cardSd_1 from "../assets/images/Character/cardSd_1.png";
 import cardSd_2 from "../assets/images/Character/cardSd_2.png";
 import cardSd_3 from "../assets/images/Character/cardSd_3.png";
@@ -12,9 +12,9 @@ import cardSd_c from "../assets/images/Character/cardSd_c.png";
 import cardSd_d from "../assets/images/Character/cardSd_d.png";
 import cardSd_e from "../assets/images/Character/cardSd_e.png";
 import characterPageImg from "../assets/images/Character/characterPage.png";
-import backgroundImg from "../assets/images/background_h.png"
-import duckImg from "../assets/images/Duck.png";
-import duckBubble from "../assets/images/DuckBubble.png";
+import backgroundImg from "../assets/images/background/background_h.png"
+import duckImg from "../assets/images/Duck/Duck.png";
+import duckBubble from "../assets/images/Duck/DuckBubble.png";
 
 
 const cardSdImages = [
@@ -61,7 +61,7 @@ const MainPage: React.FC = () => {
                     {/*상단바 div*/}
                     <div className="w-full h-[5.3125rem]"></div> 
                     {/*카드 스크롤 div*/}
-                    <div className="  w-[67rem] h-[45.9rem]">
+                    <div className="w-[67rem] h-[45.9rem]">
                         <div className=" webpage-scrollbar overflow-y-auto h-[45.75rem] pt-[2.5rem] pr-[3.5rem] pl-[3.5rem] grid grid-cols-3 gap-7">
                             {cardSdImages.map((image,index) => (
                                 <div key={index} className="mb-1">

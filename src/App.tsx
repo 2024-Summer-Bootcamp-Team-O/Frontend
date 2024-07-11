@@ -10,6 +10,7 @@ import DLoadingPage from './pages/DLoadingPage';
 import ALoadingPage from './pages/ALoadingPage';
 import MainPage from './pages/MainPage'
 import MyPage from './pages/MyPage';
+import ResultPage from './pages/ResultPage';
 
 const App: React.FC = () => {
   return (
@@ -18,9 +19,13 @@ const App: React.FC = () => {
         <Route path="/" element={<StartPage/>} />
         <Route path="/signup" element={<RegisterPage/>} />
         <Route path="/login" element={<LoginPage/>} />
+        <Route path="/main" element={<MainPage/>} />
+        <Route path="/myPage" element={<MyPage/>} />
+        <Route path="/ResultPage" element={<ResultPage/>} />
         <Route path="/lloading" element={<LLoadingPage/>} />
         <Route path="/Dloading" element={<DLoadingPage/>} />
         <Route path="/Aloading" element={<ALoadingPage/>} />
+        
       </Routes>
     </Router>
   );
