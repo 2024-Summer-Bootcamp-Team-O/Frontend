@@ -24,7 +24,7 @@ const LoginPage: React.FC = () => {
               <input
                 id="password"
                 type="password"
-                placeholder="  6자리 이상"
+                placeholder="6자리 이상"
                 className="text-xl rounded-[0.875rem] w-[32rem] h-16 bg-[#F0F0F0] text-[#B2B2B2] font-dgm mb-24"
               />
             </div>

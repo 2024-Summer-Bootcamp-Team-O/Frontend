@@ -50,7 +50,7 @@ html,body,#root {
 
 .webpage-scrollbar::-webkit-scrollbar-track {
   background: url('./assets/images/scrollbar_track.png') no-repeat center center; /* Background image for the track */
-  background-size: 2.2rem 45.19763rem;
+  background-size: 2.2rem 45.7rem;
 }
 
 .webpage-scrollbar::-webkit-scrollbar-thumb {
