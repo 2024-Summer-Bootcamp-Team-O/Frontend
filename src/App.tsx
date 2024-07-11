@@ -9,7 +9,7 @@ import LLoadingPage from './pages/LLoadingPage';
 import DLoadingPage from './pages/DLoadingPage';
 import ALoadingPage from './pages/ALoadingPage';
 import MainPage from './pages/MainPage'
-import MyPage from './pages/MyPage';
+import SelectPage from './pages/SelectPage';
 
 const App: React.FC = () => {
   return (
@@ -22,7 +22,7 @@ const App: React.FC = () => {
         <Route path="/dloading" element={<DLoadingPage/>} />
         <Route path="/aloading" element={<ALoadingPage/>} />
         <Route path="/main" element={<MainPage/>} />
-        <Route path="/select" element={<CaseSelectPage/>} />
+        <Route path="/select" element={<SelectPage/>} />
       </Routes>
     </Router>
   );

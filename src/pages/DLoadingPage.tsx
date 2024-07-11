@@ -1,7 +1,7 @@
 import React from 'react';
 import '../index.css'; 
 
-function DLoadingPage(){
+const DLoadingPage: React.FC = () => {
     return(
 		<div className="flex items-center justify-center w-screen h-screen bg-cover bg-main_h">
 			<div className="flex justify-between w-[70rem] h-[53rem] bg-cover bg-[url('src/assets/images/background/minipage_l.png')]">
@@ -11,7 +11,6 @@ function DLoadingPage(){
 					<img src="src/assets/images/icon/progress.png" alt="progress" className='mt-1 w-7 h-[3.625rem] ml-[0.4rem]'/>
 				</div>
 				<img src="src/assets/images/icon/home_icon.png" alt="destination" className='w-40 h-36 mr-[3.8rem] mt-[9.8rem] '/>
-				
 			</div>
 		</div>
     );
