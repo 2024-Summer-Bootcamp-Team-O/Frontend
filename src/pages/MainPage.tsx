@@ -2,43 +2,70 @@ import React from "react";
 import '../index.css';
 import startIcon from "../assets/images/icon/startIcon.png";
 import cardSd_1 from "../assets/images/Character/cardSd_1.png";
-import cardSd_2 from "../assets/images/Character/cardSd_2.png";
 import cardSd_3 from "../assets/images/Character/cardSd_3.png";
 import cardSd_4 from "../assets/images/Character/cardSd_4.png";
 import cardSd_5 from "../assets/images/Character/cardSd_5.png";
-import cardSd_a from "../assets/images/Character/cardSd_a.png";
-import cardSd_b from "../assets/images/Character/cardSd_b.png";
-import cardSd_c from "../assets/images/Character/cardSd_c.png";
-import cardSd_d from "../assets/images/Character/cardSd_d.png";
-import cardSd_e from "../assets/images/Character/cardSd_e.png";
+import cardSd_6 from "../assets/images/Character/cardSd_6.png";
+import cardSd_7 from "../assets/images/Character/cardSd_7.png";
+import cardSd_8 from "../assets/images/Character/cardSd_8.png";
+import cardSd_9 from "../assets/images/Character/cardSd_9.png";
 import characterPageImg from "../assets/images/Character/characterPage.png";
-import backgroundImg from "../assets/images/background/background_h.png"
+import cardBack_1 from "../assets/images/Character/cardBack_1.png";
+import cardBack_2 from "../assets/images/Character/cardBack_2.png";
+import cardBack_3 from "../assets/images/Character/cardBack_3.png";
+import cardBack_4 from "../assets/images/Character/cardBack_4.png";
+import cardBack_5 from "../assets/images/Character/cardBack_5.png";
+import cardBack_6 from "../assets/images/Character/cardBack_6.png";
+import cardBack_7 from "../assets/images/Character/cardBack_7.png";
+import cardBack_8 from "../assets/images/Character/cardBack_8.png";
+import cardBack_9 from "../assets/images/Character/cardBack_9.png";
+import backgroundImg from "../assets/images/background/background_h.png";
 import duckImg from "../assets/images/Duck/Duck.png";
 import duckBubble from "../assets/images/Duck/DuckBubble.png";
 
 
 const cardSdImages = [
-    cardSd_a,
-    cardSd_4,
-    cardSd_2,
-    cardSd_b,
-    cardSd_3,
-    cardSd_d,
-    cardSd_e,
-    cardSd_c,
-    cardSd_5,
     cardSd_1,
-    cardSd_a,
     cardSd_4,
-    cardSd_2,
-    cardSd_b,
+    cardSd_7,
+    cardSd_8,
     cardSd_3,
-    cardSd_d,
-    cardSd_e,
     cardSd_5,
-    cardSd_c,
-    cardSd_1
+    cardSd_6,
+    cardSd_9,
+    cardSd_3,
+    cardSd_8,
+    cardSd_1,
+    cardSd_5,
+    cardSd_3,
+    cardSd_4,
+    cardSd_7,
+    cardSd_6,
+    cardSd_1,
+    cardSd_9
 ];
+
+const cardBackImages = [
+    cardBack_1,
+    cardBack_4,
+    cardBack_7,
+    cardBack_8,
+    cardBack_3,
+    cardBack_5,
+    cardBack_6,
+    cardBack_9,
+    cardBack_3,
+    cardBack_8,
+    cardBack_1,
+    cardBack_5,
+    cardBack_3,
+    cardBack_4,
+    cardBack_7,
+    cardBack_6,
+    cardBack_1,
+    cardBack_9
+];
+
 
 const MainPage: React.FC = () => {
     return (
@@ -64,9 +91,16 @@ const MainPage: React.FC = () => {
                     <div className="w-[67rem] h-[45.9rem]">
                         <div className=" webpage-scrollbar overflow-y-auto h-[45.75rem] pt-[2.5rem] pr-[3.5rem] pl-[3.5rem] grid grid-cols-3 gap-7">
                             {cardSdImages.map((image,index) => (
-                                <div key={index} className="mb-1">
-                                    <img src={image} alt={`Card ${index + 1}`} className="w-full h-auto"/>
+                                <div key={index} className="flip-card mb-1">
+                                    <div className="flip-card-inner">
+                                        <div className="flip-card-front">
+                                            <img src={image} alt={`Card ${index + 1}`} className="w-full h-full object-cover"/>
+                                        </div>
+                                    <div className="flip-card-back">
+                                        <img src={cardBackImages[index]} alt={`Card Back ${index + 1}`} className="w-full h-full object-cover"/>
+                                    </div>
                                 </div>
+                            </div>
                             ))}
                         </div>
                     </div>
@@ -78,7 +112,6 @@ const MainPage: React.FC = () => {
                     </button>
                 </div>
             <div>
-                
         </div>
         </div>
     </div>
