@@ -3,19 +3,27 @@ import '../index.css';
 import LunchTalkBgImg from "../assets/images/background/LunchTalkBg.png";
 import JunghoImg from "../assets/images/Character/JunghoImg.png";
 import chatBarImg from '../assets/images/others/Chatbar.png';
-import sendButton from "../assets/images/icon/chatButton.png";
 import LLoadingModal from '../components/LLoadingModal';
 
 const LunchTalkPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
     const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 가시성 상태
-
+    const [inputValue, setInputValue] = useState('');
+    const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
     const handleCloseModal = () => {
         setIsModalOpen(false);
         setTimeout(() => {
             setIsContentVisible(true); // 모달이 닫힌 후 콘텐츠를 표시
         },);
     };
+
+    useEffect(() => {
+        if (inputValue.trim() !== '') {
+            setButtonImage('src/assets/images/others/sendbutton_ui_a.png'); 
+        } else {
+            setButtonImage('src/assets/images/others/sendbutton_ui.png'); 
+        }
+    }, [inputValue]);
 
     return (
         <div className="flex h-screen w-screen justify-center items-end" style={{backgroundImage: `url(${LunchTalkBgImg})`, backgroundSize:'cover'}}>
@@ -28,8 +36,13 @@ const LunchTalkPage: React.FC = () => {
                     </p>
                 </div>
                 <div className="flex w-[86.25rem] h-[5.4375rem] -mt-1 mb-[7.31rem]" style={{backgroundImage: `url(${chatBarImg})`, backgroundSize:'cover'}} >
-                <input type="text" className='flex-grow ml-10 text-4xl text-black bg-transparent border-none outline-none font-dgm'/>
-                <button className='flex-none'><img src={sendButton} alt="button" className='w-12 h-12 mr-9'/></button>
+                <input type="text" 
+                className='flex-grow ml-10 text-4xl text-black bg-transparent border-none outline-none font-dgm'
+                placeholder="답변을 입력하세요" 
+                value={inputValue} 
+                onChange={(e) => setInputValue(e.target.value)} 
+                />
+                <button className='flex-none'><img src={buttonImage} alt="button" className='w-12 h-12 mr-9'/></button>
                 </div>
             </div>
         </div>
