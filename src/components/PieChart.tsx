@@ -55,9 +55,9 @@ const PieChart: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center w-64 h-64 relative">
+    <div className="relative flex items-center justify-center w-64 h-64">
       {/* 흰 배경의 원 */}
-      <div className="absolute inset-0 flex justify-center items-center bg-white rounded-full border-4 border-black z-10">
+      <div className="absolute inset-0 z-10 flex items-center justify-center bg-white border-4 border-black rounded-full">
         {/* 퍼센테이지가 채워지는 원형 그래프 */}
         <div className="w-full h-full">
           <Pie ref={chartRef} data={data} options={options} />
