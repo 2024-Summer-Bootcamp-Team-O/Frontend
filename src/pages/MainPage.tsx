@@ -11,7 +11,6 @@ import cardSd_8 from "../assets/images/Character/cardSd_8.png";
 import cardSd_9 from "../assets/images/Character/cardSd_9.png";
 import characterPageImg from "../assets/images/Character/characterPage.png";
 import cardBack_1 from "../assets/images/Character/cardBack_1.png";
-import cardBack_2 from "../assets/images/Character/cardBack_2.png";
 import cardBack_3 from "../assets/images/Character/cardBack_3.png";
 import cardBack_4 from "../assets/images/Character/cardBack_4.png";
 import cardBack_5 from "../assets/images/Character/cardBack_5.png";
