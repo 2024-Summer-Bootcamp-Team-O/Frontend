@@ -5,12 +5,10 @@ import ReactDOM from 'react-dom/client'
 import StartPage from './pages/StartPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
-import LLoadingPage from './pages/LLoadingPage';
-import DLoadingPage from './pages/DLoadingPage';
-import ALoadingPage from './pages/ALoadingPage';
 import MainPage from './pages/MainPage'
 import MyPage from './pages/MyPage';
 import ResultPage from './pages/ResultPage';
+import LunchTalkPage from './pages/LunchTalkPage';
 
 const App: React.FC = () => {
   return (
@@ -21,10 +19,8 @@ const App: React.FC = () => {
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/main" element={<MainPage/>} />
         <Route path="/myPage" element={<MyPage/>} />
-        <Route path="/ResultPage" element={<ResultPage/>} />
-        <Route path="/aloading" element={<ALoadingPage/>} />
-        <Route path="/dloading" element={<DLoadingPage/>} />
-        <Route path="/lloading" element={<LLoadingPage/>} />
+        <Route path="/result" element={<ResultPage/>} />
+        <Route path="/talklc" element={<LunchTalkPage/>} />
       </Routes>
     </Router>
   );

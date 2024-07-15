@@ -121,3 +121,13 @@ html,body,#root {
   }
 }
 
+/* 등장인물 나타나기 */
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+}
+
