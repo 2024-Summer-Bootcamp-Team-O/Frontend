@@ -115,3 +115,61 @@ html,body,#root {
 .animate-blink {
   animation: blink 1s infinite;
 }
+
+/* index.css */
+.flip-card {
+  perspective: 1000px;
+  width: 100%;
+  height: 0;
+  padding-bottom: 150%; /* 2:3 비율을 유지하기 위한 설정 */
+  position: relative; /* 위치 설정 */
+  box-sizing: border-box; /* 전체 크기에 패딩과 보더를 포함 */
+}
+
+.flip-card-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 102%; /* 뒷면 카드의 width를 약간 더 크게 설정 */
+  height: 100%;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0; /* 좌측 위치를 살짝 조정하여 중앙에 맞춤 */
+  box-sizing: border-box; /* 전체 크기에 패딩과 보더를 포함 */
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* 로딩페이지 사람 이동 */
+@keyframes moveRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100% - 6.2rem)); /* div의 너비에서 이미지의 너비를 뺀 거리만큼 이동 */
+  }
+}
+
+/* 로딩바 채우기 */
+@keyframes fillWidth {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+

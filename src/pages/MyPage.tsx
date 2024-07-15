@@ -2,15 +2,13 @@ import React from "react";
 import '../index.css';
 import startIcon from "../assets/images/icon/startIcon.png";
 import cardSd_1 from "../assets/images/Character/cardSd_1.png";
-import cardSd_2 from "../assets/images/Character/cardSd_2.png";
 import cardSd_3 from "../assets/images/Character/cardSd_3.png";
 import cardSd_4 from "../assets/images/Character/cardSd_4.png";
 import cardSd_5 from "../assets/images/Character/cardSd_5.png";
-import cardSd_a from "../assets/images/Character/cardSd_a.png";
-import cardSd_b from "../assets/images/Character/cardSd_b.png";
-import cardSd_c from "../assets/images/Character/cardSd_c.png";
-import cardSd_d from "../assets/images/Character/cardSd_d.png";
-import cardSd_e from "../assets/images/Character/cardSd_e.png";
+import cardSd_6 from "../assets/images/Character/cardSd_6.png";
+import cardSd_7 from "../assets/images/Character/cardSd_7.png";
+import cardSd_8 from "../assets/images/Character/cardSd_8.png";
+import cardSd_9 from "../assets/images/Character/cardSd_9.png";
 import myPageImg from "../assets/images/background/myPage.png";
 import backgroundImg from "../assets/images/background/background_h.png"
 import duckImg from "../assets/images/Duck/Duck.png";
@@ -18,26 +16,24 @@ import duckBubble from "../assets/images/Duck/DuckBubble.png";
 
 
 const cardSdImages = [
-    cardSd_a,
-    cardSd_4,
-    cardSd_2,
-    cardSd_b,
-    cardSd_3,
-    cardSd_d,
-    cardSd_e,
-    cardSd_c,
-    cardSd_5,
     cardSd_1,
-    cardSd_a,
     cardSd_4,
-    cardSd_2,
-    cardSd_b,
+    cardSd_7,
+    cardSd_8,
     cardSd_3,
-    cardSd_d,
-    cardSd_e,
     cardSd_5,
-    cardSd_c,
-    cardSd_1
+    cardSd_6,
+    cardSd_9,
+    cardSd_3,
+    cardSd_8,
+    cardSd_1,
+    cardSd_5,
+    cardSd_3,
+    cardSd_4,
+    cardSd_7,
+    cardSd_6,
+    cardSd_1,
+    cardSd_9
 ];
 
 const MyPage: React.FC = () => {
