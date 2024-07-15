@@ -125,11 +125,9 @@ html,body,#root {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
-
 @keyframes fadeOut {
   from { opacity: 1; }
   to { opacity: 0; }
@@ -137,7 +135,6 @@ html,body,#root {
 .animate-fade-out {
   animation: fadeOut 0.5s ease-in-out;
 }
-
 
 @keyframes wave {
   0%, 100% {
@@ -147,20 +144,16 @@ html,body,#root {
       transform: translateY(-10px);
   }
 }
-
 .dot1, .dot2, .dot3 {
   display: inline-block;
   animation: wave 1.5s infinite;
 }
-
 .dot2 {
   animation-delay: 0.2s;
 }
-
 .dot3 {
   animation-delay: 0.4s;
 }
-
 @keyframes blink {
   0%, 50%, 100% {
       opacity: 1;
@@ -169,7 +162,17 @@ html,body,#root {
       opacity: 0;
   }
 }
-
 .animate-blink {
   animation: blink 1s infinite;
 }
+
+/* 등장인물 나타나기 */
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+}
+
