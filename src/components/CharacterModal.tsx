@@ -55,7 +55,7 @@ const CharacterModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
     const startAnimation = () => {
         playSound(rouletteSoundRef);
-        setButtonText("당신의 상사는 누굴까요?");
+        setButtonText("당신의 상사는 누굴까요 ?");
         setIsButtonClicked(true);
         setIsAnimating(true);
     };
@@ -149,7 +149,7 @@ const CharacterModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             if (typingIntervalRef.current) {
                 clearInterval(typingIntervalRef.current);
             }
-            const fullText = `${' ' + characterName} 나타났다!`;
+            const fullText = `${' ' + characterName} 나타났다 !`;
             setDisplayedText("");
             let index = 0;
             setIsTyping(true);

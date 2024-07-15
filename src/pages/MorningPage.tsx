@@ -6,7 +6,7 @@ const MorningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [inputValue, setInputValue] = useState('');
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
-  
+
     const closeModal = () => {
         setIsModalOpen(false);
     };
