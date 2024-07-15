@@ -62,3 +62,56 @@ html,body,#root {
   background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image when hovered */
   background-size: 2.2rem 5.5rem;
 }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.animate-fade-out {
+  animation: fadeOut 0.5s ease-in-out;
+}
+
+
+@keyframes wave {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
+}
+
+.dot1, .dot2, .dot3 {
+  display: inline-block;
+  animation: wave 1.5s infinite;
+}
+
+.dot2 {
+  animation-delay: 0.2s;
+}
+
+.dot3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%, 50%, 100% {
+      opacity: 1;
+  }
+  25%, 75% {
+      opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}

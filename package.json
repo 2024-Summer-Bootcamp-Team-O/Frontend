@@ -17,10 +17,12 @@
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.24.1"
+    "react-router-dom": "^6.24.1",
+    "use-sound": "^4.0.3"
   },
   "devDependencies": {
     "@types/chart.js": "^2.9.41",
+    "@types/howler": "^2.2.11",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-chartjs-2": "^2.5.7",
@@ -29,7 +31,7 @@
     "@typescript-eslint/parser": "^7.15.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
-    "eslint": "^9.6.0",
+    "eslint": "8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react-hooks": "^4.6.2",
