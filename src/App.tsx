@@ -9,11 +9,8 @@ import LLoadingPage from './pages/LLoadingPage';
 import DLoadingPage from './pages/DLoadingPage';
 import ALoadingPage from './pages/ALoadingPage';
 import MainPage from './pages/MainPage'
-import SelectPage from './pages/SelectPage';
 import MyPage from './pages/MyPage';
 import ResultPage from './pages/ResultPage';
-import TalkPage from './pages/TalkPage';
-import CaseSelectPage from './pages/CaseSelectPage';
 
 const App: React.FC = () => {
   return (
@@ -25,13 +22,9 @@ const App: React.FC = () => {
         <Route path="/main" element={<MainPage/>} />
         <Route path="/myPage" element={<MyPage/>} />
         <Route path="/ResultPage" element={<ResultPage/>} />
-        <Route path="/select" element={<SelectPage/>} />
-        <Route path="/talk" element={<TalkPage/>} />
-        <Route path="/caseSelect" element={<CaseSelectPage/>} />
         <Route path="/aloading" element={<ALoadingPage/>} />
         <Route path="/dloading" element={<DLoadingPage/>} />
         <Route path="/lloading" element={<LLoadingPage/>} />
-
       </Routes>
     </Router>
   );
