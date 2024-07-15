@@ -100,3 +100,24 @@ html,body,#root {
 .flip-card-back {
   transform: rotateY(180deg);
 }
+
+/* 로딩페이지 사람 이동 */
+@keyframes moveRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100% - 6.2rem)); /* div의 너비에서 이미지의 너비를 뺀 거리만큼 이동 */
+  }
+}
+
+/* 로딩바 채우기 */
+@keyframes fillWidth {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
