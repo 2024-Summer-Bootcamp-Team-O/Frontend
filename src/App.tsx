@@ -8,7 +8,7 @@ import RegisterPage from './pages/RegisterPage'
 import MainPage from './pages/MainPage'
 import MyPage from './pages/MyPage';
 import ResultPage from './pages/ResultPage';
-import CharacterPage from './pages/CharacterPage';
+import MorningPage from './pages/MorningPage';
 
 const App: React.FC = () => {
   return (
@@ -20,7 +20,7 @@ const App: React.FC = () => {
         <Route path="/main" element={<MainPage/>} />
         <Route path="/myPage" element={<MyPage/>} />
         <Route path="/ResultPage" element={<ResultPage/>} />
-        <Route path="/character" element={<CharacterPage/>} />
+        <Route path="/Morning" element={<MorningPage/>} />
       </Routes>
     </Router>
   );
