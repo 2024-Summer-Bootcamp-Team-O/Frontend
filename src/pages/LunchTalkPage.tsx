@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import '../index.css';
-import LunchTalkBgImg from "../assets/images/background/LunchTalkBg.png";
+import LunchImg from "../assets/images/background/LunchImg.png";
 import JunghoImg from "../assets/images/Character/JunghoImg.png";
 import chatBarImg from '../assets/images/others/Chatbar.png';
 import LLoadingModal from '../components/LLoadingModal';
+import FeedBackModal from '../components/FeedBackModal'; 
 
 const LunchTalkPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
     const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 가시성 상태
     const [inputValue, setInputValue] = useState('');
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
+    const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     
     const handleCloseModal = () => {
         setIsModalOpen(false);
@@ -21,6 +23,11 @@ const LunchTalkPage: React.FC = () => {
     const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
+        setIsFeedbackModalOpen(true);
+    };
+
+    const handleCloseFeedbackModal = () => {
+        setIsFeedbackModalOpen(false); // 피드백 모달 닫기
     };
 
     useEffect(() => {
@@ -32,7 +39,7 @@ const LunchTalkPage: React.FC = () => {
     }, [inputValue]);
 
     return (
-        <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${LunchTalkBgImg})`, backgroundSize:'cover'}}>
+        <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${LunchImg})`, backgroundSize:'cover'}}>
             {isModalOpen && <LLoadingModal isOpen={isModalOpen} onClose={handleCloseModal} />}
             <div className={`flex justify-end p-4 fade-in ${isContentVisible ? 'show' : ''}`}>
                 <button
@@ -68,6 +75,7 @@ const LunchTalkPage: React.FC = () => {
                     </div>
                 </div>
             </div>
+            {isFeedbackModalOpen && <FeedBackModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} />}
         </div>
     );}
 

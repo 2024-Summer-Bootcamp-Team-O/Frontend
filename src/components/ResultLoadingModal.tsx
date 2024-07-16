@@ -34,7 +34,7 @@ const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen, onReque
         if (isOpen) {
             const timer = setTimeout(() => {
                 navigate('/result'); // 이동할 페이지 경로
-            }, 10000); 
+            }, 7000); 
 
             return () => clearTimeout(timer);
         }

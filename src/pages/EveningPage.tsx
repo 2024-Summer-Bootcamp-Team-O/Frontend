@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import '../index.css';
-import EveningBgImg from "../assets/images/background/EveningPage.png";
+import EveningImg from "../assets/images/background/EveningPage.png";
 import JunghoImg from "../assets/images/Character/JunghoImg.png";
 import chatBarImg from '../assets/images/others/Chatbar.png';
 import ELoadingModal from '../components/ELoadingModal';
+import FeedBackEvModal from '../components/FeedBackEvModal';
+import ResultLoadingModal from "@components/ResultLoadingModal"; 
 
-const LunchTalkPage: React.FC = () => {
+const EveningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
     const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 가시성 상태
     const [inputValue, setInputValue] = useState('');
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
+    const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+    const [isResultLoadingModalOpen, setIsResultLoadingModalOpen] = useState(false);
+
     
     const handleCloseModal = () => {
         setIsModalOpen(false);
@@ -21,6 +26,16 @@ const LunchTalkPage: React.FC = () => {
     const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
+        setIsFeedbackModalOpen(true);
+    };
+
+    const handleCloseFeedbackModal = () => {
+        setIsFeedbackModalOpen(false); // 피드백 모달 닫기
+        setIsResultLoadingModalOpen(true); // ResultLoadingModal 열기
+    };
+
+    const handleCloseResultLoadingModal = () => {
+        setIsResultLoadingModalOpen(false); // ResultLoadingModal 닫기
     };
     
     useEffect(() => {
@@ -32,7 +47,7 @@ const LunchTalkPage: React.FC = () => {
     }, [inputValue]);
 
     return (
-        <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${EveningBgImg})`, backgroundSize:'cover'}}>
+        <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${EveningImg})`, backgroundSize:'cover'}}>
             {isModalOpen && <ELoadingModal isOpen={isModalOpen} onClose={handleCloseModal} />}
             <div className={`flex justify-end p-4 fade-in ${isContentVisible ? 'show' : ''}`}>
                 <button
@@ -60,15 +75,17 @@ const LunchTalkPage: React.FC = () => {
                     <div className="flex w-[86.25rem] h-[5.4375rem] -mt-1 mb-[7.31rem]" style={{backgroundImage: `url(${chatBarImg})`, backgroundSize:'cover'}} >
                     <input type="text" 
                     className='flex-grow ml-10 text-4xl text-black bg-transparent border-none outline-none font-dgm'
-                    placeholder="답변을 입력하세요" 
                     value={inputValue} 
+                    placeholder="답변을 입력하세요" 
                     onChange={(e) => setInputValue(e.target.value)} 
                     />
                     <button className='flex-none'><img src={buttonImage} alt="button" className='w-12 h-12 mr-9'/></button>
                     </div>
                 </div>
             </div>
+            {isFeedbackModalOpen && <FeedBackEvModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} />}
+            {isResultLoadingModalOpen && <ResultLoadingModal isOpen={isResultLoadingModalOpen} onRequestClose={handleCloseResultLoadingModal} />}
         </div>
     );}
 
-    export default LunchTalkPage;
+    export default EveningPage;

@@ -177,6 +177,15 @@ html,body,#root {
   opacity: 1;
 }
 
+/* 피드백 모달 애니메이션! */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @keyframes slide {
   0% {
       transform: translateX(0);
@@ -185,6 +194,42 @@ html,body,#root {
       transform: translateX(-3496px);
   }
 }
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bubbleAppear {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-overlay {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.duck-image {
+  animation: slideInFromLeft 1.5s ease-out forwards;
+}
+
+.bubble {
+  animation: bubbleAppear 1.5s ease-out forwards;
+}
+
+
 
 .animate-slide {
   animation: slide 20s linear infinite;
