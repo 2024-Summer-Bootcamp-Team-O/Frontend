@@ -2,6 +2,11 @@ import React from 'react';
 import '../index.css'; 
 
 const LoginPage: React.FC = () => {
+  const handleButtonClick = () => {
+    const audio = new Audio('src/assets/sounds/click.mp3');
+    audio.play();
+  };
+  
   return (
     <div className="flex items-center justify-between w-screen h-screen bg-cover bg-main_h">
       <div className='flex self-end'>
@@ -17,8 +22,8 @@ const LoginPage: React.FC = () => {
             <input
               id="아이디"
               type="text"
-              placeholder="  영문+숫자"
-              className="text-xl rounded-[0.875rem] w-[32rem] h-16 bg-[#F0F0F0] text-[#B2B2B2] font-dgm mb-10"
+              placeholder="영문+숫자"
+              className="text-xl rounded-[0.875rem] w-[32rem] h-16 pl-5 bg-[#F0F0F0] text-[#B2B2B2] font-dgm mb-10"
             />
           </div>
           <div className='flex flex-col mb-4'>
@@ -26,11 +31,15 @@ const LoginPage: React.FC = () => {
             <input
               id="password"
               type="password"
-              placeholder="  6자리 이상"
-              className="text-xl rounded-[0.875rem] w-[32rem] h-16 bg-[#F0F0F0] text-[#B2B2B2] font-dgm mb-24"
+              placeholder="6자리 이상"
+              className="text-xl rounded-[0.875rem] w-[32rem] h-16 pl-5 bg-[#F0F0F0] text-[#B2B2B2] font-dgm mb-24"
             />
           </div>
-          <button className="rounded-[5rem] w-56 h-14 font-dgm text-[1.625rem] bg-[#2C2C2C] text-white cursor-pointer mb-5"> 로그인</button>
+          <button 
+            type="button" 
+            className="rounded-[5rem] w-56 h-14 font-dgm text-[1.625rem] bg-[#2C2C2C] hover:bg-[#585858] text-white cursor-pointer mb-5"
+            onClick={handleButtonClick}
+          > 로그인</button>
           <div>
             <a href="#">
               <span className="text-[1.20rem] text-[#B2B2B2] font-dgm underline underline-offset-1">
