@@ -28,7 +28,7 @@ const MorningPage: React.FC = () => {
                     </div>
                 </div>
             ) : (
-                <div className="flex flex-col items-center self-end justify-center w-[45rem] h-[61rem] bg-contain bg-no-repeat bg-[url('src/assets/images/standing/nice_m_long.png')]">
+                <div className="flex flex-col items-center self-end justify-center animate-fade-in w-[45rem] h-[61rem] bg-contain bg-no-repeat bg-[url('src/assets/images/standing/nice_m_long.png')]">
                     <div className='translate-y-3/4'>
                         <div className="flex items-center justify-center w-[86.25rem] h-[11.125rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/script_ui.png')]">
                             <p className="ml-12 mt-4 text-black text-center font-dgm text-[2.562rem]">다들 좋은 아침입니다.</p>

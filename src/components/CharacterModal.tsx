@@ -160,7 +160,7 @@ const CharacterModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                     clearInterval(typingIntervalRef.current!);
                     setIsTyping(false);
                     stopSound(typingSoundRef);
-                    setTimeout(onClose, 3000); 
+                    setTimeout(onClose, 500); 
                 }
             }, 150);
             
