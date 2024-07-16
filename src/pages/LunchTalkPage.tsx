@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import '../index.css';
-import LunchTalkBgImg from "../assets/images/background/LunchTalkBg.png";
+import LunchImg from "../assets/images/background/LunchImg.png";
 import JunghoImg from "../assets/images/Character/JunghoImg.png";
 import chatBarImg from '../assets/images/others/Chatbar.png';
 import LLoadingModal from '../components/LLoadingModal';
@@ -26,7 +26,7 @@ const LunchTalkPage: React.FC = () => {
     }, [inputValue]);
 
     return (
-        <div className="flex h-screen w-screen justify-center items-end" style={{backgroundImage: `url(${LunchTalkBgImg})`, backgroundSize:'cover'}}>
+        <div className="flex h-screen w-screen justify-center items-end" style={{backgroundImage: `url(${LunchImg})`, backgroundSize:'cover'}}>
             {isModalOpen && <LLoadingModal isOpen={isModalOpen} onClose={handleCloseModal} />}
             <div className={`flex flex-col items-center h-[61.56rem] w-[45.44rem] fade-in ${isContentVisible ? 'show' : ''}`} style={{backgroundImage:`url(${JunghoImg})`, backgroundSize:'cover'}}>
                 <div className="flex flex-col mt-[36.8rem]" style={{width: '86.25rem', height:'11.125rem', background:'rgba(255, 255, 255, 0.85)', borderRadius: '30px', border: '5.5px solid #000',boxSizing: 'border-box'}}>

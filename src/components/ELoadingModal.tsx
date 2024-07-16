@@ -9,7 +9,7 @@ interface LoadingModalProps {
     onClose: () => void;
 }
 
-const LLoadingModal: React.FC<LoadingModalProps> = ({ isOpen, onClose }) => {
+const ELoadingModal: React.FC<LoadingModalProps> = ({ isOpen, onClose }) => {
     const [animate, setAnimate] = useState(false);
     const [progress, setProgress] = useState(0);
     const [animationComplete, setAnimationComplete] = useState(false);
@@ -17,7 +17,8 @@ const LLoadingModal: React.FC<LoadingModalProps> = ({ isOpen, onClose }) => {
     useEffect(() => {
         if (isOpen) {
             setAnimate(false);
-            setTimeout(() => setAnimate(true), 0);
+            setProgress(0);
+            setAnimationComplete(false);
 
             let interval = setInterval(() => {
                 setProgress(prev => {
@@ -28,11 +29,15 @@ const LLoadingModal: React.FC<LoadingModalProps> = ({ isOpen, onClose }) => {
                         return 100;
                 }
             });
-        }, 100); // 5초 동안 진행되도록 설정
+        }, 125); // 5초 동안 진행되도록 설정
+
+        setTimeout(() => {
+            setAnimate(true); // 애니메이션 시작
+        }, 100); // 리플로우를 보장하기 위한 약간의 지연
 
         setTimeout(() => {
             setAnimationComplete(true);
-        }, 4000); // 애니메이션 길이와 동일하게 설정 (4초)
+        }, 5000); // 4초 후에 애니메이션 완료 설정
     }
 }, [isOpen]);
 
@@ -71,4 +76,4 @@ useEffect(() => {
     );
 }
 
-export default LLoadingModal;
+export default ELoadingModal;
