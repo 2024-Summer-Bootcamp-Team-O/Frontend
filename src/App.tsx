@@ -10,6 +10,7 @@ import MyPage from './pages/MyPage';
 import MorningPage from './pages/MorningPage';
 import LunchTalkPage from './pages/LunchTalkPage';
 import EveningPage from './pages/EveningPage';
+import ResultPage from './pages/ResultPage';
 
 const App: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const App: React.FC = () => {
         <Route path="/lunch" element={<LunchTalkPage/>} />
         <Route path="/morning" element={<MorningPage/>} />
         <Route path="/evening" element={<EveningPage/>} />
+        <Route path="/result" element={<ResultPage/>} />
       </Routes>
     </Router>
   );

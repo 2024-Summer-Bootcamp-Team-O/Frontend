@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import '../index.css';
-import EveningBgImg from "../assets/images/background/EveningPage.png";
+import EveningPage from "../assets/images/background/EveningPage.png";
 import JunghoImg from "../assets/images/Character/JunghoImg.png";
 import chatBarImg from '../assets/images/others/Chatbar.png';
-import LLoadingModal from '../components/ELoadingModal';
+import ELoadingModal from '../components/ELoadingModal';
 
 const LunchTalkPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
@@ -26,8 +26,8 @@ const LunchTalkPage: React.FC = () => {
     }, [inputValue]);
 
     return (
-        <div className="flex h-screen w-screen justify-center items-end" style={{backgroundImage: `url(${EveningBgImg})`, backgroundSize:'cover'}}>
-            {isModalOpen && <LLoadingModal isOpen={isModalOpen} onClose={handleCloseModal} />}
+        <div className="flex h-screen w-screen justify-center items-end" style={{backgroundImage: `url(${EveningPage})`, backgroundSize:'cover'}}>
+            {isModalOpen && <ELoadingModal isOpen={isModalOpen} onClose={handleCloseModal} />}
             <div className={`flex flex-col items-center h-[61.56rem] w-[45.44rem] fade-in ${isContentVisible ? 'show' : ''}`} style={{backgroundImage:`url(${JunghoImg})`, backgroundSize:'cover'}}>
                 <div className="flex flex-col mt-[36.8rem]" style={{width: '86.25rem', height:'11.125rem', background:'rgba(255, 255, 255, 0.85)', borderRadius: '30px', border: '5.5px solid #000',boxSizing: 'border-box'}}>
                     <p className="text-black text-center font-dgm text-[2.3rem] not-italic font-normal leading-normal tracking-[-0.04875rem] whitespace-pre-line mt-[1.62rem]">
