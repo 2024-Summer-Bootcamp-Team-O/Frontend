@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import '../index.css';
 import CharacterModal from '@components/CharacterModal';
+import FeedBackModal from '../components/FeedBackModal'; 
 
 const MorningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [inputValue, setInputValue] = useState('');
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
+    const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+
     const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
+        setIsFeedbackModalOpen(true);
+    };
+
+    const handleCloseFeedbackModal = () => {
+        setIsFeedbackModalOpen(false); // 피드백 모달 닫기
     };
 
     useEffect(() => {
@@ -68,6 +77,7 @@ const MorningPage: React.FC = () => {
                                 </div>
                             </div>
                         </div>
+                        {isFeedbackModalOpen && <FeedBackModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} />}
                     </div>
                 </>
             )}
