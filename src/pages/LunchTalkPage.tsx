@@ -32,7 +32,7 @@ const LunchTalkPage: React.FC = () => {
     }, [inputValue]);
 
     return (
-        <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${LunchTalkBgImg})`, backgroundSize:'cover'}}>
+        <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${LunchImg})`, backgroundSize:'cover'}}>
             {isModalOpen && <LLoadingModal isOpen={isModalOpen} onClose={handleCloseModal} />}
             <div className={`flex justify-end p-4 fade-in ${isContentVisible ? 'show' : ''}`}>
                 <button

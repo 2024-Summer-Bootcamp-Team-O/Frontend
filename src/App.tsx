@@ -7,7 +7,6 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import MainPage from './pages/MainPage'
 import MyPage from './pages/MyPage';
-import ResultPage from './pages/ResultPage';
 import MorningPage from './pages/MorningPage';
 import LunchTalkPage from './pages/LunchTalkPage';
 import EveningPage from './pages/EveningPage';
