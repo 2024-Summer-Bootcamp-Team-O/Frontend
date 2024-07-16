@@ -49,8 +49,8 @@ useEffect(() => {
     
 
     return (
-        <div className='fixed top-0 left-0 flex w-screen h-screen items-center justify-center bg-black bg-opacity-70 '>
-            <div className='flex flex-col w-[57.8rem] h-[43.6rem]' style={{backgroundImage:`url(${LLoadingImg})`, backgroundSize:'cover'}}>
+        <div className='fixed top-0 left-0 flex flex-col items-center justify-center w-screen h-screen bg-black bg-opacity-70 '>
+            <div className='flex flex-col mt-20 w-[57.8rem] h-[43.6rem]' style={{backgroundImage:`url(${LLoadingImg})`, backgroundSize:'cover'}}>
                 <div className='flex w-[50rem] h-[6.2rem] mt-[9.00rem] overflow-hidden'>
                     <div className='flex h-full' style={{width:'100%', transition:'transform 4s linear', transform: animate ? 'translateX(calc(100% - 6.2rem))' : 'translateX(0)'}}>
                         <img src={HumanImg} alt='Moving Human' className='h-full'/>
@@ -64,6 +64,9 @@ useEffect(() => {
                     </div>
                 </div>
             </div>
+            <p className="mt-12 text-[2.8125rem] text-white font-dgm">
+                다음 에피소드로 이동 중 <span className="dot1">.</span><span className="dot2">.</span><span className="dot3">.</span>
+            </p>
         </div>
     );
 }
