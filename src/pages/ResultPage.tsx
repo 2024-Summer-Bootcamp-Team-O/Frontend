@@ -2,6 +2,12 @@ import React from "react";
 import '../index.css';
 
 const ResultPage: React.FC = () => {
+    
+    const handleButtonClick = () => {
+        const audio = new Audio('src/assets/sounds/click.mp3');
+        audio.play();
+    };
+
     return (
         <div className="flex items-center justify-evenly w-screen h-screen bg-cover bg-[url('src/assets/images/background/city.png')]">
             <div className="flex flex-col self-start items-center justify-center w-[46rem] h-[68rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/memberCard_strap.png')]">
@@ -16,8 +22,18 @@ const ResultPage: React.FC = () => {
                     </p>
                 </div>
                 <div className="space-x-10 mt-7">
-                    <button className="bg-contain bg-no-repeat bg-[url('src/assets/images/others/sharebutton_ui.png')] active:bg-[url('src/assets/images/others/sharebutton_ui_p.png')] font-dgm text-[1.25rem] text-center w-[9.375rem] h-[3.4375rem]">공유하기</button>
-                    <button className="bg-contain bg-no-repeat bg-[url('src/assets/images/others/sharebutton_ui.png')] active:bg-[url('src/assets/images/others/sharebutton_ui_p.png')] font-dgm text-[1.25rem] text-center w-[9.375rem] h-[3.4375rem]">저장하기</button>
+                    <button 
+                        type="button"
+                        className="bg-contain bg-no-repeat bg-[url('src/assets/images/others/sharebutton_ui.png')] active:bg-[url('src/assets/images/others/sharebutton_ui_p.png')] font-dgm text-[1.25rem] text-center w-[9.375rem] h-[3.4375rem]"
+                        onClick={handleButtonClick}>
+                        공유하기
+                    </button>
+                    <button 
+                        type="button"
+                        className="bg-contain bg-no-repeat bg-[url('src/assets/images/others/sharebutton_ui.png')] active:bg-[url('src/assets/images/others/sharebutton_ui_p.png')] font-dgm text-[1.25rem] text-center w-[9.375rem] h-[3.4375rem]"
+                        onClick={handleButtonClick}>
+                        저장하기
+                    </button>
                 </div>
             </div>
         </div>
