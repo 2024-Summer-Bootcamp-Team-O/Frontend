@@ -64,7 +64,7 @@ const LunchTalkPage: React.FC = () => {
                             다들 좋은 아침입니다. 
                         </p>
                     </div>
-                    <div className="flex w-[86.25rem] h-[5.4375rem] -mt-1 mb-[7.31rem]" style={{backgroundImage: `url(${chatBarImg})`, backgroundSize:'cover'}} >
+                    <div className="flex w-[86.25rem] h-[5.4375rem] -mt-1 mb-[7.31rem] bg-no-repeat bg-contain" style={{backgroundImage: `url(${chatBarImg})`, backgroundSize:'cover'}} >
                     <input type="text" 
                     className='flex-grow ml-10 text-4xl text-black bg-transparent border-none outline-none font-dgm'
                     placeholder="답변을 입력하세요" 

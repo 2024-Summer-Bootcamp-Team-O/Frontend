@@ -26,9 +26,24 @@ html,body,#root {
 
 .gradient-text {
   background: linear-gradient(to right, #F6FEEE, #90D985);
+  background-clip: text;
   -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -ms-background-clip: text;
+  -o-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.gradient-text:hover {
+  background: linear-gradient(112deg, #F6FEEE 17.38%, #95FFEC 84.06%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -ms-background-clip: text;
+  -o-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 .text-border {
   position: relative;
@@ -229,8 +244,6 @@ html,body,#root {
   animation: bubbleAppear 1.5s ease-out forwards;
 }
 
-
-
 .animate-slide {
   animation: slide 20s linear infinite;
 }
@@ -247,4 +260,3 @@ html,body,#root {
 .animate-scroll-up {
   animation: scroll-up 5s linear forwards;
 }
-
