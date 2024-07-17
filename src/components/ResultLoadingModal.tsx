@@ -7,7 +7,7 @@ interface ResultLoadingModalProps {
     onRequestClose: () => void;
 }
 
-const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen, onRequestClose }) => {
+const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen }) => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const navigate = useNavigate();
 
