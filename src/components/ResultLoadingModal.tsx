@@ -54,13 +54,6 @@ const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen }) => {
                 <div className="relative flex items-end justify-center w-screen h-screen bg-cover bg-[url('src/assets/images/background/subway.png')]">
                     <div className="flex flex-col items-center justify-center ml-20 animate-scroll-up">
                         <p className="text-white font-dgm text-[4rem]">The End</p>
-                        <p className="text-white font-dgm text-[2.5rem]">
-                            박수연<br/>
-                            김영택<br/>
-                            김경섭<br/>
-                            이슬아<br/>
-                            강태훈
-                        </p>
                     </div>
                 </div>
             </div>

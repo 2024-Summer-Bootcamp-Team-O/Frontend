@@ -18,7 +18,7 @@ const FeedBackMoModal: React.FC<FeedBackMoModalProps> = ({ isOpen, onClose }) =>
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
         onClose();
-        navigate('/evening'); // "다음 에피소드로 이동" 버튼 클릭 시 LunchPage로 이동
+        navigate('/lunch'); // "다음 에피소드로 이동" 버튼 클릭 시 LunchPage로 이동
     };
 
     useEffect(() => {
