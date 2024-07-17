@@ -7,7 +7,7 @@ interface ResultLoadingModalProps {
     onRequestClose: () => void;
 }
 
-const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen, onRequestClose }) => {
+const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen }) => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const navigate = useNavigate();
 
@@ -47,7 +47,6 @@ const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen, onReque
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
             <div className="relative w-screen h-screen overflow-hidden bg-white">
-                <button onClick={onRequestClose} className="absolute z-50 text-white top-4 right-4">Close</button>
                 <audio ref={audioRef} loop>
                     <source src="src/assets/sounds/subway.mp3" type="audio/mpeg" />
                 </audio>

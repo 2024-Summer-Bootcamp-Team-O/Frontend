@@ -3,6 +3,11 @@ import '../index.css';
 import { Link } from 'react-router-dom';
 
 const StartPage: React.FC = () => { 
+  const handleButtonClick = () => {
+    const audio = new Audio('src/assets/sounds/click.mp3');
+    audio.play();
+  };
+
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen bg-cover bg-main_s">
         <h1 className="z-40 ml-24 font-normal text-center translate-y-48 text-9xl gradient-text font-dnf rotate-355 text-border">
@@ -15,7 +20,10 @@ const StartPage: React.FC = () => {
           <img src="src/assets/images/background/bg_stand4.png" alt="male_b" className="-ml-32 z-25" />
         </div>
         <Link to="/signup">
-        <button className="z-40 mb-10 text-6xl ml-[4.2rem] -translate-y-[13rem] font-normal text-center gradient-text font-dnf text-border-norm">
+        <button 
+          type="button" 
+          className="z-40 mb-10 text-6xl ml-[4.2rem] -translate-y-[13rem] font-normal text-center gradient-text font-dnf text-border-norm"
+          onClick={handleButtonClick}>
           시작하기
         </button>
         </Link>
