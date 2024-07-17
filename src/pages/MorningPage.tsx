@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../index.css';
 import CharacterModal from '@components/CharacterModal';
-import FeedBackModal from '../components/FeedBackModal'; 
+import FeedBackModal from '../components/FeedBackMoModal'; 
 
 const MorningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);

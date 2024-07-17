@@ -1,5 +1,6 @@
 import React from 'react';
 import '../index.css';
+import { Link } from 'react-router-dom';
 
 const StartPage: React.FC = () => { 
   return (
@@ -13,9 +14,11 @@ const StartPage: React.FC = () => {
           <img src="src/assets/images/background/bg_stand3.png" alt="female_b" className="z-30 -ml-20" />
           <img src="src/assets/images/background/bg_stand4.png" alt="male_b" className="-ml-32 z-25" />
         </div>
+        <Link to="/signup">
         <button className="z-40 mb-10 text-6xl ml-[4.2rem] -translate-y-[13rem] font-normal text-center gradient-text font-dnf text-border-norm">
           시작하기
         </button>
+        </Link>
     </div>
   );
 }
