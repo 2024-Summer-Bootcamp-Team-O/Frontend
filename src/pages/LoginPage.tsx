@@ -1,10 +1,18 @@
 import React from 'react';
 import '../index.css'; 
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
-  const handleButtonClick = () => {
+  const navigate = useNavigate();
+
+  const handleLoginButtonClick = () => {
     const audio = new Audio('src/assets/sounds/click.mp3');
     audio.play();
+    navigate('/main');
+  };
+
+  const handleSignupClick = () => {
+    navigate('/signup'); // 회원가입 페이지로 이동
   };
   
   return (
@@ -38,11 +46,11 @@ const LoginPage: React.FC = () => {
           <button 
             type="button" 
             className="rounded-[5rem] w-56 h-14 font-dgm text-[1.625rem] bg-[#2C2C2C] hover:bg-[#585858] text-white cursor-pointer mb-5"
-            onClick={handleButtonClick}
+            onClick={handleLoginButtonClick}
           > 로그인</button>
           <div>
             <a href="#">
-              <span className="text-[1.20rem] text-[#B2B2B2] font-dgm underline underline-offset-1">
+              <span className="text-[1.20rem] text-[#B2B2B2] font-dgm underline underline-offset-1" onClick={handleSignupClick}>
                 회원가입 하러가기
               </span>
             </a>

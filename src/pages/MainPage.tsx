@@ -1,6 +1,6 @@
 import React from "react";
 import '../index.css';
-import startIcon from "../assets/images/icon/startIcon.png";
+import { useNavigate } from 'react-router-dom';
 import cardSd_1 from "../assets/images/Character/cardSd_1.png";
 import cardSd_3 from "../assets/images/Character/cardSd_3.png";
 import cardSd_4 from "../assets/images/Character/cardSd_4.png";
@@ -67,10 +67,12 @@ const cardBackImages = [
 
 
 const MainPage: React.FC = () => {
+    const navigate = useNavigate();
     
     const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
+        navigate('/morning');
     };
     
     return (

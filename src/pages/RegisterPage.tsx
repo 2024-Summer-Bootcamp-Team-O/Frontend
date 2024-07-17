@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import '../index.css';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage: React.FC = () => {
   const [isIdChecked, setIsIdChecked] = useState(false);
+  const navigate = useNavigate();
 
   const handleIdCheck = () => {
     setIsIdChecked(true);
@@ -12,6 +14,11 @@ const RegisterPage: React.FC = () => {
   const handleButtonClick = () => {
     const audio = new Audio('src/assets/sounds/click.mp3');
     audio.play();
+    navigate('/login');
+  };
+
+  const handleLoginClick = () => {
+    navigate('/login');
   };
 
   return (
@@ -78,7 +85,7 @@ const RegisterPage: React.FC = () => {
                 확인
               </button>
               <a href="#">
-                  <span className="text-[1.20rem] text-[#B2B2B2] font-dgm underline underline-offset-1">                    
+                  <span className="text-[1.20rem] text-[#B2B2B2] font-dgm underline underline-offset-1" onClick={handleLoginClick}>                    
                   로그인 하러가기
                   </span>
               </a>
