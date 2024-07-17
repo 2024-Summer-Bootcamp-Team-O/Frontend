@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
       </div>
       <div className="rounded-[0.9375rem] bg-white shadow-shadow_tr p-8">
         <form action="#" method="post" className='w-[36rem] h-[48rem] flex flex-col items-center justify-center'>
-          <h1 className="mb-16 text-6xl text-center font-nomal gradient-text font-dnf text-border-norm">
+          <h1 className="mb-16 text-6xl text-center font-nomal gradient-text-s font-dnf text-border-norm">
             로그인
           </h1>
           <div className='flex flex-col mb-4'>
@@ -31,7 +31,7 @@ const LoginPage: React.FC = () => {
               id="아이디"
               type="text"
               placeholder="영문+숫자"
-              className="text-xl rounded-[0.875rem] w-[32rem] h-16 pl-5 bg-[#F0F0F0] text-[#B2B2B2] font-dgm mb-10"
+              className="text-3xl rounded-[0.875rem] w-[32rem] h-16 pl-5 bg-[#F0F0F0] placeholder-normal text-black font-dgm mb-10"
             />
           </div>
           <div className='flex flex-col mb-4'>
@@ -40,7 +40,7 @@ const LoginPage: React.FC = () => {
               id="password"
               type="password"
               placeholder="6자리 이상"
-              className="text-xl rounded-[0.875rem] w-[32rem] h-16 pl-5 bg-[#F0F0F0] text-[#B2B2B2] font-dgm mb-24"
+              className="text-3xl rounded-[0.875rem] w-[32rem] h-16 pl-5 bg-[#F0F0F0] text-[#B2B2B2] placeholder-normal font-dgm mb-24"
             />
           </div>
           <button 

@@ -28,7 +28,7 @@ const RegisterPage: React.FC = () => {
       </div>
       <div className="rounded-[0.9375rem] bg-white shadow-shadow_tr p-8">
         <form action="#" method="post" className='w-[35.75rem] h-[47rem] flex flex-col items-center justify-center'>
-          <h1 className="mt-[3.25rem] mb-[0.3rem] text-6xl text-center font-nomal gradient-text font-dnf text-border-norm">
+          <h1 className="mt-[3.25rem] mb-[0.3rem] text-6xl text-center font-nomal gradient-text-s font-dnf text-border-norm">
             회원가입
           </h1>
           <div className='flex flex-col mb-5'>
@@ -37,7 +37,7 @@ const RegisterPage: React.FC = () => {
               id="name"
               type="text"
               placeholder="2글자 이상"
-              className="text-xl rounded-[0.875rem] w-[30rem] h-14 pl-5 bg-[#F0F0F0] text-[#B2B2B2] font-dgm"
+              className="text-2xl rounded-[0.875rem] w-[30rem] h-14 pl-5 bg-[#F0F0F0] text-black placeholder-small font-dgm"
             />
           </div>
           <div className='flex flex-col mb-5'>
@@ -47,7 +47,7 @@ const RegisterPage: React.FC = () => {
                   id="id"
                   type="text"
                   placeholder="영문+숫자"
-                  className="text-xl rounded-[0.875rem] w-80 h-14 pl-5 bg-[#F0F0F0] text-[#B2B2B2] font-dgm mb-3."
+                  className="text-2xl rounded-[0.875rem] w-80 h-14 pl-5 bg-[#F0F0F0] text-black placeholder-small font-dgm mb-3."
               />
               <button
                 type="button"
@@ -64,7 +64,7 @@ const RegisterPage: React.FC = () => {
               id="password"
               type="password"
               placeholder="6자리 이상"
-              className="text-xl rounded-[0.875rem] w-[30rem] h-14 pl-5 bg-[#F0F0F0] text-[#B2B2B2] font-dgm"
+              className="text-2xl rounded-[0.875rem] w-[30rem] h-14 pl-5 bg-[#F0F0F0] text-black placeholder-small font-dgm"
             />
           </div>
           <div className='flex flex-col mb-10'>
@@ -73,7 +73,7 @@ const RegisterPage: React.FC = () => {
               id="password"
               type="password"
               placeholder="6자리 이상"
-              className="text-xl rounded-[0.875rem] w-[30rem] h-14 pl-5 bg-[#F0F0F0] text-[#B2B2B2] font-dgm"
+              className="text-2xl rounded-[0.875rem] w-[30rem] h-14 pl-5 bg-[#F0F0F0] text-black placeholder-small font-dgm"
             />
           </div>
           <div className='flex flex-col items-center mb-10'>
