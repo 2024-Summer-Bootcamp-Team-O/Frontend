@@ -60,7 +60,7 @@ const MorningPage: React.FC = () => {
                         </button>
                     </div>
                     <div className="flex items-end justify-center">
-                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem]" style={{ backgroundImage: `url(${characterId !== undefined ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
+                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== undefined ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
                             <div className='-translate-y-1/2'>
                                 <div className="flex items-center justify-center w-[86.25rem] h-[11.125rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/script_ui.png')]">
                                     <p className="ml-12 mt-4 text-black text-center font-dgm text-[2.562rem]">다들 좋은 아침입니다.</p>

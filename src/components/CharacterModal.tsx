@@ -6,8 +6,8 @@ export const silhouette = [
     'src/assets/images/silhouette/silhouette_nice_m.png',
     'src/assets/images/silhouette/silhouette_nice_w.png',
     'src/assets/images/silhouette/silhouette_assistant.png',
-    'src/assets/images/silhouette/silhouette_ow.png',
     'src/assets/images/silhouette/silhouette_om.png',
+    'src/assets/images/silhouette/silhouette_ow.png',
     'src/assets/images/silhouette/silhouette_drunken.png',
     'src/assets/images/silhouette/silhouette_employee.png',
     'src/assets/images/silhouette/silhouette_intern.png',
@@ -190,7 +190,7 @@ const CharacterModal: React.FC<{ onClose: () => void, character_id: number }> = 
                     <img
                         src={displayImage || finalImage || currentImage}
                         alt="실루엣"
-                        className={`w-[20rem] h-[31rem] mb-1 ${isFading ? 'animate-fade-in' : ''}`}
+                        className={`w-[20rem] h-[31rem] mb-1 mr-10 ${isFading ? 'animate-fade-in' : ''}`}
                     />
                 </div>
                 {animationComplete ? (
