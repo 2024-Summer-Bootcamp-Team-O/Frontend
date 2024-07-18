@@ -1,20 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import '../index.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const RegisterPage: React.FC = () => {
   const [isIdChecked, setIsIdChecked] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('');
+  const [passwordMatch, setPasswordMatch] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (confirmPassword) {
+      setPasswordMatch(password === confirmPassword);
+    }
+  }, [password, confirmPassword]);
 
   const handleIdCheck = () => {
     setIsIdChecked(true);
     alert('사용할 수 있는 아이디입니다.');
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async() => {
     const audio = new Audio('src/assets/sounds/click.mp3');
     audio.play();
-    navigate('/login');
+
+    if (!passwordMatch) {
+      alert('비밀번호가 일치하지 않습니다.');
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:8000/users/sign-up', {
+        email: email,
+        password: password,
+        name: name,
+      });
+
+      console.log(response); // 응답 데이터 콘솔 출력
+
+      if (response.status === 201) {
+        navigate('/login');
+      } else {
+        alert(response.data.message);
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        alert('회원가입 실패: ' + error.message);
+      } else {
+        alert('회원가입 실패: ' + String(error));
+      }
+    }
   };
 
   const handleLoginClick = () => {
@@ -37,6 +75,8 @@ const RegisterPage: React.FC = () => {
               id="name"
               type="text"
               placeholder="2글자 이상"
+              value={name}
+              onChange={(e) => setName(e.target.value)} // 상태 업데이트
               className="text-2xl rounded-[0.875rem] w-[30rem] h-14 pl-5 bg-[#F0F0F0] text-black placeholder-small font-dgm"
             />
           </div>
@@ -44,9 +84,11 @@ const RegisterPage: React.FC = () => {
             <label className="mb-3 text-black font-dgm text-[1.4375rem]" htmlFor="아이디">아이디</label>
             <div className='flex items-center w-full space-x-4'>
               <input
-                  id="id"
-                  type="text"
-                  placeholder="이메일"
+                  id="email"
+                  type="email"
+                  placeholder="이메일을 입력하세요"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)} // 상태 업데이트
                   className="text-2xl rounded-[0.875rem] w-80 h-14 pl-5 bg-[#F0F0F0] text-black placeholder-small font-dgm mb-3."
               />
               <button
@@ -64,17 +106,26 @@ const RegisterPage: React.FC = () => {
               id="password"
               type="password"
               placeholder="6자리 이상"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} // 상태 업데이트
               className="text-2xl rounded-[0.875rem] w-[30rem] h-14 pl-5 bg-[#F0F0F0] text-black placeholder-small font-dgm"
             />
           </div>
           <div className='flex flex-col mb-10'>
             <label className="mb-3 text-black font-dgm text-[1.4375rem]" htmlFor="password">비밀번호 확인</label>
             <input
-              id="password"
+              id="confirmPassword"
               type="password"
               placeholder="6자리 이상"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)} // 상태 업데이트
               className="text-2xl rounded-[0.875rem] w-[30rem] h-14 pl-5 bg-[#F0F0F0] text-black placeholder-small font-dgm"
             />
+            {confirmPassword && (
+              <p className={`mt-2 ml-2 font:text-l ${passwordMatch ? 'text-green-800' : 'text-red-800'} font-dgm`}>
+                {passwordMatch ? '비밀번호가 일치합니다.' : '비밀번호가 일치하지 않습니다.'}
+              </p>
+            )}
           </div>
           <div className='flex flex-col items-center mb-10'>
               <button

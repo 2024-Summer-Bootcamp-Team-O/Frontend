@@ -45,7 +45,7 @@ useEffect(() => {
     if (animationComplete && progress === 100) {
         setTimeout(() => {
             onClose();
-        }, 500); // 약간의 지연을 추가하여 로딩 완료 후 모달 닫기
+        }, 400); // 약간의 지연을 추가하여 로딩 완료 후 모달 닫기
     }
 }, [animationComplete, progress, onClose]);
         
