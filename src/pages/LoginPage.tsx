@@ -49,7 +49,7 @@ const LoginPage: React.FC = () => {
             <input
               id="email"
               type="text"
-              placeholder="email@example.com"
+              placeholder="이메일"
               className="text-3xl rounded-[0.875rem] w-[32rem] h-16 pl-5 bg-[#F0F0F0] placeholder-normal text-black font-dgm mb-10"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
