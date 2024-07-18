@@ -1,37 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../index.css'; 
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLoginButtonClick = () => {
-    const audio = new Audio('src/assets/sounds/click.mp3');
-    audio.play();
-    navigate('/main');
+  const handleLoginButtonClick = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      const audio = new Audio('src/assets/sounds/click.mp3');
+      audio.play();
+      
+      const response = await axios.post('http://localhost:8000/users/login', {
+        email: email,
+        password: password
+      });
+
+      localStorage.setItem('access', response.data.access);
+      localStorage.setItem('refresh', response.data.refresh);
+      
+      navigate('/main');
+    } catch (error) {
+      setError('로그인에 실패했습니다. 다시 시도해주세요.');
+      console.error('Error:', error);
+    }
   };
 
   const handleSignupClick = () => {
-    navigate('/signup'); // 회원가입 페이지로 이동
+    navigate('/signup'); 
   };
-  
+
   return (
     <div className="flex items-center justify-between w-screen h-screen bg-cover bg-main_h">
       <div className='flex self-end'>
         <img src="src/assets/images/background/bg_stand5.png" alt="" />
       </div>
       <div className="rounded-[0.9375rem] bg-white shadow-shadow_tr p-8">
-        <form action="#" method="post" className='w-[36rem] h-[48rem] flex flex-col items-center justify-center'>
+        <form className='w-[36rem] h-[48rem] flex flex-col items-center justify-center' onSubmit={handleLoginButtonClick}>
           <h1 className="mb-16 text-6xl text-center font-nomal gradient-text-s font-dnf text-border-norm">
             로그인
           </h1>
           <div className='flex flex-col mb-4'>
-            <label className="mb-7 text-black font-dgm text-[1.4375rem]" htmlFor="아이디">아이디</label>
+            <label className="mb-7 text-black font-dgm text-[1.4375rem]" htmlFor="email">아이디</label>
             <input
-              id="아이디"
+              id="email"
               type="text"
-              placeholder="영문+숫자"
+              placeholder="email@example.com"
               className="text-3xl rounded-[0.875rem] w-[32rem] h-16 pl-5 bg-[#F0F0F0] placeholder-normal text-black font-dgm mb-10"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className='flex flex-col mb-4'>
@@ -40,20 +61,22 @@ const LoginPage: React.FC = () => {
               id="password"
               type="password"
               placeholder="6자리 이상"
-              className="text-3xl rounded-[0.875rem] w-[32rem] h-16 pl-5 bg-[#F0F0F0] text-[#B2B2B2] placeholder-normal font-dgm mb-24"
+              className="text-3xl rounded-[0.875rem] w-[32rem] h-16 pl-5 bg-[#F0F0F0] text-[#B2B2B2] placeholder-normal font-dgm mb-20"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          <div className="mb-4 error-container">
+            {error && <p className="text-red-600 font-dgm ">{error}</p>}
+          </div>
           <button 
-            type="button" 
+            type="submit" 
             className="rounded-[5rem] w-56 h-14 font-dgm text-[1.625rem] bg-[#2C2C2C] hover:bg-[#585858] text-white cursor-pointer mb-5"
-            onClick={handleLoginButtonClick}
           > 로그인</button>
           <div>
-            <a href="#">
-              <span className="text-[1.20rem] text-[#B2B2B2] font-dgm underline underline-offset-1" onClick={handleSignupClick}>
-                회원가입 하러가기
-              </span>
-            </a>
+            <span className="text-[1.20rem] text-[#B2B2B2] font-dgm underline underline-offset-1 cursor-pointer" onClick={handleSignupClick}>
+              회원가입 하러가기
+            </span>
           </div>
         </form>
       </div>
