@@ -278,3 +278,11 @@ html,body,#root {
 .placeholder-small::placeholder {
   font-size: 1.25rem;
 }
+
+.error-container {
+  height: 1.5rem; 
+}
+
+.p-ani{
+  height: 4.125rem; 
+}

@@ -8,7 +8,7 @@ const ResultPage: React.FC = () => {
     const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
-        navigate('/main');
+        navigate('/myPage');
     };
 
     return (

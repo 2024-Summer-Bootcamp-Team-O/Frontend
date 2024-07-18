@@ -46,7 +46,7 @@ const RegisterPage: React.FC = () => {
               <input
                   id="id"
                   type="text"
-                  placeholder="영문+숫자"
+                  placeholder="이메일"
                   className="text-2xl rounded-[0.875rem] w-80 h-14 pl-5 bg-[#F0F0F0] text-black placeholder-small font-dgm mb-3."
               />
               <button
