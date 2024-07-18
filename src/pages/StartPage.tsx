@@ -10,7 +10,7 @@ const StartPage: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen bg-cover bg-main_s">
-        <h1 className="z-40 ml-24 font-normal text-center translate-y-48 text-9xl gradient-text font-dnf rotate-355 text-border">
+        <h1 className="z-40 ml-24 font-normal text-center translate-y-48 text-9xl gradient-text-s font-dnf rotate-355 text-border">
           걔, 킹받네 ?
         </h1>
         <div className="flex flex-row justify-end">

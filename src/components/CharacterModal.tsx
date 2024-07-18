@@ -188,7 +188,7 @@ const CharacterModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                     />
                 </div>
                 {animationComplete ? (
-                    <p className="mt-10 text-[2.8125rem] font-dgm text-white">{displayedText}</p>
+                    <p className="p-ani mt-10 text-[2.8125rem] font-dgm text-white">{displayedText}</p>
                 ) : (
                     <button 
                         className={`mt-10 text-[2.8125rem] font-dgm text-white ${isButtonClicked ? '' : 'animate-blink'}`}
