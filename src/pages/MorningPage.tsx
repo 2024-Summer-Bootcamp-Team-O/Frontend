@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import '../index.css';
-import CharacterModal from '@components/CharacterModal';
+import CharacterModal, { standing } from '@components/CharacterModal';
 import FeedBackModal from '../components/FeedBackMoModal'; 
+import { useLocation } from 'react-router-dom';
 
 const MorningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [inputValue, setInputValue] = useState('');
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+    const location = useLocation();
+    const characterId = location.state?.character_id;
 
     const closeModal = () => {
         setIsModalOpen(false);
     };
-
 
     const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
@@ -37,7 +39,7 @@ const MorningPage: React.FC = () => {
             {isModalOpen ? (
                 <div className="modal-overlay">
                     <div className="modal-container animate-modal">
-                        <CharacterModal onClose={closeModal} />
+                        <CharacterModal onClose={closeModal} character_id={characterId} />
                     </div>
                 </div>
             ) : (
@@ -58,7 +60,7 @@ const MorningPage: React.FC = () => {
                         </button>
                     </div>
                     <div className="flex items-end justify-center">
-                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-cover bg-[url('src/assets/images/standing/nice_m_long.png')]">
+                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem]" style={{ backgroundImage: `url(${characterId !== undefined ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
                             <div className='-translate-y-1/2'>
                                 <div className="flex items-center justify-center w-[86.25rem] h-[11.125rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/script_ui.png')]">
                                     <p className="ml-12 mt-4 text-black text-center font-dgm text-[2.562rem]">다들 좋은 아침입니다.</p>
