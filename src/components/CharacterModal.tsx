@@ -1,40 +1,42 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useLocation } from 'react-router-dom';
 import '../index.css'; 
 
 export const silhouette = [
-    'src/assets/images/silhouette/silhouette_ow.png',
-    'src/assets/images/silhouette/silhouette_om.png',
-    'src/assets/images/silhouette/silhouette_drunken.png',
     'src/assets/images/silhouette/silhouette_nice_m.png',
     'src/assets/images/silhouette/silhouette_nice_w.png',
     'src/assets/images/silhouette/silhouette_assistant.png',
+    'src/assets/images/silhouette/silhouette_ow.png',
+    'src/assets/images/silhouette/silhouette_om.png',
+    'src/assets/images/silhouette/silhouette_drunken.png',
     'src/assets/images/silhouette/silhouette_employee.png',
     'src/assets/images/silhouette/silhouette_intern.png',
 ];
 
 export const standing = [
-    'src/assets/images/standing/om.png',
-    'src/assets/images/standing/ow.png',
-    'src/assets/images/standing/drunken.png',
     'src/assets/images/standing/nice_m.png',
     'src/assets/images/standing/nice_w.png',
     'src/assets/images/standing/assistant.png',
+    'src/assets/images/standing/om.png',
+    'src/assets/images/standing/ow.png',
+    'src/assets/images/standing/drunken.png',
     'src/assets/images/standing/employee.png',
     'src/assets/images/standing/intern.png',
 ];
 
 export const CharacterName = [
-    '부장 박진수가',
-    '차장 김진숙이',
-    '과장 박성민이',
     '팀장 이정호가',
     '팀장 서윤아가',
     '대리 한민석이',
+    '부장 박진수가',
+    '차장 김진숙이',
+    '과장 박성민이',
     '인턴 박지훈이',
     '인턴 최수민이'
 ];
 
-const CharacterModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+
+const CharacterModal: React.FC<{ onClose: () => void, character_id: number }> = ({ onClose, character_id }) => {
     const [currentImage, setCurrentImage] = useState(silhouette[0]);
     const [finalImage, setFinalImage] = useState<string | null>(null);
     const [displayImage, setDisplayImage] = useState<string | null>(null);
@@ -51,7 +53,11 @@ const CharacterModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const typingSoundRef = useRef<HTMLAudioElement | null>(null);
     const rouletteSoundRef = useRef<HTMLAudioElement | null>(null);
 
-    const predefinedIndex = 3; 
+    const predefinedIndex = character_id-1;
+
+    useEffect(() => {
+        console.log('Received character_id:', character_id);
+    }, [character_id]);
 
     const startAnimation = () => {
         playSound(rouletteSoundRef);
@@ -104,7 +110,7 @@ const CharacterModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             clearInterval(interval);
             clearTimeout(timeout);
         };
-    }, [isAnimating, finalImage]);
+    }, [isAnimating, finalImage, predefinedIndex]);
 
     useEffect(() => {
         if (finalImage) {
