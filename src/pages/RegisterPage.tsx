@@ -10,6 +10,7 @@ const RegisterPage: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [passwordMatch, setPasswordMatch] = useState(true);
+  const [idCheckMessage, setIdCheckMessage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,9 +19,23 @@ const RegisterPage: React.FC = () => {
     }
   }, [password, confirmPassword]);
 
-  const handleIdCheck = () => {
-    setIsIdChecked(true);
-    alert('사용할 수 있는 아이디입니다.');
+  const handleIdCheck = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/users/exists', {
+        params: { email: email },
+      });
+
+      console.log(response); // 응답 데이터 콘솔 출력
+
+      if (response.status === 200) {
+        setIsIdChecked(true);
+        setIdCheckMessage('사용 가능한 아이디입니다.');
+      } 
+    } catch (error) {
+      if (axios.isAxiosError(error)) 
+      { if (error.response?.status === 409) { setIdCheckMessage('사용 중인 아이디입니다.'); } 
+      else { setIdCheckMessage('아이디 확인 실패!: ' + error.message); } }
+    }
   };
 
   const handleButtonClick = async() => {
@@ -99,6 +114,11 @@ const RegisterPage: React.FC = () => {
                 중복확인
               </button>
             </div>
+            {idCheckMessage && (
+              <p className={`mt-2 text-l ${isIdChecked ? 'text-green-800' : 'text-red-800'} font-dgm`}>
+                {idCheckMessage}
+              </p>
+            )}
           </div>
           <div className='flex flex-col mb-5'>
             <label className="mb-3 text-black font-dgm text-[1.4375rem]" htmlFor="password">비밀번호</label>
