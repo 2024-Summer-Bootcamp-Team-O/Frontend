@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import '../index.css';
-import CharacterModal, { standing } from '@components/CharacterModal';
-import FeedBackModal from '../components/FeedBackMoModal'; 
-import { useLocation } from 'react-router-dom';
+import CharacterModal, { standing } from '../components/CharacterModal';
+import FeedBackModal from '../components/FeedBackMoModal';
 
 const MorningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [inputValue, setInputValue] = useState('');
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
-    const location = useLocation();
-    const characterId = location.state?.character_id;
+    const [characterId, setCharacterId] = useState<number | null>(null);
 
     const closeModal = () => {
         setIsModalOpen(false);
@@ -34,12 +32,19 @@ const MorningPage: React.FC = () => {
         }
     }, [inputValue]);
 
+    useEffect(() => {
+        const storedCharacterId = sessionStorage.getItem('characterId');
+        if (storedCharacterId) {
+            setCharacterId(parseInt(storedCharacterId, 10));
+        }
+    }, []);
+
     return (
         <div className="flex flex-col justify-between w-screen h-screen bg-cover bg-[url('src/assets/images/background/office_m.png')]">
             {isModalOpen ? (
                 <div className="modal-overlay">
                     <div className="modal-container animate-modal">
-                        <CharacterModal onClose={closeModal} character_id={characterId} />
+                        {characterId !== null && <CharacterModal onClose={closeModal} character_id={characterId} />}
                     </div>
                 </div>
             ) : (
@@ -60,7 +65,7 @@ const MorningPage: React.FC = () => {
                         </button>
                     </div>
                     <div className="flex items-end justify-center">
-                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== undefined ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
+                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
                             <div className='-translate-y-1/2'>
                                 <div className="flex items-center justify-center w-[86.25rem] h-[11.125rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/script_ui.png')]">
                                     <p className="ml-12 mt-4 text-black text-center font-dgm text-[2.562rem]">다들 좋은 아침입니다.</p>
