@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../index.css';
+import axios from 'axios';
 import CharacterModal, { standing } from '@components/CharacterModal';
 import FeedBackModal from '../components/FeedBackMoModal'; 
 import { useLocation } from 'react-router-dom';
@@ -11,14 +12,33 @@ const MorningPage: React.FC = () => {
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const location = useLocation();
     const characterId = location.state?.character_id;
+    const websocket = useRef<WebSocket | null>(null);
 
-    const closeModal = () => {
+    const closeModal = async() => {
         setIsModalOpen(false);
+
+        try{
+            const response= await axios.post("http://localhost:80/apps/start",{
+                user_id:1,
+                character_id:characterId,
+            });
+
+            if (response.status==201){
+                console.log('대화 시작 성공:',response.data.message);
+            } else{
+                console.error('대화 시작 실패:',response.data.message);
+            }
+        } catch(error) {
+            console.error('API 요청 중 오류 발생:',error);
+        }
     };
 
     const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
+        if (websocket.current && inputValue.trim() !== '') {
+            websocket.current.send(JSON.stringify({ message: inputValue }));
+        }
         setIsFeedbackModalOpen(true);
     };
 
@@ -33,6 +53,33 @@ const MorningPage: React.FC = () => {
             setButtonImage('src/assets/images/others/sendbutton_ui.png'); 
         }
     }, [inputValue]);
+
+    useEffect(() => {
+        websocket.current = new WebSocket('ws://localhost:80/ws/gpt/');
+
+        websocket.current.onopen = () => {
+            console.log('WebSocket 연결이 열렸습니다.');
+        };
+
+        websocket.current.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            console.log('받은 메시지:', data);
+        };
+
+        websocket.current.onclose = () => {
+            console.log('WebSocket 연결이 닫혔습니다.');
+        };
+
+        websocket.current.onerror = (error) => {
+            console.error('WebSocket 에러:', error);
+        };
+
+        return () => {
+            if (websocket.current) {
+                websocket.current.close();
+            }
+        };
+    }, []);
 
     return (
         <div className="flex flex-col justify-between w-screen h-screen bg-cover bg-[url('src/assets/images/background/office_m.png')]">

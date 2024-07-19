@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../index.css'; 
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import cardSd_1 from "../assets/images/Character/cardSd_1.png";
 import cardSd_3 from "../assets/images/Character/cardSd_3.png";
 import cardSd_4 from "../assets/images/Character/cardSd_4.png";
@@ -77,25 +76,13 @@ const MainPage: React.FC = () => {
         const randomCharacterId = getRandomCharacterId();
         console.log('랜덤 character_id:', randomCharacterId);
 
-        try {
+
             const audio = new Audio('src/assets/sounds/click.mp3');
             audio.play();
 
-            // API 요청 전송
-            const response = await axios.post('http://localhost:80/apps/start', {
-                user_id: 1, // 예시 user_id
-                character_id: randomCharacterId
-            });
-
-            // 응답 확인
-            console.log('응답 받은 데이터:', response.data);
-
             // 페이지 이동
             navigate('/morning', { state: { character_id: randomCharacterId } });
-        } catch (error) {
-            console.error('Error:', error);
         }
-    };
 
     return (
         <div className="flex justify-center w-screen h-screen" style={{backgroundImage: `url(${backgroundImg})`,backgroundSize:'cover'}}>
