@@ -1,6 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useLocation } from 'react-router-dom';
 import '../index.css'; 
+
+interface CharacterModalProps {
+    onClose: () => void;
+    character_id: number | null; // number | null 타입을 허용
+}
 
 export const silhouette = [
     'src/assets/images/silhouette/silhouette_nice_m.png',
@@ -36,7 +40,11 @@ export const CharacterName = [
 ];
 
 
-const CharacterModal: React.FC<{ onClose: () => void, character_id: number }> = ({ onClose, character_id }) => {
+const CharacterModal: React.FC<CharacterModalProps> = ({ onClose, character_id }) => {
+    if (character_id === null) {
+        return null;
+    }
+    
     const [currentImage, setCurrentImage] = useState(silhouette[0]);
     const [finalImage, setFinalImage] = useState<string | null>(null);
     const [displayImage, setDisplayImage] = useState<string | null>(null);

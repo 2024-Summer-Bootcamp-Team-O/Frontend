@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import '../index.css';
 import EveningImg from "../assets/images/background/EveningPage.png";
-import JunghoImg from "../assets/images/Character/JunghoImg.png";
+import { standing } from '../components/CharacterModal';
 import chatBarImg from '../assets/images/others/Chatbar.png';
 import ELoadingModal from '../components/ELoadingModal';
 import FeedBackEvModal from '../components/FeedBackEvModal';
 import ResultLoadingModal from "@components/ResultLoadingModal";
-import CameraModal from '@components/CameraModal'; // CameraModal 컴포넌트 추가
+import CameraModal from '@components/CameraModal';
+
 const EveningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
     const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 가시성 상태
@@ -15,6 +16,8 @@ const EveningPage: React.FC = () => {
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [isResultLoadingModalOpen, setIsResultLoadingModalOpen] = useState(false);
     const [isCameraModalOpen, setIsCameraModalOpen] = useState(false); // 카메라 모달 상태 추가
+    const [characterId, setCharacterId] = useState<number | null>(null);
+
     const handleCloseModal = () => {
         setIsModalOpen(false);
         setTimeout(() => {
@@ -39,7 +42,14 @@ const EveningPage: React.FC = () => {
     const handleCloseResultLoadingModal = () => {
         setIsResultLoadingModalOpen(false);
     };
-   
+
+    useEffect(() => {
+        const storedCharacterId = sessionStorage.getItem('characterId');
+        if (storedCharacterId) {
+            setCharacterId(parseInt(storedCharacterId, 10));
+        }
+    }, []);
+    
     useEffect(() => {
         if (inputValue.trim() !== '') {
             setButtonImage('src/assets/images/others/sendbutton_ui_a.png');
@@ -47,6 +57,7 @@ const EveningPage: React.FC = () => {
             setButtonImage('src/assets/images/others/sendbutton_ui.png');
         }
     }, [inputValue]);
+    
     return (
         <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${EveningImg})`, backgroundSize:'cover'}}>
             {isModalOpen && <ELoadingModal isOpen={isModalOpen} onClose={handleCloseModal} />}
@@ -66,7 +77,7 @@ const EveningPage: React.FC = () => {
                 </button>
             </div>
             <div className={`flex items-end justify-center ${isCameraModalOpen ? 'hidden' : ''}`}>
-                <div className={`flex flex-col items-center h-[61.56rem] w-[45.44rem] fade-in ${isContentVisible ? 'show' : ''}`} style={{backgroundImage:`url(${JunghoImg})`, backgroundSize:'cover'}}>
+                <div className={`flex flex-col items-center h-[61.56rem] w-[45.44rem] bg-contain bg-no-repeat fade-in ${isContentVisible ? 'show' : ''}`} style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
                     <div className="flex flex-col mt-[36.8rem]" style={{width: '86.25rem', height:'11.125rem', background:'rgba(255, 255, 255, 0.85)', borderRadius: '30px', border: '5.5px solid #000',boxSizing: 'border-box'}}>
                         <p className="text-black text-center font-dgm text-[2.3rem] not-italic font-normal leading-normal tracking-[-0.04875rem] whitespace-pre-line mt-[1.62rem]">
                             안녕하십니까. <br/>

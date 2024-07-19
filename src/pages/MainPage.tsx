@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../index.css'; 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -22,7 +22,6 @@ import cardBack_9 from "../assets/images/Character/cardBack_9.png";
 import backgroundImg from "../assets/images/background/background_h.png";
 import duckImg from "../assets/images/Duck/Duck.png";
 import duckBubble from "../assets/images/Duck/DuckBubble.png";
-
 
 const cardSdImages = [
     cardSd_1,
@@ -86,12 +85,15 @@ const MainPage: React.FC = () => {
                 user_id: 1, // 예시 user_id
                 character_id: randomCharacterId
             });
-
+            
             // 응답 확인
             console.log('응답 받은 데이터:', response.data);
 
+            // 세션에 character_id 저장
+            sessionStorage.setItem('characterId', randomCharacterId.toString());
+
             // 페이지 이동
-            navigate('/morning', { state: { character_id: randomCharacterId } });
+            navigate('/morning');
         } catch (error) {
             console.error('Error:', error);
         }
