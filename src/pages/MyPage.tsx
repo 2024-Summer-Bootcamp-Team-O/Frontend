@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import '../index.css';
-import startIcon from "../assets/images/icon/startIcon.png";
 import cardSd_1 from "../assets/images/Character/cardSd_1.png";
 import cardSd_3 from "../assets/images/Character/cardSd_3.png";
 import cardSd_4 from "../assets/images/Character/cardSd_4.png";

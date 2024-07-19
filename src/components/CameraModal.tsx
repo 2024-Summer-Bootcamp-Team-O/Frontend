@@ -79,7 +79,7 @@ const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
                         </>
                     ) : (
                         <button onClick={capture} className="group">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 68 68" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 68 68" fill="none">
                                 <path className="group-hover:fill-[#DEFDFF]" d="M30.0532 48.5158H37.5113C42.749 48.5158 45.3687 48.5158 47.25 47.2823C48.0618 46.7502 48.7609 46.0637 49.3075 45.2617C50.5645 43.4156 50.5645 40.8429 50.5645 35.7008C50.5645 30.5571 50.5645 27.986 49.3075 26.14C48.7609 25.338 48.0618 24.6514 47.25 24.1194C46.0417 23.3256 44.5279 23.042 42.2103 22.9413C41.1044 22.9413 40.1528 22.1189 39.9363 21.0533C39.7709 20.2727 39.341 19.5731 38.7194 19.0729C38.0977 18.5726 37.3224 18.3023 36.5245 18.3077H31.04C29.382 18.3077 27.9538 19.4573 27.6282 21.0533C27.4117 22.1189 26.4602 22.9413 25.3542 22.9413C23.0383 23.042 21.5245 23.3273 20.3145 24.1194C19.5033 24.6515 18.8047 25.3381 18.2587 26.14C17 27.986 17 30.5571 17 35.7008C17 40.8429 17 43.414 18.257 45.2617C18.8007 46.0605 19.4989 46.7469 20.3145 47.2823C22.1958 48.5158 24.8155 48.5158 30.0532 48.5158Z" fill="#ECFFD9" stroke="#373131" stroke-width="1.75"/>
                                 <path d="M45.5298 30.0557H43.8516H45.5298Z" fill="#DEFDFF"/>
                                 <path d="M45.5298 30.0557H43.8516" stroke="#373131" stroke-width="1.75" stroke-linecap="round"/>
@@ -90,7 +90,7 @@ const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
                 </div>
             </div>
         </div>
-        <p className="text-[2.8125rem] text-white font-dgm -translate-y-32">
+        <p className="text-[2.7rem] text-white font-dgm -translate-y-32">
             여러분의 사원증을 만들어드립니다. 활짝 웃어보세요 !
         </p>
     </div>
