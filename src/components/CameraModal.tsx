@@ -8,7 +8,6 @@ interface CameraModalProps {
 
 const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
     const [isCaptureEnable, setCaptureEnable] = useState(false);
-    const [isWebcamReady, setIsWebcamReady] = useState(false);
     const webcamRef = useRef<Webcam>(null);
     const [url, setUrl] = useState<string | undefined>(undefined);
 
