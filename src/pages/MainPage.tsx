@@ -82,7 +82,7 @@ const MainPage: React.FC = () => {
             audio.play();
 
             // API 요청 전송
-            const response = await axios.post('http://localhost:8000/apps/start', {
+            const response = await axios.post('http://localhost:80/apps/start', {
                 user_id: 1, // 예시 user_id
                 character_id: randomCharacterId
             });
