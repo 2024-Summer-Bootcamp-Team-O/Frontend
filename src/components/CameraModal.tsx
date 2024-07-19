@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import axios from 'axios';
 import Webcam from 'react-webcam';
 
 interface CameraModalProps {
@@ -8,28 +9,58 @@ interface CameraModalProps {
 
 const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
     const [isCaptureEnable, setCaptureEnable] = useState(false);
-    const [isWebcamReady, setIsWebcamReady] = useState(false);
     const webcamRef = useRef<Webcam>(null);
     const [url, setUrl] = useState<string | undefined>(undefined);
-
-    useEffect(() => {
-    console.log('Webcam reference:', webcamRef.current);
-    }, []);
+    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [formData, setFormData] = useState<FormData>(new FormData());
 
     const capture = useCallback(() => {
-    if (webcamRef.current) {
-        const imageSrc = webcamRef.current.getScreenshot();
-        setCaptureEnable(true);
-        if (imageSrc) {
-        setUrl(imageSrc);
-        }
-    }
+        if (webcamRef.current) {
+            const imageSrc = webcamRef.current.getScreenshot();
+            setCaptureEnable(true);
+            if (imageSrc) {
+                axios.get(imageSrc, { responseType: 'blob' })
+                .then(response => {
+                    const file = new File([response.data], 'userCapture.jpg', { type: 'image/jpeg' });
+                    setImageFile(file); 
+                    setUrl(imageSrc);
+                })
+                .catch(error => console.error("Error in fetching image:", error));
+            }
+        }   
     }, [webcamRef]);
 
     const recapture = () => {
-    setCaptureEnable(false);
-    setUrl(undefined);
+        setCaptureEnable(false);
+        setImageFile(null);
     };
+
+    const handleConfirm = async () => {
+        if (imageFile) {
+            const formData = new FormData();
+            formData.append('image', imageFile);
+            setFormData(formData)
+            try {
+                const response = await axios.post('http://localhost:80/apps/upload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+                });
+                const { message, url } = response.data; 
+                if (response.status === 200) {
+                    console.log("Image upload successful:", message, url);
+                    onClose(); 
+                } else {
+                    console.error("Image upload failed:", message, url);
+                }
+            } catch (error) {
+                console.error("Error during image upload:", error);
+            }
+        }
+    };
+        useEffect(() => {
+            console.log('Webcam reference:', webcamRef.current);
+        }, []);
 
     if (!isOpen) return null;
 
@@ -69,7 +100,7 @@ const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
                                 </svg>
                                 다시 찍기
                             </button>
-                            <button onClick={onClose} className="flex items-center justify-start w-[5.625rem] h-[1.6875rem] mt-4 mb-6 bg-[#ECFFD9] hover:bg-[#DEFDFF] text-black border border-black border-solid font-dgm text-[0.75rem]">
+                            <button onClick={handleConfirm} className="flex items-center justify-start w-[5.625rem] h-[1.6875rem] mt-4 mb-6 bg-[#ECFFD9] hover:bg-[#DEFDFF] text-black border border-black border-solid font-dgm text-[0.75rem]">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 12 12" fill="none" className='ml-2 mr-5 w-[0.65rem]'>
                                     <path d="M1 6.25C1 3.35051 3.35051 1 6.25 1C9.14952 1 11.5 3.35051 11.5 6.25C11.5 9.14952 9.14952 11.5 6.25 11.5C3.35051 11.5 1 9.14952 1 6.25Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M3.91699 6.25016L5.66699 8.00016L8.58366 5.0835" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>

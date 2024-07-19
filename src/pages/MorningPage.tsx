@@ -12,6 +12,7 @@ const MorningPage: React.FC = () => {
 
     const closeModal = () => {
         setIsModalOpen(false);
+        
     };
 
     const handleButtonClick = () => {
