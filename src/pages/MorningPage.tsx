@@ -15,6 +15,7 @@ const MorningPage: React.FC = () => {
     const location = useLocation();
     const characterId = location.state?.character_id;
     const websocket = useRef<WebSocket | null>(null);
+    const [characterId, setCharacterId] = useState<number | null>(null);
 
     const closeModal = async() => {
         setIsModalOpen(false);
@@ -103,12 +104,19 @@ const MorningPage: React.FC = () => {
     }, [messageQueue]);
 
 
+    useEffect(() => {
+        const storedCharacterId = sessionStorage.getItem('characterId');
+        if (storedCharacterId) {
+            setCharacterId(parseInt(storedCharacterId, 10));
+        }
+    }, []);
+
     return (
         <div className="flex flex-col justify-between w-screen h-screen bg-cover bg-[url('src/assets/images/background/office_m.png')]">
             {isModalOpen ? (
                 <div className="modal-overlay">
                     <div className="modal-container animate-modal">
-                        <CharacterModal onClose={closeModal} character_id={characterId} />
+                        {characterId !== null && <CharacterModal onClose={closeModal} character_id={characterId} />}
                     </div>
                 </div>
             ) : (
@@ -129,7 +137,7 @@ const MorningPage: React.FC = () => {
                         </button>
                     </div>
                     <div className="flex items-end justify-center">
-                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== undefined ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
+                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
                             <div className='-translate-y-1/2'>
                                 <div className="flex items-center justify-center w-[86.25rem] h-[11.125rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/script_ui.png')]">
                                     <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>

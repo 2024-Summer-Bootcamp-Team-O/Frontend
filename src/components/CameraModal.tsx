@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import axios from 'axios';
 import Webcam from 'react-webcam';
 
 interface CameraModalProps {
@@ -8,28 +9,58 @@ interface CameraModalProps {
 
 const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
     const [isCaptureEnable, setCaptureEnable] = useState(false);
-    const [isWebcamReady, setIsWebcamReady] = useState(false);
     const webcamRef = useRef<Webcam>(null);
     const [url, setUrl] = useState<string | undefined>(undefined);
-
-    useEffect(() => {
-    console.log('Webcam reference:', webcamRef.current);
-    }, []);
+    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [formData, setFormData] = useState<FormData>(new FormData());
 
     const capture = useCallback(() => {
-    if (webcamRef.current) {
-        const imageSrc = webcamRef.current.getScreenshot();
-        setCaptureEnable(true);
-        if (imageSrc) {
-        setUrl(imageSrc);
-        }
-    }
+        if (webcamRef.current) {
+            const imageSrc = webcamRef.current.getScreenshot();
+            setCaptureEnable(true);
+            if (imageSrc) {
+                axios.get(imageSrc, { responseType: 'blob' })
+                .then(response => {
+                    const file = new File([response.data], 'userCapture.jpg', { type: 'image/jpeg' });
+                    setImageFile(file); 
+                    setUrl(imageSrc);
+                })
+                .catch(error => console.error("Error in fetching image:", error));
+            }
+        }   
     }, [webcamRef]);
 
     const recapture = () => {
-    setCaptureEnable(false);
-    setUrl(undefined);
+        setCaptureEnable(false);
+        setImageFile(null);
     };
+
+    const handleConfirm = async () => {
+        if (imageFile) {
+            const formData = new FormData();
+            formData.append('image', imageFile);
+            setFormData(formData)
+            try {
+                const response = await axios.post('http://localhost:80/apps/upload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+                });
+                const { message, url } = response.data; 
+                if (response.status === 200) {
+                    console.log("Image upload successful:", message, url);
+                    onClose(); 
+                } else {
+                    console.error("Image upload failed:", message, url);
+                }
+            } catch (error) {
+                console.error("Error during image upload:", error);
+            }
+        }
+    };
+        useEffect(() => {
+            console.log('Webcam reference:', webcamRef.current);
+        }, []);
 
     if (!isOpen) return null;
 

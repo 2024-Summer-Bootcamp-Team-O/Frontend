@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import '../index.css';
 import LunchImg from "../assets/images/background/LunchImg.png";
-import JunghoImg from "../assets/images/Character/JunghoImg.png";
+import {standing} from '../components/CharacterModal';
 import chatBarImg from '../assets/images/others/Chatbar.png';
 import LLoadingModal from '../components/LLoadingModal';
 import FeedBackModal from '../components/FeedBackLuModal'; 
 
-const LunchTalkPage: React.FC = () => {
+const LunchTalkPage: React.FC= ({}) => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
     const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 가시성 상태
     const [inputValue, setInputValue] = useState('');
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+    const [characterId, setCharacterId] = useState<number | null>(null);
     const [chatLog, setChatLog] = useState<string[]>([]);
     const chatLogRef = useRef<HTMLDivElement | null>(null);
     const socketRef = useRef<WebSocket | null>(null);
@@ -33,6 +34,13 @@ const LunchTalkPage: React.FC = () => {
     const handleCloseFeedbackModal = () => {
         setIsFeedbackModalOpen(false); // 피드백 모달 닫기
     };
+
+    useEffect(() => {
+        const storedCharacterId = sessionStorage.getItem('characterId');
+        if (storedCharacterId) {
+            setCharacterId(parseInt(storedCharacterId, 10));
+        }
+    }, []);
 
     useEffect(() => {
         if (inputValue.trim() !== '') {
@@ -73,7 +81,7 @@ const LunchTalkPage: React.FC = () => {
                 </button>
             </div>
             <div className="flex items-end justify-center">
-                <div className={`flex flex-col items-center h-[61.56rem] w-[45.44rem] fade-in ${isContentVisible ? 'show' : ''}`} style={{backgroundImage:`url(${JunghoImg})`, backgroundSize:'cover'}}>
+                <div className={`flex flex-col items-center bg-contain bg-no-repeat h-[61.56rem] w-[45.44rem] fade-in ${isContentVisible ? 'show' : ''}`} style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
                     <div className="flex flex-col mt-[36.8rem]" style={{width: '86.25rem', height:'11.125rem', background:'rgba(255, 255, 255, 0.85)', borderRadius: '30px', border: '5.5px solid #000',boxSizing: 'border-box'}}>
                         <p className="text-black text-center font-dgm text-[2.3rem] not-italic font-normal leading-normal tracking-[-0.04875rem] whitespace-pre-line mt-[1.62rem]">
                             안녕하십니까. <br/>

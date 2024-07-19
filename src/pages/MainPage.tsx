@@ -1,68 +1,70 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../index.css'; 
 import { useNavigate } from 'react-router-dom';
-import cardSd_1 from "../assets/images/Character/cardSd_1.png";
-import cardSd_3 from "../assets/images/Character/cardSd_3.png";
-import cardSd_4 from "../assets/images/Character/cardSd_4.png";
-import cardSd_5 from "../assets/images/Character/cardSd_5.png";
-import cardSd_6 from "../assets/images/Character/cardSd_6.png";
-import cardSd_7 from "../assets/images/Character/cardSd_7.png";
-import cardSd_8 from "../assets/images/Character/cardSd_8.png";
-import cardSd_9 from "../assets/images/Character/cardSd_9.png";
+import axios from 'axios';
+import cardS_1 from "../assets/images/Character/cardS_1.png";
+import cardS_2 from "../assets/images/Character/cardS_2.png";
+import cardS_3 from "../assets/images/Character/cardS_3.png";
+import cardS_4 from "../assets/images/Character/cardS_4.png";
+import cardS_5 from "../assets/images/Character/cardS_5.png";
+import cardS_6 from "../assets/images/Character/cardS_6.png";
+import cardS_7 from "../assets/images/Character/cardS_7.png";
+import cardS_8 from "../assets/images/Character/cardS_8.png";
+
+import cardB_1 from "../assets/images/Character/cardB_1.png";
+import cardB_2 from "../assets/images/Character/cardB_2.png";
+import cardB_3 from "../assets/images/Character/cardB_3.png";
+import cardB_4 from "../assets/images/Character/cardB_4.png";
+import cardB_5 from "../assets/images/Character/cardB_5.png";
+import cardB_6 from "../assets/images/Character/cardB_6.png";
+import cardB_7 from "../assets/images/Character/cardB_7.png";
+import cardB_8 from "../assets/images/Character/cardB_8.png";
+
 import characterPageImg from "../assets/images/Character/characterPage.png";
-import cardBack_1 from "../assets/images/Character/cardBack_1.png";
-import cardBack_3 from "../assets/images/Character/cardBack_3.png";
-import cardBack_4 from "../assets/images/Character/cardBack_4.png";
-import cardBack_5 from "../assets/images/Character/cardBack_5.png";
-import cardBack_6 from "../assets/images/Character/cardBack_6.png";
-import cardBack_7 from "../assets/images/Character/cardBack_7.png";
-import cardBack_8 from "../assets/images/Character/cardBack_8.png";
-import cardBack_9 from "../assets/images/Character/cardBack_9.png";
 import backgroundImg from "../assets/images/background/background_h.png";
 import duckImg from "../assets/images/Duck/Duck.png";
 import duckBubble from "../assets/images/Duck/DuckBubble.png";
 
-
-const cardSdImages = [
-    cardSd_1,
-    cardSd_4,
-    cardSd_7,
-    cardSd_8,
-    cardSd_3,
-    cardSd_5,
-    cardSd_6,
-    cardSd_9,
-    cardSd_3,
-    cardSd_8,
-    cardSd_1,
-    cardSd_5,
-    cardSd_3,
-    cardSd_4,
-    cardSd_7,
-    cardSd_6,
-    cardSd_1,
-    cardSd_9
+const cardSImages = [
+    cardS_1,
+    cardS_2,
+    cardS_3,
+    cardS_4,
+    cardS_5,
+    cardS_6,
+    cardS_7,
+    cardS_8,
+    cardS_1,
+    cardS_2,
+    cardS_3,
+    cardS_4,
+    cardS_5,
+    cardS_6,
+    cardS_7,
+    cardS_8,
+    cardS_1,
+    cardS_2
 ];
 
 const cardBackImages = [
-    cardBack_1,
-    cardBack_4,
-    cardBack_7,
-    cardBack_8,
-    cardBack_3,
-    cardBack_5,
-    cardBack_6,
-    cardBack_9,
-    cardBack_3,
-    cardBack_8,
-    cardBack_1,
-    cardBack_5,
-    cardBack_3,
-    cardBack_4,
-    cardBack_7,
-    cardBack_6,
-    cardBack_1,
-    cardBack_9
+    cardB_1,
+    cardB_2,
+    cardB_3,
+    cardB_4,
+    cardB_5,
+    cardB_6,
+    cardB_7,
+    cardB_8,
+    cardB_1,
+    cardB_2,
+    cardB_3,
+    cardB_4,
+    cardB_5,
+    cardB_6,
+    cardB_7,
+    cardB_8,
+    cardB_1,
+    cardB_2
 ];
 
 const MainPage: React.FC = () => {
@@ -103,7 +105,7 @@ const MainPage: React.FC = () => {
                         <div className="w-full h-[5.3125rem]"></div> 
                         <div className="w-[67rem] h-[45.9rem]">
                             <div className="webpage-scrollbar overflow-y-auto h-[45.75rem] pt-[2.5rem] pr-[3.5rem] pl-[3.5rem] grid grid-cols-3 gap-7">
-                                {cardSdImages.map((image, index) => (
+                                {cardSImages.map((image, index) => (
                                     <div key={index} className="mb-1 flip-card">
                                         <div className="flip-card-inner">
                                             <div className="flip-card-front">

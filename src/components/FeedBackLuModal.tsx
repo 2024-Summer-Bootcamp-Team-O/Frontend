@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'; 
+import axios from 'axios';
 import '../index.css';
 import FeedBackDuck from "../assets/images/Duck/FeedBackDuck.png";
 import FeedBackBubble from "../assets/images/Duck/FeedBackBubble.png";
@@ -14,11 +15,19 @@ const FeedBackLuModal: React.FC<FeedBackLuModalProps> = ({ isOpen, onClose }) =>
     const [showText, setShowText] = useState(false);
     const navigate = useNavigate();
 
-    const handleButtonClick = () => {
+    const handleButtonClick = async () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
+
+        try {
+            const response = await axios.get('http://localhost:80/apps/next'); 
+            console.log(response.data); 
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+
         onClose();
-        navigate('/evening'); // "다음 에피소드로 이동" 버튼 클릭 시 LunchPage로 이동
+        navigate('/evening');
     };
 
     useEffect(() => {
