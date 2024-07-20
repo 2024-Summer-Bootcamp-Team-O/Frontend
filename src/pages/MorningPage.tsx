@@ -12,10 +12,8 @@ const MorningPage: React.FC = () => {
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [websocketMessage, setWebsocketMessage] = useState('');
     const [messageQueue, setMessageQueue] = useState<string[]>([]);
-    const location = useLocation();
-    const characterId = location.state?.character_id;
     const websocket = useRef<WebSocket | null>(null);
-    // const [characterId, setCharacterId] = useState<number | null>(null);
+    const [characterId, setCharacterId] = useState<number | null>(null);
 
     const closeModal = async() => {
         setIsModalOpen(false);
@@ -104,12 +102,12 @@ const MorningPage: React.FC = () => {
     }, [messageQueue]);
 
 
-    // useEffect(() => {
-    //     const storedCharacterId = sessionStorage.getItem('characterId');
-    //     if (storedCharacterId) {
-    //         setCharacterId(parseInt(storedCharacterId, 10));
-    //     }
-    // }, []);
+    useEffect(() => {
+        const storedCharacterId = sessionStorage.getItem('characterId');
+        if (storedCharacterId) {
+            setCharacterId(parseInt(storedCharacterId, 10));
+        }
+    }, []);
 
     return (
         <div className="flex flex-col justify-between w-screen h-screen bg-cover bg-[url('src/assets/images/background/office_m.png')]">
