@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import '../index.css';
+import axios from "axios";
 import EveningImg from "../assets/images/background/EveningPage.png";
 import { standing } from '../components/CharacterModal';
 import chatBarImg from '../assets/images/others/Chatbar.png';
@@ -19,18 +20,41 @@ const EveningPage: React.FC = () => {
     const [characterId, setCharacterId] = useState<number | null>(null);
     const websocket = useRef<WebSocket | null>(null);
     const [websocketMessage, setWebsocketMessage] = useState('');
+    const [messageQueue, setMessageQueue] = useState<string[]>([]);
 
-    const handleCloseModal = () => {
+    const handleCloseModal = async() => {
         setIsModalOpen(false);
         setTimeout(() => {
             setIsContentVisible(true); // 모달이 닫힌 후 콘텐츠를 표시
         },);
+
+        try {
+            const response = await axios.get('http://localhost:80/apps/next')
+            if (response.status === 201) {
+                console.log('API 응답:', response.data);
+                // 필요한 경우 응답 데이터를 처리
+            } else {
+                console.error('API 요청 실패:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error('API 요청 에러:', error);
+        }
     };
+
     const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
+        if (websocket.current) {
+            websocket.current.send(JSON.stringify({ message: inputValue }));
+            setInputValue('');
+            setWebsocketMessage(''); // 기존 대사를 지우기
+        }
+    };
+
+    const handleOpenFeedbackModal = () => {
         setIsFeedbackModalOpen(true);
     };
+
     const handleCloseFeedbackModal = () => {
         setIsFeedbackModalOpen(false); // 피드백 모달 닫기
         setIsCameraModalOpen(true); // 카메라 모달 열기
@@ -46,8 +70,8 @@ const EveningPage: React.FC = () => {
         websocket.current.onmessage = (event) => {
             const data = JSON.parse(event.data);
             console.log('받은 메시지:', data);
-            // if (data.message) {
-            //     setMessageQueue(prevQueue => [...prevQueue, ...data.message]);} // 메시지를 한 글자씩 큐에 추가
+            if (data.message) {
+                setMessageQueue(prevQueue => [...prevQueue, ...data.message]);} // 메시지를 한 글자씩 큐에 추가
         };
 
         websocket.current.onclose = () => {
@@ -73,6 +97,17 @@ const EveningPage: React.FC = () => {
     const handleCloseResultLoadingModal = () => {
         setIsResultLoadingModalOpen(false);
     };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (messageQueue.length > 0) {
+                setWebsocketMessage(prevMessage => prevMessage + messageQueue[0]);
+                setMessageQueue(prevQueue => prevQueue.slice(1));
+            }
+        }, 100); // 속도를 조절하려면 이 값을 변경 (100ms로 설정)
+
+        return () => clearInterval(interval);
+    }, [messageQueue]);
 
     useEffect(() => {
         const storedCharacterId = sessionStorage.getItem('characterId');
@@ -109,11 +144,8 @@ const EveningPage: React.FC = () => {
             </div>
             <div className={`flex items-end justify-center ${isCameraModalOpen ? 'hidden' : ''}`}>
                 <div className={`flex flex-col items-center h-[61.56rem] w-[45.44rem] bg-contain bg-no-repeat fade-in ${isContentVisible ? 'show' : ''}`} style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
-                    <div className="flex flex-col mt-[36.8rem]" style={{width: '86.25rem', height:'11.125rem', background:'rgba(255, 255, 255, 0.85)', borderRadius: '30px', border: '5.5px solid #000',boxSizing: 'border-box'}}>
-                        <p className="text-black text-center font-dgm text-[2.3rem] not-italic font-normal leading-normal tracking-[-0.04875rem] whitespace-pre-line mt-[1.62rem]">
-                            안녕하십니까. <br/>
-                            다들 좋은 아침입니다.
-                        </p>
+                    <div className="flex flex-col items-center justify-center mt-[36.8rem]" style={{width: '86.25rem', height:'11.125rem', background:'rgba(255, 255, 255, 0.85)', borderRadius: '30px', border: '5.5px solid #000',boxSizing: 'border-box'}}>
+                        <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>
                     </div>
                     <div className="flex w-[86.25rem] h-[5.4375rem] -mt-1 mb-[7.31rem] bg-no-repeat bg-contain" style={{backgroundImage: `url(${chatBarImg})`}} >
                         <input type="text"
@@ -122,7 +154,7 @@ const EveningPage: React.FC = () => {
                         placeholder="답변을 입력하세요"
                         onChange={(e) => setInputValue(e.target.value)}
                         />
-                        <button className='flex-none'><img src={buttonImage} alt="button" className='w-12 h-12 mr-9'/></button>
+                        <button className='flex-none' onClick={handleButtonClick}><img src={buttonImage} alt="button" className='w-12 h-12 mr-9'/></button>
                     </div>
                 </div>
             </div>
