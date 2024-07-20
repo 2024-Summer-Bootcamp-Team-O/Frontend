@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import axios from 'axios';
 import Webcam from 'react-webcam';
+import { useNavigate } from 'react-router-dom';
 
 interface CameraModalProps {
     isOpen: boolean;
@@ -13,6 +14,7 @@ const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
     const [url, setUrl] = useState<string | undefined>(undefined);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [formData, setFormData] = useState<FormData>(new FormData());
+    const navigate = useNavigate();
 
     const capture = useCallback(() => {
         if (webcamRef.current) {
@@ -41,15 +43,19 @@ const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
             formData.append('image', imageFile);
             setFormData(formData)
             try {
+                const token = localStorage.getItem('access');
                 const response = await axios.post('http://localhost:80/apps/upload', formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${token}`,
                     },
                 });
+                
                 const { message, url } = response.data; 
                 if (response.status === 200) {
                     console.log("Image upload successful:", message, url);
                     onClose(); 
+                    navigate('/result'); 
                 } else {
                     console.error("Image upload failed:", message, url);
                 }
@@ -100,7 +106,7 @@ const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
                                 </svg>
                                 다시 찍기
                             </button>
-                            <button onClick={onClose} className="flex items-center justify-start w-[7.5rem] h-[2.0rem] mt-4 mb-6 bg-[#ECFFD9] hover:bg-[#DEFDFF] rounded-lg text-black border-[2.0px] border-black border-solid font-dgm text-[1.0rem]">
+                            <button onClick={handleConfirm} className="flex items-center justify-start w-[7.5rem] h-[2.0rem] mt-4 mb-6 bg-[#ECFFD9] hover:bg-[#DEFDFF] rounded-lg text-black border-[2.0px] border-black border-solid font-dgm text-[1.0rem]">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 12 12" fill="none" className='ml-3 mr-5 w-[1.1rem]'>
                                     <path d="M1 6.25C1 3.35051 3.35051 1 6.25 1C9.14952 1 11.5 3.35051 11.5 6.25C11.5 9.14952 9.14952 11.5 6.25 11.5C3.35051 11.5 1 9.14952 1 6.25Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M3.91699 6.25016L5.66699 8.00016L8.58366 5.0835" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
