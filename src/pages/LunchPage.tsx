@@ -7,7 +7,7 @@ import chatBarImg from '../assets/images/others/Chatbar.png';
 import LLoadingModal from '../components/LLoadingModal';
 import FeedBackModal from '../components/FeedBackLuModal'; 
 
-const LunchTalkPage: React.FC= ({}) => {
+const LunchPage: React.FC= ({}) => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
     const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 가시성 상태
     const [inputValue, setInputValue] = useState('');
@@ -150,4 +150,4 @@ const LunchTalkPage: React.FC= ({}) => {
         </div>
     );}
 
-    export default LunchTalkPage;
+    export default LunchPage;
