@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import '../index.css';
 import LunchImg from "../assets/images/background/LunchImg.png";
 import {standing} from '../components/CharacterModal';
@@ -13,6 +13,10 @@ const LunchTalkPage: React.FC= ({}) => {
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [characterId, setCharacterId] = useState<number | null>(null);
+    const [chatLog, setChatLog] = useState<string[]>([]);
+    const chatLogRef = useRef<HTMLDivElement | null>(null);
+    const socketRef = useRef<WebSocket | null>(null);
+
     
     const handleCloseModal = () => {
         setIsModalOpen(false);
@@ -45,6 +49,18 @@ const LunchTalkPage: React.FC= ({}) => {
             setButtonImage('src/assets/images/others/sendbutton_ui.png'); 
         }
     }, [inputValue]);
+
+    useEffect(() => {
+        socketRef.current=new WebSocket("ws://" + window.location.host + "/ws/gpt/");
+        socketRef.current.onopen = () => {
+            console.log("Websocket connection opened.");
+        };
+
+        socketRef.current.onmessage = (e) => {
+            const data = JSON.parse(e.data);
+            const message = data.message;
+        }
+    })
 
     return (
         <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${LunchImg})`, backgroundSize:'cover'}}>

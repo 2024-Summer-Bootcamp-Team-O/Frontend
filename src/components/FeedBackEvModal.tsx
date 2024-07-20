@@ -5,28 +5,20 @@ import FeedBackDuck from "../assets/images/Duck/FeedBackDuck.png";
 import FeedBackBubble from "../assets/images/Duck/FeedBackBubble.png";
 import { useNavigate } from 'react-router-dom';
 
-interface FeedBackLuModalProps {
+interface FeedBackEvModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
-const FeedBackLuModal: React.FC<FeedBackLuModalProps> = ({ isOpen, onClose }) => {
+const FeedBackEvModal: React.FC<FeedBackEvModalProps> = ({ isOpen, onClose }) => {
     const [showText, setShowText] = useState(false);
     const navigate = useNavigate();
 
-    const handleButtonClick = async () => {
+    const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
 
-        try {
-            const response = await axios.get('http://localhost:80/apps/next'); 
-            console.log(response.data); 
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-
         onClose();
-        navigate('/evening'); 
     };
 
     useEffect(() => {
@@ -62,7 +54,7 @@ const FeedBackLuModal: React.FC<FeedBackLuModalProps> = ({ isOpen, onClose }) =>
                 </div>
                 <div className="flex flex-col w-full h-[39.17rem] justify-end items-end">
                     <button className="flex text-white hover:text-[#FFE486] text-[2.625rem] font-dgm mb-[2.75rem] mr-[7.38rem]" onClick={handleButtonClick}>
-                        <span>다음 에피소드로 이동 !</span>
+                        <span>퇴근하기 !</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="31" viewBox="0 0 26 31" fill="none" className='ml-[1rem] mt-[1rem]'>
                         <path d="M5.03009e-06 2.50001V28.4C5.03009e-06 30.375 2.175 31.575 3.85 30.5L24.2 17.55C24.5563 17.3245 24.8497 17.0126 25.0531 16.6433C25.2565 16.2739 25.3631 15.8591 25.3631 15.4375C25.3631 15.0159 25.2565 14.6011 25.0531 14.2317C24.8497 13.8624 24.5563 13.5505 24.2 13.325L3.85 0.40001C3.47293 0.156121 3.03701 0.0185269 2.58825 0.00174343C2.13948 -0.0150401 1.69451 0.0896088 1.30026 0.304651C0.90602 0.519692 0.577125 0.837154 0.348275 1.22355C0.119424 1.60994 -0.000896585 2.05093 5.03009e-06 2.50001Z" fill="currentColor"/>
                         </svg>
@@ -73,4 +65,4 @@ const FeedBackLuModal: React.FC<FeedBackLuModalProps> = ({ isOpen, onClose }) =>
     );
 }
 
-export default FeedBackLuModal;
+export default FeedBackEvModal;

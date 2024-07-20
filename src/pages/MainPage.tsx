@@ -78,28 +78,13 @@ const MainPage: React.FC = () => {
         const randomCharacterId = getRandomCharacterId();
         console.log('랜덤 character_id:', randomCharacterId);
 
-        try {
+
             const audio = new Audio('src/assets/sounds/click.mp3');
             audio.play();
 
-            // API 요청 전송
-            const response = await axios.post('http://localhost:80/apps/start', {
-                user_id: 1, // 예시 user_id
-                character_id: randomCharacterId
-            });
-            
-            // 응답 확인
-            console.log('응답 받은 데이터:', response.data);
-
-            // 세션에 character_id 저장
-            sessionStorage.setItem('characterId', randomCharacterId.toString());
-
             // 페이지 이동
-            navigate('/morning');
-        } catch (error) {
-            console.error('Error:', error);
+            navigate('/morning', { state: { character_id: randomCharacterId } });
         }
-    };
 
     return (
         <div className="flex justify-center w-screen h-screen" style={{backgroundImage: `url(${backgroundImg})`,backgroundSize:'cover'}}>

@@ -1,24 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../index.css';
-import CharacterModal, { standing } from '../components/CharacterModal';
-import FeedBackModal from '../components/FeedBackMoModal';
+import axios from 'axios';
+import CharacterModal, { standing } from '@components/CharacterModal';
+import FeedBackModal from '../components/FeedBackMoModal'; 
+import { useLocation } from 'react-router-dom';
 
 const MorningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [inputValue, setInputValue] = useState('');
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
-    const [characterId, setCharacterId] = useState<number | null>(null);
+    const [websocketMessage, setWebsocketMessage] = useState('');
+    const [messageQueue, setMessageQueue] = useState<string[]>([]);
+    const location = useLocation();
+    const characterId = location.state?.character_id;
+    const websocket = useRef<WebSocket | null>(null);
+    // const [characterId, setCharacterId] = useState<number | null>(null);
 
-    const closeModal = () => {
+    const closeModal = async() => {
         setIsModalOpen(false);
-        
+
+        try{
+            const response= await axios.post("http://localhost:80/apps/start",{
+                user_id:1,
+                character_id:characterId,
+            });
+
+            if (response.status==201){
+                console.log('대화 시작 성공:',response.data.message);
+            } else{
+                console.error('대화 시작 실패:',response.data.message);
+            }
+        } catch(error) {
+            console.error('API 요청 중 오류 발생:',error);
+        }
     };
 
     const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
-        setIsFeedbackModalOpen(true);
+        if (websocket.current) {
+            websocket.current.send(JSON.stringify({ message: inputValue }));
+            setInputValue(''); // 메시지를 보낸 후 입력 필드 비우기
+            setWebsocketMessage(''); // 기존 대사를 지우기
+        }
+    };
+
+    const handleFeedbackButtonClick = () => {
+        setIsFeedbackModalOpen(true); // 피드백 모달 열기
     };
 
     const handleCloseFeedbackModal = () => {
@@ -32,6 +61,48 @@ const MorningPage: React.FC = () => {
             setButtonImage('src/assets/images/others/sendbutton_ui.png'); 
         }
     }, [inputValue]);
+    
+
+    useEffect(() => {
+        websocket.current = new WebSocket('ws://localhost:80/ws/gpt/');
+
+        websocket.current.onopen = () => {
+            console.log('WebSocket 연결이 열렸습니다.');
+        };
+
+        websocket.current.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            console.log('받은 메시지:', data);
+            if (data.message) {
+                setMessageQueue(prevQueue => [...prevQueue, ...data.message]);} // 메시지를 한 글자씩 큐에 추가
+        };
+
+        websocket.current.onclose = () => {
+            console.log('WebSocket 연결이 닫혔습니다.');
+        };
+
+        websocket.current.onerror = (error) => {
+            console.error('WebSocket 에러:', error);
+        };
+
+        return () => {
+            if (websocket.current) {
+                websocket.current.close();
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (messageQueue.length > 0) {
+                setWebsocketMessage(prevMessage => prevMessage + messageQueue[0]);
+                setMessageQueue(prevQueue => prevQueue.slice(1));
+            }
+        }, 100); // 속도를 조절하려면 이 값을 변경 (100ms로 설정)
+
+        return () => clearInterval(interval);
+    }, [messageQueue]);
+
 
     useEffect(() => {
         const storedCharacterId = sessionStorage.getItem('characterId');
@@ -54,7 +125,7 @@ const MorningPage: React.FC = () => {
                         <button
                             type="button" 
                             className='flex items-center justify-center font-dgm text-[2.2rem] text-white mt-7 mr-10 hover:text-[#FFE486]'
-                            onClick={handleButtonClick}>
+                            onClick={handleFeedbackButtonClick}>
                             피드백 받기 ! 
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 26 31" fill="none" className='ml-5'>
                                 <path d="M5.03009e-06 2.50001V28.4C5.03009e-06 30.375 2.175 31.575 3.85 30.5L24.2 17.55C24.5563 17.3245 24.8497 
@@ -69,7 +140,7 @@ const MorningPage: React.FC = () => {
                         <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
                             <div className='-translate-y-1/2'>
                                 <div className="flex items-center justify-center w-[86.25rem] h-[11.125rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/script_ui.png')]">
-                                    <p className="ml-12 mt-4 text-black text-center font-dgm text-[2.562rem]">다들 좋은 아침입니다.</p>
+                                    <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>
                                 </div>
                                 <div className="flex -mt-1 justify-between items-center w-[86.25rem] h-[5.4375rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/input_ui.png')]">
                                     <input 
@@ -79,15 +150,17 @@ const MorningPage: React.FC = () => {
                                         value={inputValue} 
                                         onChange={(e) => setInputValue(e.target.value)} 
                                     />
-                                    <button className='flex-none'>
+                                    <button className='flex-none' onClick={handleButtonClick}>
                                         <img src={buttonImage} alt="button" className='w-12 h-12 mr-9'/>
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        {isFeedbackModalOpen && <FeedBackModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} />}
                     </div>
                 </>
+            )}
+            {isFeedbackModalOpen && (
+                <FeedBackModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} />
             )}
         </div>
     );
