@@ -6,7 +6,6 @@ import { standing } from '../components/CharacterModal';
 import chatBarImg from '../assets/images/others/Chatbar.png';
 import ELoadingModal from '../components/ELoadingModal';
 import FeedBackEvModal from '../components/FeedBackEvModal';
-import ResultLoadingModal from "../components/ResultLoadingModal";
 import CameraModal from '../components/CameraModal';
 
 const EveningPage: React.FC = () => {
@@ -15,7 +14,6 @@ const EveningPage: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
-    const [isResultLoadingModalOpen, setIsResultLoadingModalOpen] = useState(false);
     const [isCameraModalOpen, setIsCameraModalOpen] = useState(false); // 카메라 모달 상태 추가
     const [characterId, setCharacterId] = useState<number | null>(null);
     const websocket = useRef<WebSocket | null>(null);
@@ -91,11 +89,6 @@ const EveningPage: React.FC = () => {
 
     const handleCloseCameraModal = () => {
         setIsCameraModalOpen(false); // 카메라 모달 닫기
-        setIsResultLoadingModalOpen(true); 
-    };
-
-    const handleCloseResultLoadingModal = () => {
-        setIsResultLoadingModalOpen(false);
     };
 
     useEffect(() => {
@@ -159,7 +152,6 @@ const EveningPage: React.FC = () => {
                 </div>
             </div>
             {isFeedbackModalOpen && <FeedBackEvModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} />}
-            {isResultLoadingModalOpen && <ResultLoadingModal isOpen={isResultLoadingModalOpen} onRequestClose={handleCloseResultLoadingModal} />}
             {isCameraModalOpen && <CameraModal isOpen={isCameraModalOpen} onClose={handleCloseCameraModal} />} 
         </div>
     );}
