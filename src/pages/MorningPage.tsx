@@ -104,12 +104,12 @@ const MorningPage: React.FC = () => {
     }, [messageQueue]);
 
 
-    useEffect(() => {
-        const storedCharacterId = sessionStorage.getItem('characterId');
-        if (storedCharacterId) {
-            setCharacterId(parseInt(storedCharacterId, 10));
-        }
-    }, []);
+    // useEffect(() => {
+    //     const storedCharacterId = sessionStorage.getItem('characterId');
+    //     if (storedCharacterId) {
+    //         setCharacterId(parseInt(storedCharacterId, 10));
+    //     }
+    // }, []);
 
     return (
         <div className="flex flex-col justify-between w-screen h-screen bg-cover bg-[url('src/assets/images/background/office_m.png')]">

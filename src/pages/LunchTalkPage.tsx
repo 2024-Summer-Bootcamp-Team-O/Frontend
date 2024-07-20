@@ -13,10 +13,7 @@ const LunchTalkPage: React.FC= ({}) => {
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [characterId, setCharacterId] = useState<number | null>(null);
-    const [chatLog, setChatLog] = useState<string[]>([]);
-    const chatLogRef = useRef<HTMLDivElement | null>(null);
-    const socketRef = useRef<WebSocket | null>(null);
-
+    const websocket = useRef<WebSocket | null>(null);
     
     const handleCloseModal = () => {
         setIsModalOpen(false);
@@ -36,6 +33,35 @@ const LunchTalkPage: React.FC= ({}) => {
     };
 
     useEffect(() => {
+        websocket.current = new WebSocket('ws://localhost:80/ws/gpt/');
+
+        websocket.current.onopen = () => {
+            console.log('WebSocket 연결이 열렸습니다.');
+        };
+
+        websocket.current.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            console.log('받은 메시지:', data);
+            // if (data.message) {
+            //     setMessageQueue(prevQueue => [...prevQueue, ...data.message]);} // 메시지를 한 글자씩 큐에 추가
+        };
+
+        websocket.current.onclose = () => {
+            console.log('WebSocket 연결이 닫혔습니다.');
+        };
+
+        websocket.current.onerror = (error) => {
+            console.error('WebSocket 에러:', error);
+        };
+
+        return () => {
+            if (websocket.current) {
+                websocket.current.close();
+            }
+        };
+    }, []);
+
+    useEffect(() => {
         const storedCharacterId = sessionStorage.getItem('characterId');
         if (storedCharacterId) {
             setCharacterId(parseInt(storedCharacterId, 10));
@@ -50,17 +76,7 @@ const LunchTalkPage: React.FC= ({}) => {
         }
     }, [inputValue]);
 
-    useEffect(() => {
-        socketRef.current=new WebSocket("ws://" + window.location.host + "/ws/gpt/");
-        socketRef.current.onopen = () => {
-            console.log("Websocket connection opened.");
-        };
 
-        socketRef.current.onmessage = (e) => {
-            const data = JSON.parse(e.data);
-            const message = data.message;
-        }
-    })
 
     return (
         <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${LunchImg})`, backgroundSize:'cover'}}>
