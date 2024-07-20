@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import '../index.css';
 import EveningImg from "../assets/images/background/EveningPage.png";
 import { standing } from '../components/CharacterModal';
@@ -17,6 +17,8 @@ const EveningPage: React.FC = () => {
     const [isResultLoadingModalOpen, setIsResultLoadingModalOpen] = useState(false);
     const [isCameraModalOpen, setIsCameraModalOpen] = useState(false); // 카메라 모달 상태 추가
     const [characterId, setCharacterId] = useState<number | null>(null);
+    const websocket = useRef<WebSocket | null>(null);
+    const [websocketMessage, setWebsocketMessage] = useState('');
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
@@ -33,6 +35,35 @@ const EveningPage: React.FC = () => {
         setIsFeedbackModalOpen(false); // 피드백 모달 닫기
         setIsCameraModalOpen(true); // 카메라 모달 열기
     };
+
+    useEffect(() => {
+        websocket.current = new WebSocket('ws://localhost:80/ws/gpt/');
+
+        websocket.current.onopen = () => {
+            console.log('WebSocket 연결이 열렸습니다.');
+        };
+
+        websocket.current.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            console.log('받은 메시지:', data);
+            // if (data.message) {
+            //     setMessageQueue(prevQueue => [...prevQueue, ...data.message]);} // 메시지를 한 글자씩 큐에 추가
+        };
+
+        websocket.current.onclose = () => {
+            console.log('WebSocket 연결이 닫혔습니다.');
+        };
+
+        websocket.current.onerror = (error) => {
+            console.error('WebSocket 에러:', error);
+        };
+
+        return () => {
+            if (websocket.current) {
+                websocket.current.close();
+            }
+        };
+    }, []);
 
     const handleCloseCameraModal = () => {
         setIsCameraModalOpen(false); // 카메라 모달 닫기
