@@ -131,7 +131,7 @@ const EveningPage: React.FC = () => {
                 <button
                     type="button"
                     className='flex items-center justify-center font-dgm text-[2.2rem] text-white mt-7 mr-10 hover:text-[#FFE486]'
-                    onClick={handleButtonClick}>
+                    onClick={handleOpenFeedbackModal}>
                     피드백 받기 !
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 26 31" fill="none" className='ml-5'>
                     <path d="M5.03009e-06 2.50001V28.4C5.03009e-06 30.375 2.175 31.575 3.85 30.5L24.2 17.55C24.5563 17.3245 24.8497
