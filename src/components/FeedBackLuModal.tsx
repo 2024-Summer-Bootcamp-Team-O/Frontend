@@ -19,13 +19,6 @@ const FeedBackLuModal: React.FC<FeedBackLuModalProps> = ({ isOpen, onClose }) =>
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
 
-        try {
-            const response = await axios.get('http://localhost:80/apps/next'); 
-            console.log(response.data); 
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-
         onClose();
         navigate('/evening');
     };
