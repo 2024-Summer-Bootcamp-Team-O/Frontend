@@ -1,7 +1,6 @@
 import React from 'react';
 import '../index.css'; 
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import cardS_1 from "../assets/images/Character/cardS_1.png";
 import cardS_2 from "../assets/images/Character/cardS_2.png";
 import cardS_3 from "../assets/images/Character/cardS_3.png";
@@ -81,6 +80,8 @@ const MainPage: React.FC = () => {
 
             const audio = new Audio('src/assets/sounds/click.mp3');
             audio.play();
+
+            sessionStorage.setItem('characterId', randomCharacterId.toString());
 
             // 페이지 이동
             navigate('/morning', { state: { character_id: randomCharacterId } });

@@ -12,10 +12,8 @@ const MorningPage: React.FC = () => {
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [websocketMessage, setWebsocketMessage] = useState('');
     const [messageQueue, setMessageQueue] = useState<string[]>([]);
-    const location = useLocation();
-    const characterId = location.state?.character_id;
     const websocket = useRef<WebSocket | null>(null);
-    // const [characterId, setCharacterId] = useState<number | null>(null);
+    const [characterId, setCharacterId] = useState<number | null>(null);
 
     const closeModal = async() => {
         setIsModalOpen(false);
