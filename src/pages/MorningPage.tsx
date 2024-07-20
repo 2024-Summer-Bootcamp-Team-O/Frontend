@@ -15,7 +15,7 @@ const MorningPage: React.FC = () => {
     const location = useLocation();
     const characterId = location.state?.character_id;
     const websocket = useRef<WebSocket | null>(null);
-    const [characterId, setCharacterId] = useState<number | null>(null);
+    // const [characterId, setCharacterId] = useState<number | null>(null);
 
     const closeModal = async() => {
         setIsModalOpen(false);

@@ -5,8 +5,8 @@ import { standing } from '../components/CharacterModal';
 import chatBarImg from '../assets/images/others/Chatbar.png';
 import ELoadingModal from '../components/ELoadingModal';
 import FeedBackEvModal from '../components/FeedBackEvModal';
-import ResultLoadingModal from "@components/ResultLoadingModal";
-import CameraModal from '@components/CameraModal';
+import ResultLoadingModal from "../components/ResultLoadingModal";
+import CameraModal from '../components/CameraModal';
 
 const EveningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
