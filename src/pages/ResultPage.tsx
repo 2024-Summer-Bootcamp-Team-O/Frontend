@@ -10,21 +10,24 @@ const ResultPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [resultData, setResultData] = useState<{ result: string; image_url: string; name: string } | null>(null);
     const audio = new Audio('src/assets/sounds/click.mp3');
+    const isMounted = useRef(false); 
 
     useEffect(() => {
-        if (isModalOpen) {
+        if (!isMounted.current) {
             const fetchData = async () => {
                 try {
                     const response = await axiosInstance.get('/apps/results');
                     setResultData(response.data);
+                    setIsModalOpen(false); 
                 } catch (error) {
                     console.error("Failed to fetch data:", error);
                 }
             };
 
             fetchData();
+            isMounted.current = true;
         }
-    }, [isModalOpen]);
+    }, []); 
 
     const saveAsImageHandler = () => {
         const target = document.getElementById('Page');
@@ -34,7 +37,6 @@ const ResultPage: React.FC = () => {
             return alert('결과 저장에 실패했습니다.');
         }
 
-        // 버튼 숨기기
         buttons.forEach(button => button.classList.add('hidden'));
 
         html2canvas(target).then((canvas) => {
