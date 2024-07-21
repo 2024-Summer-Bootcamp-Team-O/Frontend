@@ -21,7 +21,7 @@ const RegisterPage: React.FC = () => {
 
   const handleIdCheck = async () => {
     try {
-      const response = await axios.get('http://localhost:80/users/exists', {
+      const response = await axios.get('http://localhost:8000/users/exists', {
         params: { email: email },
       });
 
