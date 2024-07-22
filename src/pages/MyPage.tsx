@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import '../index.css';
+import { Navigate, useNavigate } from 'react-router-dom';
 import cardS_1 from "../assets/images/Character/cardS_1.png";
 import cardS_2 from "../assets/images/Character/cardS_2.png";
 import cardS_3 from "../assets/images/Character/cardS_3.png";
@@ -102,6 +103,7 @@ const cardRealBackImage=memberCard;
 
 
 const MyPage: React.FC = () => {
+    const navigate = useNavigate();
     const [revealedCards, setRevealedCards] = useState(Array(cardSImages.length).fill(false)); // 공개된 카드 관리
 
     const CharacterIndex=[0,1,3,7,10,12,13];
@@ -119,7 +121,9 @@ const MyPage: React.FC = () => {
     const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
+        navigate('/main');
     };
+
     
     return (
         <div className="flex justify-center w-screen h-screen" style={{backgroundImage: `url(${backgroundImg})`,backgroundSize:'cover'}}>

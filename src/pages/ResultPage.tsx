@@ -66,6 +66,7 @@ const ResultPage: React.FC = () => {
         }
     };
 
+
     const handleHomeButtonClick = () => {
         audio.play();
         navigate('/myPage');
