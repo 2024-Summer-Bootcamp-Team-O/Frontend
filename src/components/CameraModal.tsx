@@ -44,7 +44,7 @@ const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
             setFormData(formData)
             try {
                 const token = localStorage.getItem('access');
-                const response = await axios.post('http://localhost:80/apps/upload', formData, {
+                const response = await axios.post('http://localhost:8000/apps/upload', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'Authorization': `Bearer ${token}`,

@@ -17,6 +17,9 @@ const LunchPage: React.FC= ({}) => {
     const websocket = useRef<WebSocket | null>(null);
     const [websocketMessage, setWebsocketMessage] = useState('');
     const [messageQueue, setMessageQueue] = useState<string[]>([]);
+    const [feedbackMessage, setFeedbackMessage] = useState('');
+    const [feedbackQueue, setFeedbackQueue] = useState<string[]>([]);
+    
 
     const handleCloseModal = async() => {
         setIsModalOpen(false);
@@ -27,10 +30,10 @@ const LunchPage: React.FC= ({}) => {
         try {
             const response = await axiosInstance.get('/apps/next')
             if (response.status === 201) {
-                console.log('API 응답:', response.data);
+                console.log('다음 상황 성공:', response.data);
                 // 필요한 경우 응답 데이터를 처리
             } else {
-                console.error('API 요청 실패:', response.status, response.statusText);
+                console.error('다음 상황 실패:', response.status, response.statusText);
             }
         } catch (error) {
             console.error('API 요청 에러:', error);
@@ -47,16 +50,30 @@ const LunchPage: React.FC= ({}) => {
         }
     };
 
-    const handleOpenFeedbackModal = () => {
-        setIsFeedbackModalOpen(true);
+
+    const handleFeedbackButtonClick = async() => {
+        setIsFeedbackModalOpen(true); // 피드백 모달 열기
+
+        try {
+            const response = await axiosInstance.get('/apps/feedbacks')
+            if (response.status === 201) {
+                console.log('피드백 요청 성공:', response.data);
+                // 필요한 경우 응답 데이터를 처리
+            } else {
+                console.error('API 요청 실패:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error('API 요청 에러:', error);
+        }
     };
 
     const handleCloseFeedbackModal = () => {
         setIsFeedbackModalOpen(false); // 피드백 모달 닫기
+        setFeedbackMessage(''); // 피드백 메시지 초기화
     };
 
     useEffect(() => {
-        websocket.current = new WebSocket('ws://localhost:80/ws/gpt/');
+        websocket.current = new WebSocket('ws://localhost:8000/ws/gpt/');
 
         websocket.current.onopen = () => {
             console.log('WebSocket 연결이 열렸습니다.');
@@ -65,8 +82,13 @@ const LunchPage: React.FC= ({}) => {
         websocket.current.onmessage = (event) => {
             const data = JSON.parse(event.data);
             console.log('받은 메시지:', data);
-            if (data.message) {
-                setMessageQueue(prevQueue => [...prevQueue, ...data.message]);} // 메시지를 한 글자씩 큐에 추가
+            if(data.message){
+                if (data.type === 'gpt_feedback_message') {
+                    setFeedbackQueue(prevQueue => [...prevQueue, ...data.message]);
+                } else {
+                    setMessageQueue(prevQueue => [...prevQueue, ...data.message]);
+                }
+            }
         };
 
         websocket.current.onclose = () => {
@@ -96,6 +118,19 @@ const LunchPage: React.FC= ({}) => {
     }, [messageQueue]);
 
     useEffect(() => {
+        const interval = setInterval(() => {
+            if (feedbackQueue.length > 0) {
+                setFeedbackMessage(prevMessage => prevMessage + feedbackQueue[0]);
+                setFeedbackQueue(prevQueue => prevQueue.slice(1));
+            }
+        }, 100); // 속도를 조절하려면 이 값을 변경 (100ms로 설정)
+        
+
+        return () => clearInterval(interval);
+    }, [feedbackQueue]);
+
+
+    useEffect(() => {
         const storedCharacterId = sessionStorage.getItem('characterId');
         if (storedCharacterId) {
             setCharacterId(parseInt(storedCharacterId, 10));
@@ -119,7 +154,7 @@ const LunchPage: React.FC= ({}) => {
                 <button
                     type="button" 
                     className='flex items-center justify-center font-dgm text-[2.2rem] text-white mt-7 mr-10 hover:text-[#FFE486]'
-                    onClick={handleOpenFeedbackModal}>
+                    onClick={handleFeedbackButtonClick}>
                     피드백 받기 ! 
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 26 31" fill="none" className='ml-5'>
                     <path d="M5.03009e-06 2.50001V28.4C5.03009e-06 30.375 2.175 31.575 3.85 30.5L24.2 17.55C24.5563 17.3245 24.8497 
@@ -146,7 +181,7 @@ const LunchPage: React.FC= ({}) => {
                     </div>
                 </div>
             </div>
-            {isFeedbackModalOpen && <FeedBackModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} />}
+            {isFeedbackModalOpen && <FeedBackModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} websocketMessage={feedbackMessage} />}
         </div>
     );}
 
