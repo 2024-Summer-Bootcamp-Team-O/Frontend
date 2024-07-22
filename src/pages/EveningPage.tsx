@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import '../index.css';
 import axios from "axios";
+import axiosInstance from "../hooks/axiosInstance";
 import EveningImg from "../assets/images/background/EveningPage.png";
 import { standing } from '../components/CharacterModal';
 import chatBarImg from '../assets/images/others/Chatbar.png';
 import ELoadingModal from '../components/ELoadingModal';
 import FeedBackEvModal from '../components/FeedBackEvModal';
-import ResultLoadingModal from "../components/ResultLoadingModal";
 import CameraModal from '../components/CameraModal';
 
 const EveningPage: React.FC = () => {
@@ -15,7 +15,6 @@ const EveningPage: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
-    const [isResultLoadingModalOpen, setIsResultLoadingModalOpen] = useState(false);
     const [isCameraModalOpen, setIsCameraModalOpen] = useState(false); // 카메라 모달 상태 추가
     const [characterId, setCharacterId] = useState<number | null>(null);
     const websocket = useRef<WebSocket | null>(null);
@@ -31,7 +30,7 @@ const EveningPage: React.FC = () => {
         },);
 
         try {
-            const response = await axios.get('http://localhost:80/apps/next')
+            const response = await axiosInstance.get('/apps/next')
             if (response.status === 201) {
                 console.log('다음 상화 성공:', response.data);
                 // 필요한 경우 응답 데이터를 처리
@@ -111,11 +110,6 @@ const EveningPage: React.FC = () => {
 
     const handleCloseCameraModal = () => {
         setIsCameraModalOpen(false); // 카메라 모달 닫기
-        setIsResultLoadingModalOpen(true); 
-    };
-
-    const handleCloseResultLoadingModal = () => {
-        setIsResultLoadingModalOpen(false);
     };
 
     useEffect(() => {
@@ -192,12 +186,10 @@ const EveningPage: React.FC = () => {
                 </div>
             </div>
             {isFeedbackModalOpen && <FeedBackEvModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} websocketMessage={feedbackMessage} />}
-            {isResultLoadingModalOpen && <ResultLoadingModal isOpen={isResultLoadingModalOpen} onRequestClose={handleCloseResultLoadingModal} />}
             {isCameraModalOpen && <CameraModal isOpen={isCameraModalOpen} onClose={handleCloseCameraModal} />} 
         </div>
     );}
 export default EveningPage;
-
 
 
 

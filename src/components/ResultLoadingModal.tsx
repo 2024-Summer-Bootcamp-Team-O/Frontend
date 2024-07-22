@@ -1,20 +1,18 @@
 import React, { useEffect, useRef } from "react";
-import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
 interface ResultLoadingModalProps {
     isOpen: boolean;
-    onRequestClose: () => void;
+    onClose: () => void;
 }
 
-const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen }) => {
+const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen, onClose }) => {
     const audioRef = useRef<HTMLAudioElement>(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const playAudio = () => {
             if (audioRef.current) {
-                audioRef.current.volume = 0.1; // 볼륨을 10%로 설정
+                audioRef.current.volume = 0.1; 
                 audioRef.current.play().catch((error) => {
                     console.error("Failed to play audio:", error);
                 });
@@ -33,12 +31,12 @@ const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen }) => {
     useEffect(() => {
         if (isOpen) {
             const timer = setTimeout(() => {
-                navigate('/result'); // 이동할 페이지 경로
+                onClose();
             }, 7000); 
 
             return () => clearTimeout(timer);
         }
-    }, [isOpen, navigate]);
+    }, [isOpen, onClose]);
 
     if (!isOpen) {
         return null;

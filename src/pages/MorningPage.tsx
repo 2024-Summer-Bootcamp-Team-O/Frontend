@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../index.css';
 import axios from 'axios';
+import axiosInstance from '../hooks/axiosInstance'; 
 import CharacterModal, { standing } from '@components/CharacterModal';
-import FeedBackModal from '../components/FeedBackMoModal'; 
-import { useLocation } from 'react-router-dom';
+import FeedBackModal from '../components/FeedBackMoModal';
 
 const MorningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
@@ -17,22 +17,21 @@ const MorningPage: React.FC = () => {
     const websocket = useRef<WebSocket | null>(null);
     const [characterId, setCharacterId] = useState<number | null>(null);
 
-    const closeModal = async() => {
+    const closeModal = async () => {
         setIsModalOpen(false);
 
-        try{
-            const response= await axios.post("http://localhost:80/apps/start",{
-                user_id:1,
-                character_id:characterId,
+        try {
+            const response = await axiosInstance.post("/apps/start", {
+                character_id: characterId
             });
 
-            if (response.status==201){
-                console.log('대화 시작 성공:',response.data.message);
-            } else{
-                console.error('대화 시작 실패:',response.data.message);
+            if (response.status === 201) {
+                console.log('대화 시작 성공:', response.data.message);
+            } else {
+                console.error('대화 시작 실패:', response.data.message);
             }
-        } catch(error) {
-            console.error('API 요청 중 오류 발생:',error);
+        } catch (error) {
+            console.error('API 요청 중 오류 발생:', error);
         }
     };
 
@@ -71,12 +70,11 @@ const MorningPage: React.FC = () => {
 
     useEffect(() => {
         if (inputValue.trim() !== '') {
-            setButtonImage('src/assets/images/others/sendbutton_ui_a.png'); 
+            setButtonImage('src/assets/images/others/sendbutton_ui_a.png');
         } else {
-            setButtonImage('src/assets/images/others/sendbutton_ui.png'); 
+            setButtonImage('src/assets/images/others/sendbutton_ui.png');
         }
     }, [inputValue]);
-    
 
     useEffect(() => {
         websocket.current = new WebSocket('ws://localhost:80/ws/gpt/');
@@ -124,7 +122,6 @@ const MorningPage: React.FC = () => {
         return () => clearInterval(interval);
     }, [messageQueue]);
 
-
     useEffect(() => {
         const interval = setInterval(() => {
             if (feedbackQueue.length > 0) {
@@ -158,10 +155,10 @@ const MorningPage: React.FC = () => {
                 <>
                     <div className='flex justify-end p-4'>
                         <button
-                            type="button" 
+                            type="button"
                             className='flex items-center justify-center font-dgm text-[2.2rem] text-white mt-7 mr-10 hover:text-[#FFE486]'
                             onClick={handleFeedbackButtonClick}>
-                            피드백 받기 ! 
+                            피드백 받기 !
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 26 31" fill="none" className='ml-5'>
                                 <path d="M5.03009e-06 2.50001V28.4C5.03009e-06 30.375 2.175 31.575 3.85 30.5L24.2 17.55C24.5563 17.3245 24.8497 
                                 17.0126 25.0531 16.6433C25.2565 16.2739 25.3631 15.8591 25.3631 15.4375C25.3631 15.0159 25.2565 14.6011 25.0531 
@@ -172,21 +169,21 @@ const MorningPage: React.FC = () => {
                         </button>
                     </div>
                     <div className="flex items-end justify-center">
-                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
+                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== null ? standing[characterId - 1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
                             <div className='-translate-y-1/2'>
                                 <div className="flex items-center justify-center w-[86.25rem] h-[11.125rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/script_ui.png')]">
                                     <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>
                                 </div>
                                 <div className="flex -mt-1 justify-between items-center w-[86.25rem] h-[5.4375rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/input_ui.png')]">
-                                    <input 
-                                        type="text" 
-                                        placeholder="답변을 입력하세요" 
+                                    <input
+                                        type="text"
+                                        placeholder="답변을 입력하세요"
                                         className='flex-grow ml-10 text-4xl text-black bg-transparent border-none outline-none font-dgm'
-                                        value={inputValue} 
-                                        onChange={(e) => setInputValue(e.target.value)} 
+                                        value={inputValue}
+                                        onChange={(e) => setInputValue(e.target.value)}
                                     />
                                     <button className='flex-none' onClick={handleButtonClick}>
-                                        <img src={buttonImage} alt="button" className='w-12 h-12 mr-9'/>
+                                        <img src={buttonImage} alt="button" className='w-12 h-12 mr-9' />
                                     </button>
                                 </div>
                             </div>

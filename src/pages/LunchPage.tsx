@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import '../index.css';
 import axios from "axios";
+import axiosInstance from "../hooks/axiosInstance";
 import LunchImg from "../assets/images/background/LunchImg.png";
 import {standing} from '../components/CharacterModal';
 import chatBarImg from '../assets/images/others/Chatbar.png';
@@ -28,7 +29,7 @@ const LunchPage: React.FC= ({}) => {
         },);
 
         try {
-            const response = await axios.get('http://localhost:80/apps/next')
+            const response = await axiosInstance.get('/apps/next')
             if (response.status === 201) {
                 console.log('다음 상황 성공:', response.data);
                 // 필요한 경우 응답 데이터를 처리
