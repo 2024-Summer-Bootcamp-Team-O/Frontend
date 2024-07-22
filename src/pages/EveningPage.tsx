@@ -31,10 +31,10 @@ const EveningPage: React.FC = () => {
         try {
             const response = await axios.get('http://localhost:80/apps/next')
             if (response.status === 201) {
-                console.log('API 응답:', response.data);
+                console.log('다음 상화 성공:', response.data);
                 // 필요한 경우 응답 데이터를 처리
             } else {
-                console.error('API 요청 실패:', response.status, response.statusText);
+                console.error('다음 상황 실패:', response.status, response.statusText);
             }
         } catch (error) {
             console.error('API 요청 에러:', error);
