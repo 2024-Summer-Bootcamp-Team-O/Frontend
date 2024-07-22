@@ -8,9 +8,10 @@ import { useNavigate } from 'react-router-dom';
 interface FeedBackEvModalProps {
     isOpen: boolean;
     onClose: () => void;
+    websocketMessage: string;
 }
 
-const FeedBackEvModal: React.FC<FeedBackEvModalProps> = ({ isOpen, onClose }) => {
+const FeedBackEvModal: React.FC<FeedBackEvModalProps> = ({ isOpen, onClose, websocketMessage }) => {
     const [showText, setShowText] = useState(false);
     const navigate = useNavigate();
 
