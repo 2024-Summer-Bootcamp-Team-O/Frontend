@@ -4,27 +4,31 @@ import html2canvas from "html2canvas";
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 import ResultLoadingModal from "../components/ResultLoadingModal";
+import config from "../api/apikey";
 
 const ResultPage: React.FC = () => {
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [resultData, setResultData] = useState<{ result: string; image_url: string; name: string } | null>(null);
     const audio = new Audio('src/assets/sounds/click.mp3');
+    const isMounted = useRef(false);
 
     useEffect(() => {
-        if (isModalOpen) {
+        if (!isMounted.current) {
             const fetchData = async () => {
                 try {
                     const response = await axiosInstance.get('/apps/results');
                     setResultData(response.data);
+                    setIsModalOpen(false); 
                 } catch (error) {
                     console.error("Failed to fetch data:", error);
                 }
             };
 
             fetchData();
+            isMounted.current = true; 
         }
-    }, [isModalOpen]);
+    }, []);
 
     const saveAsImageHandler = () => {
         const target = document.getElementById('Page');
@@ -50,6 +54,16 @@ const ResultPage: React.FC = () => {
 
     const handleShareButtonClick = () => {
         audio.play();
+        if (window.Kakao) {
+            const kakao = window.Kakao;
+            if (!kakao.isInitialized()) {
+                kakao.init(config.KAKAO_API_KEY);
+            }
+            kakao.Link.sendScrap({
+                requestUrl: 'http://localhost:5173', 
+                templateId: 110283, 
+            });
+        }
     };
 
     const handleHomeButtonClick = () => {
