@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import '../index.css';
-import axios from "axios";
 import axiosInstance from "../hooks/axiosInstance";
 import LunchImg from "../assets/images/background/LunchImg.png";
 import {standing} from '../components/CharacterModal';
@@ -56,7 +55,7 @@ const LunchPage: React.FC= ({}) => {
         setIsFeedbackModalOpen(true); // 피드백 모달 열기
 
         try {
-            const response = await axios.get('http://localhost:80/apps/feedbacks')
+            const response = await axiosInstance.get('/apps/feedbacks')
             if (response.status === 201) {
                 console.log('피드백 요청 성공:', response.data);
                 // 필요한 경우 응답 데이터를 처리
@@ -74,7 +73,7 @@ const LunchPage: React.FC= ({}) => {
     };
 
     useEffect(() => {
-        websocket.current = new WebSocket('ws://localhost:80/ws/gpt/');
+        websocket.current = new WebSocket('ws://localhost:8000/ws/gpt/');
 
         websocket.current.onopen = () => {
             console.log('WebSocket 연결이 열렸습니다.');
