@@ -4,6 +4,7 @@ import html2canvas from "html2canvas";
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 import ResultLoadingModal from "../components/ResultLoadingModal";
+import config from "../api/apikey";
 
 const ResultPage: React.FC = () => {
     const navigate = useNavigate();
@@ -37,6 +38,7 @@ const ResultPage: React.FC = () => {
             return alert('결과 저장에 실패했습니다.');
         }
 
+        // 버튼 숨기기
         buttons.forEach(button => button.classList.add('hidden'));
 
         html2canvas(target).then((canvas) => {
@@ -52,6 +54,16 @@ const ResultPage: React.FC = () => {
 
     const handleShareButtonClick = () => {
         audio.play();
+        if (window.Kakao) {
+            const kakao = window.Kakao;
+            if (!kakao.isInitialized()) {
+                kakao.init(config.KAKAO_API_KEY);
+            }
+            kakao.Link.sendScrap({
+                requestUrl: 'http://localhost:5173', 
+                templateId: 110283, 
+            });
+        }
     };
 
     const handleHomeButtonClick = () => {
