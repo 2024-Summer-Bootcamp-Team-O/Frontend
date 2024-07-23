@@ -13,6 +13,7 @@ const MorningPage: React.FC = () => {
     const [messageQueue, setMessageQueue] = useState<string[]>([]);
     const [feedbackMessage, setFeedbackMessage] = useState('');
     const [feedbackQueue, setFeedbackQueue] = useState<string[]>([]);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 버튼 상태 추가
     const websocket = useRef<WebSocket | null>(null);
     const [characterId, setCharacterId] = useState<number | null>(null);
     const [messageCount, setMessageCount] = useState(0);
@@ -43,10 +44,16 @@ const MorningPage: React.FC = () => {
             setInputValue(''); // 메시지를 보낸 후 입력 필드 비우기
             setWebsocketMessage(''); // 기존 대사를 지우기
             setMessageCount(prevCount => prevCount + 1);
+            setIsButtonDisabled(true); // 버튼 비활성화
     
         }
     };
 
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter' && !isButtonDisabled) {
+            handleButtonClick();
+        }
+    };
 
     const handleFeedbackButtonClick = async() => {
         setIsFeedbackModalOpen(true); // 피드백 모달 열기
@@ -69,7 +76,6 @@ const MorningPage: React.FC = () => {
         setFeedbackMessage(''); // 피드백 메시지 초기화
     };
 
-
     useEffect(() => {
         if (inputValue.trim() !== '') {
             setButtonImage('src/assets/images/others/sendbutton_ui_a.png');
@@ -77,7 +83,6 @@ const MorningPage: React.FC = () => {
             setButtonImage('src/assets/images/others/sendbutton_ui.png');
         }
     }, [inputValue]);
-
 
     useEffect(() => {
         websocket.current = new WebSocket('ws://localhost:8000/ws/gpt/');
@@ -102,6 +107,10 @@ const MorningPage: React.FC = () => {
                     const audioBlob = await (await fetch(`data:audio/mp3;base64,${data.audio_chunk}`)).blob();
                     const audioUrl = URL.createObjectURL(audioBlob);
                     const audio = new Audio(audioUrl);
+
+                    audio.onended = () => {
+                        setIsButtonDisabled(false); 
+                    };
                     audio.play();
                 } catch (error) {
                     console.error('오디오 재생 중 오류 발생:', error);
@@ -124,8 +133,6 @@ const MorningPage: React.FC = () => {
         };
     }, []);
 
-
-
     useEffect(() => {
         const interval = setInterval(() => {
             if (messageQueue.length > 0) {
@@ -134,7 +141,6 @@ const MorningPage: React.FC = () => {
             }
         }, 100); // 속도를 조절하려면 이 값을 변경 (100ms로 설정)
         
-
         return () => clearInterval(interval);
     }, [messageQueue]);
 
@@ -146,10 +152,8 @@ const MorningPage: React.FC = () => {
             }
         }, 100); // 속도를 조절하려면 이 값을 변경 (100ms로 설정)
         
-
         return () => clearInterval(interval);
     }, [feedbackQueue]);
-
 
     useEffect(() => {
         const storedCharacterId = sessionStorage.getItem('characterId');
@@ -196,8 +200,10 @@ const MorningPage: React.FC = () => {
                                         className='flex-grow ml-10 text-4xl text-black bg-transparent border-none outline-none font-dgm'
                                         value={inputValue}
                                         onChange={(e) => setInputValue(e.target.value)}
+                                        onKeyDown={handleKeyPress}
+                                        disabled={isButtonDisabled} 
                                     />
-                                    <button className='flex-none' onClick={handleButtonClick}>
+                                    <button className='flex-none' onClick={handleButtonClick} disabled={isButtonDisabled}>
                                         <img src={buttonImage} alt="button" className='w-12 h-12 mr-9' />
                                     </button>
                                 </div>

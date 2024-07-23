@@ -16,6 +16,7 @@ const EveningPage: React.FC = () => {
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [isCameraModalOpen, setIsCameraModalOpen] = useState(false); // 카메라 모달 상태 추가
     const [characterId, setCharacterId] = useState<number | null>(null);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 버튼 상태 추가
     const websocket = useRef<WebSocket | null>(null);
     const [websocketMessage, setWebsocketMessage] = useState('');
     const [messageQueue, setMessageQueue] = useState<string[]>([]);
@@ -32,7 +33,7 @@ const EveningPage: React.FC = () => {
         try {
             const response = await axiosInstance.get('/apps/next')
             if (response.status === 201) {
-                console.log('다음 상화 성공:', response.data);
+                console.log('다음 상황 성공:', response.data);
                 // 필요한 경우 응답 데이터를 처리
             } else {
                 console.error('다음 상황 실패:', response.status, response.statusText);
@@ -50,6 +51,13 @@ const EveningPage: React.FC = () => {
             setInputValue('');
             setWebsocketMessage(''); // 기존 대사를 지우기
             setMessageCount(prevCount => prevCount + 1);
+            setIsButtonDisabled(true); // 버튼 비활성화
+        }
+    };
+
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter' && !isButtonDisabled) {
+            handleButtonClick();
         }
     };
 
@@ -75,6 +83,10 @@ const EveningPage: React.FC = () => {
         setIsCameraModalOpen(true); // 카메라 모달 열기
     };
 
+    const handleCloseCameraModal = () => {
+        setIsCameraModalOpen(false); // 카메라 모달 닫기
+    };
+
     useEffect(() => {
         websocket.current = new WebSocket('ws://localhost:8000/ws/gpt/');
 
@@ -97,6 +109,9 @@ const EveningPage: React.FC = () => {
                     const audioBlob = await (await fetch(`data:audio/mp3;base64,${data.audio_chunk}`)).blob();
                     const audioUrl = URL.createObjectURL(audioBlob);
                     const audio = new Audio(audioUrl);
+                    audio.onended = () => {
+                        setIsButtonDisabled(false); 
+                    };
                     audio.play();
                 } catch (error) {
                     console.error('오디오 재생 중 오류 발생:', error);
@@ -119,10 +134,6 @@ const EveningPage: React.FC = () => {
         };
     }, []);
 
-    const handleCloseCameraModal = () => {
-        setIsCameraModalOpen(false); // 카메라 모달 닫기
-    };
-
     useEffect(() => {
         const interval = setInterval(() => {
             if (messageQueue.length > 0) {
@@ -141,11 +152,9 @@ const EveningPage: React.FC = () => {
                 setFeedbackQueue(prevQueue => prevQueue.slice(1));
             }
         }, 100); // 속도를 조절하려면 이 값을 변경 (100ms로 설정)
-        
 
         return () => clearInterval(interval);
     }, [feedbackQueue]);
-
 
     useEffect(() => {
         const storedCharacterId = sessionStorage.getItem('characterId');
@@ -186,24 +195,25 @@ const EveningPage: React.FC = () => {
                         <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>
                     </div>
                     <div className="flex w-[86.25rem] h-[5.4375rem] -mt-1 mb-[7.31rem] bg-no-repeat bg-contain" style={{backgroundImage: `url(${chatBarImg})`}} >
-                        <input type="text"
-                        className='flex-grow ml-10 text-4xl text-black bg-transparent border-none outline-none font-dgm'
-                        value={inputValue}
-                        placeholder="답변을 입력하세요"
-                        onChange={(e) => setInputValue(e.target.value)}
+                        <input
+                            type="text"
+                            className='flex-grow ml-10 text-4xl text-black bg-transparent border-none outline-none font-dgm'
+                            value={inputValue}
+                            placeholder="답변을 입력하세요"
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onKeyDown={handleKeyPress}
+                            disabled={isButtonDisabled} 
                         />
-                        <button className='flex-none' onClick={handleButtonClick}><img src={buttonImage} alt="button" className='w-12 h-12 mr-9'/></button>
+                        <button className='flex-none' onClick={handleButtonClick} disabled={isButtonDisabled}>
+                            <img src={buttonImage} alt="button" className='w-12 h-12 mr-9'/>
+                        </button>
                     </div>
                 </div>
             </div>
             {isFeedbackModalOpen && <FeedBackEvModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} websocketMessage={feedbackMessage} />}
             {isCameraModalOpen && <CameraModal isOpen={isCameraModalOpen} onClose={handleCloseCameraModal} />} 
         </div>
-    );}
+    );
+}
+
 export default EveningPage;
-
-
-
-
-
-
