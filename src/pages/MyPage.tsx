@@ -1,63 +1,59 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import axiosInstance from "../hooks/axiosInstance";
-import '../index.css';
-import cardS_1 from "../assets/images/Character/cardS_1.png";
-import cardS_2 from "../assets/images/Character/cardS_2.png";
-import cardS_3 from "../assets/images/Character/cardS_3.png";
-import cardS_4 from "../assets/images/Character/cardS_4.png";
-import cardS_5 from "../assets/images/Character/cardS_5.png";
-import cardS_6 from "../assets/images/Character/cardS_6.png";
-import cardS_7 from "../assets/images/Character/cardS_7.png";
-import cardS_8 from "../assets/images/Character/cardS_8.png";
-import cardB_1 from "../assets/images/Character/cardB_1.png";
-import cardB_2 from "../assets/images/Character/cardB_2.png";
-import cardB_3 from "../assets/images/Character/cardB_3.png";
-import cardB_4 from "../assets/images/Character/cardB_4.png";
-import cardB_5 from "../assets/images/Character/cardB_5.png";
-import cardB_6 from "../assets/images/Character/cardB_6.png";
-import cardB_7 from "../assets/images/Character/cardB_7.png";
-import cardB_8 from "../assets/images/Character/cardB_8.png";
-import card_1 from "../assets/images/Character/card_1.png";
-import card_2 from "../assets/images/Character/card_2.png";
-import card_3 from "../assets/images/Character/card_3.png";
-import card_4 from "../assets/images/Character/card_4.png";
-import card_5 from "../assets/images/Character/card_5.png";
-import card_6 from "../assets/images/Character/card_6.png";
-import card_7 from "../assets/images/Character/card_7.png";
-import card_8 from "../assets/images/Character/card_8.png";
-import myPageImg from "../assets/images/background/myPageImg.png";
-import backgroundImg from "../assets/images/background/background_h.png";
-import duckImg from "../assets/images/Duck/Duck.png";
-import duckBubble from "../assets/images/Duck/DuckBubble.png";
-import memberCard from "../assets/images/others/memberCard.png";
-import dummyImage from "../assets/images/others/userPhoto.png"; 
+import React, { useState, useEffect } from "react"; 
+import { useNavigate } from 'react-router-dom'; 
+import axiosInstance from "../hooks/axiosInstance"; 
+import '../index.css'; 
+
+import cardS_1 from "../assets/images/Character/cardS_1.png"; 
+import cardS_2 from "../assets/images/Character/cardS_2.png"; 
+import cardS_3 from "../assets/images/Character/cardS_3.png"; 
+import cardS_4 from "../assets/images/Character/cardS_4.png"; 
+import cardS_5 from "../assets/images/Character/cardS_5.png"; 
+import cardS_6 from "../assets/images/Character/cardS_6.png"; 
+import cardS_7 from "../assets/images/Character/cardS_7.png"; 
+import cardS_8 from "../assets/images/Character/cardS_8.png"; 
+
+import cardB_1 from "../assets/images/Character/cardB_1.png"; 
+import cardB_2 from "../assets/images/Character/cardB_2.png"; 
+import cardB_3 from "../assets/images/Character/cardB_3.png"; 
+import cardB_4 from "../assets/images/Character/cardB_4.png"; 
+import cardB_5 from "../assets/images/Character/cardB_5.png"; 
+import cardB_6 from "../assets/images/Character/cardB_6.png"; 
+import cardB_7 from "../assets/images/Character/cardB_7.png"; 
+import cardB_8 from "../assets/images/Character/cardB_8.png"; 
+
+import card_1 from "../assets/images/Character/card_1.png"; 
+import card_2 from "../assets/images/Character/card_2.png"; 
+import card_3 from "../assets/images/Character/card_3.png"; 
+import card_4 from "../assets/images/Character/card_4.png"; 
+import card_5 from "../assets/images/Character/card_5.png"; 
+import card_6 from "../assets/images/Character/card_6.png"; 
+import card_7 from "../assets/images/Character/card_7.png"; 
+import card_8 from "../assets/images/Character/card_8.png"; 
+
+import myPageImg from "../assets/images/background/myPageImg.png"; 
+import backgroundImg from "../assets/images/background/background_h.png"; 
+
+import duckImg from "../assets/images/Duck/Duck.png"; 
+import duckBubble from "../assets/images/Duck/DuckBubble.png"; 
+
+import memberCard from "../assets/images/others/memberCard.png"; 
 
 const cardSImages = [
-  cardS_1, cardS_2, cardS_3,
-  cardS_4, cardS_5, cardS_6,
-  cardS_7, cardS_8, cardS_1,
-  cardS_2, cardS_3, cardS_4,
-  cardS_5, cardS_6, cardS_7,
-  cardS_8, cardS_1, cardS_2
+  cardS_1, cardS_2, cardS_3, 
+  cardS_4, cardS_5, cardS_6, 
+  cardS_7, cardS_8
 ];
 
 const cardBackImages = [
-  cardB_1, cardB_2, cardB_3,
-  cardB_4, cardB_5, cardB_6,
-  cardB_7, cardB_8, cardB_1,
-  cardB_2, cardB_3, cardB_4,
-  cardB_5, cardB_6, cardB_7,
-  cardB_8, cardB_1, cardB_2
+  cardB_1, cardB_2, cardB_3, 
+  cardB_4, cardB_5, cardB_6, 
+  cardB_7, cardB_8
 ];
 
 const cardRealImages = [
   card_1, card_2, card_3,
-  card_4, card_5, card_6,
-  card_7, card_8, card_1,
-  card_2, card_3, card_4,
-  card_5, card_6, card_7,
-  card_8, card_1, card_2
+  card_4, card_5, card_6, 
+  card_7, card_8
 ];
 
 const cardRealBackImage = memberCard;
@@ -73,6 +69,7 @@ interface CardData {
 const MyPage: React.FC = () => {
   const [revealedCards, setRevealedCards] = useState<boolean[]>(Array(cardSImages.length).fill(false));
   const [cardsData, setCardsData] = useState<CardData[]>([]);
+  const [extraCards, setExtraCards] = useState<CardData[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -81,19 +78,21 @@ const MyPage: React.FC = () => {
         const response = await axiosInstance.get('/users/results');
         if (response.data && response.data.data) {
           const updatedRevealedCards = Array(cardSImages.length).fill(false);
-
-          updatedRevealedCards[5] = true;
-          updatedRevealedCards[14] = true;
-          updatedRevealedCards[15] = true;
-
+          const newExtraCards: CardData[] = [];
+          
           response.data.data.forEach((item: CardData) => {
             if (item.character_id !== null) {
-              updatedRevealedCards[Number(item.character_id) - 1] = true;
+              if (updatedRevealedCards[Number(item.character_id) - 1]) {
+                newExtraCards.push(item);
+              } else {
+                updatedRevealedCards[Number(item.character_id) - 1] = true;
+              }
             }
           });
 
-          setRevealedCards(updatedRevealedCards);
+          setRevealedCards(updatedRevealedCards);          
           setCardsData(response.data.data);
+          setExtraCards(newExtraCards);
         }
       } catch (error) {
         console.error("Failed to fetch data:", error);
@@ -103,8 +102,9 @@ const MyPage: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleCardClick = async (index: number) => {
-    const clickedCardData = cardsData.find((item) => Number(item.character_id) - 1 === index);
+  const handleCardClick = async (index: number, isExtra: boolean = false) => {
+    const clickedCardData = isExtra ? extraCards[index - 8] : cardsData.find((item) => Number(item.character_id) - 1 === index);
+    
     if (clickedCardData) {
       try {
         const response = await axiosInstance.get(`/users/results/${clickedCardData.room_id}`);
@@ -127,7 +127,7 @@ const MyPage: React.FC = () => {
   const handleButtonClick = () => {
     const audio = new Audio('src/assets/sounds/click.mp3');
     audio.play();
-    navigate('/morning');
+    navigate('/main');
   };
 
   return (
@@ -160,26 +160,41 @@ const MyPage: React.FC = () => {
                           <button type="button" className="w-full h-full">
                             <div className="flex flex-col items-center justify-center w-full h-full" style={{ backgroundImage: `url(${cardRealBackImage})`, backgroundSize: 'cover' }}>
                               <div className="flex w-[9.75rem] h-[12.75rem] mt-[1.5rem] ">
-                                {index === 5 || index === 14 || index === 15 ? (
-                                  <img src={dummyImage} alt="userPhoto" className="object-cover w-full h-full" />
-                                ) : (
-                                  <img src={cardsData.find((item) => Number(item.character_id) - 1 === index)?.image_url} alt="userPhoto" className="object-cover w-full h-full" />
-                                )}
+                                <img src={cardsData.find((item) => Number(item.character_id) - 1 === index)?.image_url} alt="userPhoto" className="object-cover w-full h-full" />
                               </div>
                               <div className="mt-[0.38rem] w-[8rem] h-[1.9375rem]">
-                                {index === 5 || index === 14 || index === 15 ? (
-                                  <p className="text-black text-center font-dnf text-[1.2rem] font-normal leading-normal tracking-[0.5em]"> 차은우 </p>
-                                ) : ( 
-                                  <p className="text-black text-center font-dnf text-[1.2rem] font-normal leading-normal tracking-[0.5em]">
-                                    {cardsData.find((item) => Number(item.character_id) - 1 === index)?.name}
-                                  </p>
-                                )}
+                                <p className="text-black text-center font-dnf text-[1.2rem] font-normal leading-normal tracking-[0.5em]">
+                                  {cardsData.find((item) => Number(item.character_id) - 1 === index)?.name}
+                                </p>
                               </div>
                             </div>
                           </button>
                         ) : (
                           <img src={cardBackImages[index]} alt={`Card Back ${index + 1}`} className="object-cover w-full h-full" />
                         )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                {extraCards.map((extraCard, extraIndex) => (
+                  <div key={extraIndex + 8} className="mb-1 flip-card" onClick={() => handleCardClick(extraIndex + 8, true)}>
+                    <div className="flip-card-inner">
+                      <div className="flip-card-front">
+                        <img src={cardRealImages[extraCard.character_id - 1]} alt={`Extra Card ${extraIndex + 9}`} className="object-cover w-full h-full" />
+                      </div>
+                      <div className="flip-card-back">
+                        <button type="button" className="w-full h-full">
+                          <div className="flex flex-col items-center justify-center w-full h-full" style={{ backgroundImage: `url(${cardRealBackImage})`, backgroundSize: 'cover' }}>
+                            <div className="flex w-[9.75rem] h-[12.75rem] mt-[1.5rem] ">
+                              <img src={extraCard.image_url} alt="userPhoto" className="object-cover w-full h-full" />
+                            </div>
+                            <div className="mt-[0.38rem] w-[8rem] h-[1.9375rem]">
+                              <p className="text-black text-center font-dnf text-[1.2rem] font-normal leading-normal tracking-[0.5em]">
+                                {extraCard.name}
+                              </p>
+                            </div>
+                          </div>
+                        </button>
                       </div>
                     </div>
                   </div>

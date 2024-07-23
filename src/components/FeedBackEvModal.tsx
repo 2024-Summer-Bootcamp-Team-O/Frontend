@@ -8,9 +8,10 @@ import { useNavigate } from 'react-router-dom';
 interface FeedBackEvModalProps {
     isOpen: boolean;
     onClose: () => void;
+    websocketMessage: string;
 }
 
-const FeedBackEvModal: React.FC<FeedBackEvModalProps> = ({ isOpen, onClose }) => {
+const FeedBackEvModal: React.FC<FeedBackEvModalProps> = ({ isOpen, onClose, websocketMessage }) => {
     const [showText, setShowText] = useState(false);
     const navigate = useNavigate();
 
@@ -45,11 +46,9 @@ const FeedBackEvModal: React.FC<FeedBackEvModalProps> = ({ isOpen, onClose }) =>
                 <img src={FeedBackDuck} alt='FeedBackDuck' className={`w-[35.375rem] h-[46.8125rem] mb-[4.25rem] ml-[10rem] ${isOpen ? 'duck-image' : ''}`}/>
             </div>
             <div className='flex flex-grow flex-col w-[65.31rem] h-full '>
-                <div className={`w-[57rem] h-[23.47rem] -ml-[4rem] mt-[6.81rem] ${isOpen ? 'bubble' : ''}`} style={{background:`url(${FeedBackBubble})`, backgroundSize:'contain', backgroundRepeat: 'no-repeat'}}>
+                <div className={`flex flex-col justify-center items-center w-[57rem] h-[23.47rem] -ml-[4rem] mt-[6.81rem] ${isOpen ? 'bubble' : ''}`} style={{background:`url(${FeedBackBubble})`, backgroundSize:'contain', backgroundRepeat: 'no-repeat'}}>
                     {showText && (
-                        <p className="text-black mt-[2.5rem] mr-[2.5rem] ml-[3.0rem] mb-[2.5rem] font-dgm text-[2.8125rem] not-italic font-normal leading-normal tracking-[-0.04875rem] whitespace-pre-line">
-                            어떤 미친놈이 피곤하다고 배달을 시키자고 해? 제정신이여? 그렇게 피곤하면 집에서 평생 잠이나 자, 이놈아 !
-                        </p>
+                        <p className="ml-7 mr-7 -mt-[4.5rem] mb-3 text-black font-dgm text-[2.3rem]">{websocketMessage}</p>
                     )}
                 </div>
                 <div className="flex flex-col w-full h-[39.17rem] justify-end items-end">

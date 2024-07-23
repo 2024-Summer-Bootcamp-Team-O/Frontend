@@ -11,6 +11,8 @@ const MorningPage: React.FC = () => {
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [websocketMessage, setWebsocketMessage] = useState('');
     const [messageQueue, setMessageQueue] = useState<string[]>([]);
+    const [feedbackMessage, setFeedbackMessage] = useState('');
+    const [feedbackQueue, setFeedbackQueue] = useState<string[]>([]);
     const websocket = useRef<WebSocket | null>(null);
     const [characterId, setCharacterId] = useState<number | null>(null);
 
@@ -39,15 +41,30 @@ const MorningPage: React.FC = () => {
             websocket.current.send(JSON.stringify({ message: inputValue }));
             setInputValue(''); // 메시지를 보낸 후 입력 필드 비우기
             setWebsocketMessage(''); // 기존 대사를 지우기
+    
         }
     };
 
-    const handleFeedbackButtonClick = () => {
+
+    const handleFeedbackButtonClick = async() => {
         setIsFeedbackModalOpen(true); // 피드백 모달 열기
+
+        try {
+            const response = await axiosInstance.get('/apps/feedbacks')
+            if (response.status === 201) {
+                console.log('피드백 요청 성공:', response.data);
+                // 필요한 경우 응답 데이터를 처리
+            } else {
+                console.error('API 요청 실패:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error('API 요청 에러:', error);
+        }
     };
 
     const handleCloseFeedbackModal = () => {
         setIsFeedbackModalOpen(false); // 피드백 모달 닫기
+        setFeedbackMessage(''); // 피드백 메시지 초기화
     };
 
     useEffect(() => {
@@ -68,8 +85,12 @@ const MorningPage: React.FC = () => {
         websocket.current.onmessage = (event) => {
             const data = JSON.parse(event.data);
             console.log('받은 메시지:', data);
-            if (data.message) {
-                setMessageQueue(prevQueue => [...prevQueue, ...data.message]); // 메시지를 한 글자씩 큐에 추가
+            if(data.message){
+                if (data.type === 'gpt_feedback_message') {
+                    setFeedbackQueue(prevQueue => [...prevQueue, ...data.message]);
+                } else {
+                    setMessageQueue(prevQueue => [...prevQueue, ...data.message]);
+                }
             }
         };
 
@@ -95,9 +116,24 @@ const MorningPage: React.FC = () => {
                 setMessageQueue(prevQueue => prevQueue.slice(1));
             }
         }, 100); // 속도를 조절하려면 이 값을 변경 (100ms로 설정)
+        
 
         return () => clearInterval(interval);
     }, [messageQueue]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (feedbackQueue.length > 0) {
+                setFeedbackMessage(prevMessage => prevMessage + feedbackQueue[0]);
+                setFeedbackQueue(prevQueue => prevQueue.slice(1));
+            }
+        }, 100); // 속도를 조절하려면 이 값을 변경 (100ms로 설정)
+        
+
+        return () => clearInterval(interval);
+    }, [feedbackQueue]);
+
+    
 
     useEffect(() => {
         const storedCharacterId = sessionStorage.getItem('characterId');
@@ -155,7 +191,7 @@ const MorningPage: React.FC = () => {
                 </>
             )}
             {isFeedbackModalOpen && (
-                <FeedBackModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} />
+                <FeedBackModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} websocketMessage={feedbackMessage} />
             )}
         </div>
     );
