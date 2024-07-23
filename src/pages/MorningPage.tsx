@@ -42,6 +42,7 @@ const MorningPage: React.FC = () => {
             websocket.current.send(JSON.stringify({ message: inputValue }));
             setInputValue(''); // 메시지를 보낸 후 입력 필드 비우기
             setWebsocketMessage(''); // 기존 대사를 지우기
+            setMessageCount(prevCount => prevCount + 1);
     
         }
     };
