@@ -2,24 +2,24 @@ import React, { useState, useEffect, useRef } from "react";
 import '../index.css';
 import axiosInstance from "../hooks/axiosInstance";
 import LunchImg from "../assets/images/background/LunchImg.png";
-import {standing} from '../components/CharacterModal';
+import { standing } from '../components/CharacterModal';
 import chatBarImg from '../assets/images/others/Chatbar.png';
 import LLoadingModal from '../components/LLoadingModal';
-import FeedBackModal from '../components/FeedBackLuModal'; 
+import FeedBackModal from '../components/FeedBackLuModal';
 
-const LunchPage: React.FC= ({}) => {
+const LunchPage: React.FC = ({}) => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
     const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 가시성 상태
     const [inputValue, setInputValue] = useState('');
     const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [characterId, setCharacterId] = useState<number | null>(null);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 버튼 상태 추가
     const websocket = useRef<WebSocket | null>(null);
     const [websocketMessage, setWebsocketMessage] = useState('');
     const [messageQueue, setMessageQueue] = useState<string[]>([]);
     const [feedbackMessage, setFeedbackMessage] = useState('');
     const [feedbackQueue, setFeedbackQueue] = useState<string[]>([]);
-    
 
     const handleCloseModal = async() => {
         setIsModalOpen(false);
@@ -47,9 +47,15 @@ const LunchPage: React.FC= ({}) => {
             websocket.current.send(JSON.stringify({ message: inputValue }));
             setInputValue('');
             setWebsocketMessage(''); // 기존 대사를 지우기
+            setIsButtonDisabled(true); // 버튼 비활성화
         }
     };
 
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter' && !isButtonDisabled) {
+            handleButtonClick();
+        }
+    };
 
     const handleFeedbackButtonClick = async() => {
         setIsFeedbackModalOpen(true); // 피드백 모달 열기
@@ -95,6 +101,9 @@ const LunchPage: React.FC= ({}) => {
                     const audioBlob = await (await fetch(`data:audio/mp3;base64,${data.audio_chunk}`)).blob();
                     const audioUrl = URL.createObjectURL(audioBlob);
                     const audio = new Audio(audioUrl);
+                    audio.onended = () => {
+                        setIsButtonDisabled(false); 
+                    };
                     audio.play();
                 } catch (error) {
                     console.error('오디오 재생 중 오류 발생:', error);
@@ -135,11 +144,9 @@ const LunchPage: React.FC= ({}) => {
                 setFeedbackQueue(prevQueue => prevQueue.slice(1));
             }
         }, 100); // 속도를 조절하려면 이 값을 변경 (100ms로 설정)
-        
 
         return () => clearInterval(interval);
     }, [feedbackQueue]);
-
 
     useEffect(() => {
         const storedCharacterId = sessionStorage.getItem('characterId');
@@ -150,13 +157,11 @@ const LunchPage: React.FC= ({}) => {
 
     useEffect(() => {
         if (inputValue.trim() !== '') {
-            setButtonImage('src/assets/images/others/sendbutton_ui_a.png'); 
+            setButtonImage('src/assets/images/others/sendbutton_ui_a.png');
         } else {
-            setButtonImage('src/assets/images/others/sendbutton_ui.png'); 
+            setButtonImage('src/assets/images/others/sendbutton_ui.png');
         }
     }, [inputValue]);
-
-
 
     return (
         <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${LunchImg})`, backgroundSize:'cover'}}>
@@ -182,18 +187,24 @@ const LunchPage: React.FC= ({}) => {
                         <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>
                     </div>
                     <div className="flex w-[86.25rem] h-[5.4375rem] -mt-1 mb-[7.31rem] bg-no-repeat bg-contain" style={{backgroundImage: `url(${chatBarImg})`}} >
-                    <input type="text" 
-                    className='flex-grow ml-10 text-4xl text-black bg-transparent border-none outline-none font-dgm'
-                    placeholder="답변을 입력하세요" 
-                    value={inputValue} 
-                    onChange={(e) => setInputValue(e.target.value)} 
-                    />
-                    <button className='flex-none' onClick={handleButtonClick}><img src={buttonImage} alt="button" className='w-12 h-12 mr-9'/></button>
+                        <input
+                            type="text"
+                            className='flex-grow ml-10 text-4xl text-black bg-transparent border-none outline-none font-dgm'
+                            placeholder="답변을 입력하세요" 
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onKeyDown={handleKeyPress}
+                            disabled={isButtonDisabled} 
+                        />
+                        <button className='flex-none' onClick={handleButtonClick} disabled={isButtonDisabled}>
+                            <img src={buttonImage} alt="button" className='w-12 h-12 mr-9'/>
+                        </button>
                     </div>
                 </div>
             </div>
             {isFeedbackModalOpen && <FeedBackModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedbackModal} websocketMessage={feedbackMessage} />}
         </div>
-    );}
+    );
+}
 
-    export default LunchPage;
+export default LunchPage;
