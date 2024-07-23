@@ -79,7 +79,7 @@ const LunchPage: React.FC= ({}) => {
             console.log('WebSocket 연결이 열렸습니다.');
         };
 
-        websocket.current.onmessage = (event) => {
+        websocket.current.onmessage = async(event) => {
             const data = JSON.parse(event.data);
             console.log('받은 메시지:', data);
             if(data.message){
@@ -87,6 +87,17 @@ const LunchPage: React.FC= ({}) => {
                     setFeedbackQueue(prevQueue => [...prevQueue, ...data.message]);
                 } else {
                     setMessageQueue(prevQueue => [...prevQueue, ...data.message]);
+                }
+            }
+
+            if (data.audio_chunk) {
+                try {
+                    const audioBlob = await (await fetch(`data:audio/mp3;base64,${data.audio_chunk}`)).blob();
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    const audio = new Audio(audioUrl);
+                    audio.play();
+                } catch (error) {
+                    console.error('오디오 재생 중 오류 발생:', error);
                 }
             }
         };

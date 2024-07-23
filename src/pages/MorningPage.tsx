@@ -15,7 +15,7 @@ const MorningPage: React.FC = () => {
     const [feedbackQueue, setFeedbackQueue] = useState<string[]>([]);
     const websocket = useRef<WebSocket | null>(null);
     const [characterId, setCharacterId] = useState<number | null>(null);
-
+    
     const closeModal = async () => {
         setIsModalOpen(false);
 
@@ -67,6 +67,7 @@ const MorningPage: React.FC = () => {
         setFeedbackMessage(''); // 피드백 메시지 초기화
     };
 
+
     useEffect(() => {
         if (inputValue.trim() !== '') {
             setButtonImage('src/assets/images/others/sendbutton_ui_a.png');
@@ -75,6 +76,7 @@ const MorningPage: React.FC = () => {
         }
     }, [inputValue]);
 
+
     useEffect(() => {
         websocket.current = new WebSocket('ws://localhost:8000/ws/gpt/');
 
@@ -82,7 +84,7 @@ const MorningPage: React.FC = () => {
             console.log('WebSocket 연결이 열렸습니다.');
         };
 
-        websocket.current.onmessage = (event) => {
+        websocket.current.onmessage = async(event) => {
             const data = JSON.parse(event.data);
             console.log('받은 메시지:', data);
             if(data.message){
@@ -90,6 +92,17 @@ const MorningPage: React.FC = () => {
                     setFeedbackQueue(prevQueue => [...prevQueue, ...data.message]);
                 } else {
                     setMessageQueue(prevQueue => [...prevQueue, ...data.message]);
+                }
+            }
+
+            if (data.audio_chunk) {
+                try {
+                    const audioBlob = await (await fetch(`data:audio/mp3;base64,${data.audio_chunk}`)).blob();
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    const audio = new Audio(audioUrl);
+                    audio.play();
+                } catch (error) {
+                    console.error('오디오 재생 중 오류 발생:', error);
                 }
             }
         };
@@ -108,6 +121,8 @@ const MorningPage: React.FC = () => {
             }
         };
     }, []);
+
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -133,7 +148,6 @@ const MorningPage: React.FC = () => {
         return () => clearInterval(interval);
     }, [feedbackQueue]);
 
-    
 
     useEffect(() => {
         const storedCharacterId = sessionStorage.getItem('characterId');
