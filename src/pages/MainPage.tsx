@@ -1,6 +1,7 @@
 import React from 'react';
 import '../index.css'; 
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 import cardS_1 from "../assets/images/Character/cardS_1.png";
 import cardS_2 from "../assets/images/Character/cardS_2.png";
 import cardS_3 from "../assets/images/Character/cardS_3.png";
@@ -44,9 +45,25 @@ const MainPage: React.FC = () => {
     };
 
     const handleLogOut = async () => {
+        const refresh = localStorage.getItem('refresh');
         audio.play();
-        navigate('/login');
+        try {
+            const response = await axios.post('http://localhost:8000/users/logout', {
+                refresh: refresh
+            });
+            if (response.status === 205) {
+                console.log('로그아웃 성공:', response.data);
+                localStorage.removeItem('refresh');
+                localStorage.removeItem('access');
+                navigate('/login');
+            } else {
+                console.error('로그아웃 실패:', response.data);
+            }
+        } catch (error) {
+            console.error('API 요청 에러:', error);
+        }
     }
+
     const handleButtonClick = async () => {
         const randomCharacterId = getRandomCharacterId();
         console.log('랜덤 character_id:', randomCharacterId);
