@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"; 
 import { useNavigate } from 'react-router-dom'; 
 import axiosInstance from "../hooks/axiosInstance"; 
+import axios from "axios";
 import '../index.css'; 
 
 import cardS_1 from "../assets/images/Character/cardS_1.png"; 
@@ -126,8 +127,23 @@ const MyPage: React.FC = () => {
   };
 
   const handleLogOut = async () => {
+    const refresh = localStorage.getItem('refresh');
     audio.play();
-    navigate('/login');
+    try {
+        const response = await axios.post('http://localhost:8000/users/logout', {
+            refresh: refresh
+        });
+        if (response.status === 205) {
+            console.log('로그아웃 성공:', response.data);
+            localStorage.removeItem('refresh');
+            localStorage.removeItem('access');
+            navigate('/login');
+        } else {
+            console.error('로그아웃 실패:', response.data);
+        }
+    } catch (error) {
+        console.error('API 요청 에러:', error);
+    }
   }
 
   const handleButtonClick = () => {
