@@ -56,7 +56,7 @@ const LunchPage: React.FC= ({}) => {
     };
 
     useEffect(() => {
-        websocket.current = new WebSocket('ws://localhost:80/ws/gpt/');
+        websocket.current = new WebSocket('ws://localhost:8000/ws/gpt/');
 
         websocket.current.onopen = () => {
             console.log('WebSocket 연결이 열렸습니다.');
