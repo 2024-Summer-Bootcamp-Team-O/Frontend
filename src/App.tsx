@@ -11,6 +11,7 @@ import MorningPage from './pages/MorningPage';
 import LunchPage from './pages/LunchPage';
 import EveningPage from './pages/EveningPage';
 import ResultPage from './pages/ResultPage';
+import UserResultPage from './pages/UserResultPage';
 
 
 const App: React.FC = () => {
@@ -27,6 +28,7 @@ const App: React.FC = () => {
         <Route path="/morning" element={<MorningPage/>} />
         <Route path="/evening" element={<EveningPage/>} />
         <Route path="/result" element={<ResultPage/>} />
+        <Route path="/userResult" element={<UserResultPage/>} />
       </Routes>
     </Router>
   );
