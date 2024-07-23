@@ -4,14 +4,14 @@ import html2canvas from "html2canvas";
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 import ResultLoadingModal from "../components/ResultLoadingModal";
-import config from "../api/apikey";
+import { shareKakao } from "../utils/shareKakao";
 
 const ResultPage: React.FC = () => {
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(true);
-    const [resultData, setResultData] = useState<{ result: string; image_url: string; name: string } | null>(null);
+    const [resultData, setResultData] = useState<{ result: string; image_url: string; name: string; room_id: number } | null>(null);
     const audio = new Audio('src/assets/sounds/click.mp3');
-    const isMounted = useRef(false); 
+    const isMounted = useRef(false);
 
     useEffect(() => {
         if (!isMounted.current) {
@@ -19,7 +19,7 @@ const ResultPage: React.FC = () => {
                 try {
                     const response = await axiosInstance.get('/apps/results');
                     setResultData(response.data);
-                    setIsModalOpen(false); 
+                    setIsModalOpen(false);
                 } catch (error) {
                     console.error("Failed to fetch data:", error);
                 }
@@ -28,7 +28,7 @@ const ResultPage: React.FC = () => {
             fetchData();
             isMounted.current = true;
         }
-    }, []); 
+    }, []);
 
     const saveAsImageHandler = () => {
         const target = document.getElementById('Page');
@@ -52,20 +52,18 @@ const ResultPage: React.FC = () => {
         });
     };
 
-    const handleShareButtonClick = () => {
+    const handleShareButtonClick = async () => {
         audio.play();
-        if (window.Kakao) {
-            const kakao = window.Kakao;
-            if (!kakao.isInitialized()) {
-                kakao.init(config.KAKAO_API_KEY);
+        try {
+            if (resultData) {
+                shareKakao(`http://localhost:5173/share/`, resultData.room_id);
+            } else {
+                console.error("Result data is null");
             }
-            kakao.Link.sendScrap({
-                requestUrl: 'http://localhost:5173', 
-                templateId: 110283, 
-            });
+        } catch (error) {
+            console.error("Failed to fetch share data:", error);
         }
     };
-
 
     const handleHomeButtonClick = () => {
         audio.play();
