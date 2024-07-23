@@ -8,7 +8,6 @@ import ELoadingModal from '../components/ELoadingModal';
 import FeedBackEvModal from '../components/FeedBackEvModal';
 import CameraModal from '../components/CameraModal';
 
-
 const EveningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
     const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 가시성 상태
