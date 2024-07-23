@@ -16,6 +16,7 @@ const MorningPage: React.FC = () => {
     const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 버튼 상태 추가
     const websocket = useRef<WebSocket | null>(null);
     const [characterId, setCharacterId] = useState<number | null>(null);
+    const [messageCount, setMessageCount] = useState(0);
     
     const closeModal = async () => {
         setIsModalOpen(false);
@@ -42,7 +43,9 @@ const MorningPage: React.FC = () => {
             websocket.current.send(JSON.stringify({ message: inputValue }));
             setInputValue(''); // 메시지를 보낸 후 입력 필드 비우기
             setWebsocketMessage(''); // 기존 대사를 지우기
+            setMessageCount(prevCount => prevCount + 1);
             setIsButtonDisabled(true); // 버튼 비활성화
+    
         }
     };
 
@@ -172,8 +175,8 @@ const MorningPage: React.FC = () => {
                     <div className='flex justify-end p-4'>
                         <button
                             type="button"
-                            className='flex items-center justify-center font-dgm text-[2.2rem] text-white mt-7 mr-10 hover:text-[#FFE486]'
-                            onClick={handleFeedbackButtonClick}>
+                            className={`flex items-center justify-center font-dgm text-[2.2rem] text-white mt-7 mr-10 hover:text-[#FFE486] ${messageCount < 3 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            onClick={handleFeedbackButtonClick} disabled={messageCount < 3}>
                             피드백 받기 !
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 26 31" fill="none" className='ml-5'>
                                 <path d="M5.03009e-06 2.50001V28.4C5.03009e-06 30.375 2.175 31.575 3.85 30.5L24.2 17.55C24.5563 17.3245 24.8497 
