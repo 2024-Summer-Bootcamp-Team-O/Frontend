@@ -12,7 +12,7 @@ import LunchPage from './pages/LunchPage';
 import EveningPage from './pages/EveningPage';
 import ResultPage from './pages/ResultPage';
 import UserResultPage from './pages/UserResultPage';
-
+import SharedResultPage from './pages/SharedResultPage';
 
 const App: React.FC = () => {
   return (
@@ -29,6 +29,7 @@ const App: React.FC = () => {
         <Route path="/evening" element={<EveningPage/>} />
         <Route path="/result" element={<ResultPage/>} />
         <Route path="/userResult" element={<UserResultPage/>} />
+        <Route path="/share/:room_id" element={<SharedResultPage/>} />
       </Routes>
     </Router>
   );
