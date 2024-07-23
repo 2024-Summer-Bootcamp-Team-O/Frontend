@@ -71,7 +71,8 @@ const MyPage: React.FC = () => {
   const [cardsData, setCardsData] = useState<CardData[]>([]);
   const [extraCards, setExtraCards] = useState<CardData[]>([]);
   const navigate = useNavigate();
-
+  const audio = new Audio('src/assets/sounds/click.mp3');
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -124,8 +125,12 @@ const MyPage: React.FC = () => {
     }
   };
 
+  const handleLogOut = async () => {
+    audio.play();
+    navigate('/login');
+  }
+
   const handleButtonClick = () => {
-    const audio = new Audio('src/assets/sounds/click.mp3');
     audio.play();
     navigate('/main');
   };
@@ -134,6 +139,17 @@ const MyPage: React.FC = () => {
     <div className="flex justify-center w-screen h-screen" style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: 'cover' }}>
       <div className="flex w-[108rem] max-w-[108rem] place-content-between">
         <div className="flex flex-col w-[37.5rem] h-[69.81rem] justify-end ">
+          <div className="pb-[2.8rem] pl-14">
+            <button
+                type="button" 
+                className='flex items-center justify-center text-[2rem] font-dgm text-black hover:text-[#3735A3]'
+                onClick={handleLogOut}>
+                로그아웃
+                <svg xmlns="http://www.w3.org/2000/svg" width="31" height="41" viewBox="0 0 31 41" fill="none" className="ml-3">
+                    <path d="M0 6.14943V34.8494C0 35.3931 0.217738 35.9145 0.605313 36.299C0.992888 36.6834 1.51855 36.8994 2.06667 36.8994H8.26667V32.7994H4.13333V8.19943H8.26667V4.09943H2.06667C1.51855 4.09943 0.992888 4.31541 0.605313 4.69986C0.217738 5.08431 0 5.60574 0 6.14943ZM29.4335 4.16093L12.9001 0.0609338C12.5955 -0.0144226 12.2776 -0.01996 11.9706 0.0447422C11.6635 0.109444 11.3753 0.242686 11.1279 0.434353C10.8805 0.62602 10.6804 0.871076 10.5427 1.15092C10.405 1.43076 10.3334 1.73804 10.3333 2.04943V38.9494C10.3326 39.2611 10.4037 39.5688 10.5411 39.849C10.6785 40.1293 10.8787 40.3747 11.1263 40.5665C11.3739 40.7583 11.6625 40.8915 11.9699 40.9559C12.2773 41.0203 12.5955 41.0141 12.9001 40.9379L29.4335 36.8379C29.8808 36.7273 30.2779 36.4714 30.5618 36.1111C30.8456 35.7508 30.9999 35.3067 31 34.8494V6.14943C30.9999 5.69215 30.8456 5.24805 30.5618 4.88773C30.2779 4.52742 29.8808 4.27159 29.4335 4.16093ZM20.6667 20.8848C20.6429 21.4127 20.4147 21.911 20.0298 22.2762C19.6448 22.6414 19.1327 22.8452 18.6 22.8452C18.0673 22.8452 17.5552 22.6414 17.1702 22.2762C16.7853 21.911 16.5571 21.4127 16.5333 20.8848V20.112C16.5336 19.5683 16.7516 19.047 17.1394 18.6627C17.5271 18.2784 18.0529 18.0627 18.601 18.063C19.1491 18.0633 19.6747 18.2795 20.0621 18.6642C20.4495 19.0488 20.6669 19.5703 20.6667 20.114V20.8848Z" fill="currentColor"/>
+                </svg>
+            </button>
+          </div>
           <div className="w-[28.1rem] h-[13.28rem] ml-[5.7rem] mr-[3.33rem] pt-[1.1rem] pb-[2.16rem]" style={{ backgroundImage: `url(${duckBubble})`, backgroundSize: 'cover' }}>
             <p className="text-black text-center font-dgm text-[1.625rem] not-italic font-normal leading-normal tracking-[-0.04875rem] whitespace-pre-line">
               나는 MZ요정일세 ! <br />
