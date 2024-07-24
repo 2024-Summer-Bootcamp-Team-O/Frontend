@@ -14,18 +14,20 @@ const LoginPage: React.FC = () => {
     try {
       const audio = new Audio('src/assets/sounds/click.mp3');
       audio.play();
-      
+
       const response = await axios.post('http://localhost:8000/users/login', {
         email: email,
         password: password
       });
-
       localStorage.setItem('access', response.data.access);
       localStorage.setItem('refresh', response.data.refresh);
-      
       navigate('/main');
-    } catch (error) {
-      setError('로그인에 실패했습니다. 다시 시도해주세요.');
+    } catch (error: any) {
+      if (error.response.status === 400) {
+        setError("아이디 또는 비밀번호가 일치하지 않습니다.");
+      } else {
+        setError('로그인에 실패했습니다. 다시 시도해주세요.');
+      }
       console.error('Error:', error);
     }
   };
@@ -67,7 +69,7 @@ const LoginPage: React.FC = () => {
             />
           </div>
           <div className="mb-4 error-container">
-            {error && <p className="text-red-600 font-dgm ">{error}</p>}
+            {error && <p className="text-red-600 font-dgm">{error}</p>}
           </div>
           <button 
             type="submit" 
