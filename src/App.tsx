@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CustomCursor from "./components/CustomCursor";
 import ReactDOM from 'react-dom/client'
 import StartPage from './pages/StartPage'
 import LoginPage from './pages/LoginPage'
@@ -17,6 +18,7 @@ import SharedResultPage from './pages/SharedResultPage';
 const App: React.FC = () => {
   return (
     <Router>
+      <CustomCursor />
       <Routes>
         <Route path="/" element={<StartPage/>} />
         <Route path="/signup" element={<RegisterPage/>} />
@@ -34,8 +36,5 @@ const App: React.FC = () => {
     </Router>
   );
 };
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <App />
-);
 
 export default App;

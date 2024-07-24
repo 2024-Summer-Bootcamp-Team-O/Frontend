@@ -286,3 +286,18 @@ html,body,#root {
 .p-ani{
   height: 4.125rem; 
 }
+
+
+
+body {
+  cursor: none; 
+}
+
+.custom-cursor {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  pointer-events: none; 
+  background: url('./assets/images/others/coffee.png') no-repeat center center;
+  background-size: cover;
+  z-index: 1000; }
