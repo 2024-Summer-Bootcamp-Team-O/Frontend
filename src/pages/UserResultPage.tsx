@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import html2canvas from "html2canvas";
 import '../index.css';
-import config from "../api/apikey";
+import { shareKakao } from "../utils/shareKakao";
 
 const UserResultPage: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [resultData, setResultData] = useState(location.state as { result: string; image_url: string; name: string });
+    const [resultData, setResultData] = useState(location.state as { result: string; image_url: string; name: string; room_id: number; });
     const audio = new Audio('src/assets/sounds/click.mp3');
-
+    
     const saveAsImageHandler = () => {
         const target = document.getElementById('Page');
         const buttons = document.querySelectorAll('.hide-on-capture');
@@ -32,17 +32,16 @@ const UserResultPage: React.FC = () => {
         });
     };
 
-    const handleShareButtonClick = () => {
+    const handleShareButtonClick = async () => {
         audio.play();
-        if (window.Kakao) {
-            const kakao = window.Kakao;
-            if (!kakao.isInitialized()) {
-                kakao.init(config.KAKAO_API_KEY);
+        try {
+            if (resultData) {
+                shareKakao(`http://localhost:5173/share/`, resultData.room_id);
+            } else {
+                console.error("Result data is null");
             }
-            kakao.Link.sendScrap({
-                requestUrl: 'http://localhost:5173', 
-                templateId: 110283, 
-            });
+        } catch (error) {
+            console.error("Failed to fetch share data:", error);
         }
     };
 

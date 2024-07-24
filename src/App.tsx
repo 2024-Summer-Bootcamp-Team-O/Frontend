@@ -34,8 +34,5 @@ const App: React.FC = () => {
     </Router>
   );
 };
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <App />
-);
 
 export default App;
