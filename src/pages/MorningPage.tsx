@@ -62,6 +62,8 @@ const MorningPage: React.FC = () => {
     };
 
     const handleFeedbackButtonClick = async() => {
+        const audio = new Audio('src/assets/sounds/click.mp3');
+        audio.play();
         setIsFeedbackModalOpen(true); // 피드백 모달 열기
 
         try {

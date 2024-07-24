@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ReactDOM from 'react-dom/client'
+import CustomCursor from "./components/CustomCursor";
 import StartPage from './pages/StartPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
@@ -17,6 +17,7 @@ import SharedResultPage from './pages/SharedResultPage';
 const App: React.FC = () => {
   return (
     <Router>
+      <CustomCursor />
       <Routes>
         <Route path="/" element={<StartPage/>} />
         <Route path="/signup" element={<RegisterPage/>} />

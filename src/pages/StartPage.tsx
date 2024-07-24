@@ -12,6 +12,7 @@ const StartPage: React.FC = () => {
     navigate('/signup');
   };
 
+
   return (
     <div className="flex flex-col items-center justify-end w-screen h-screen bg-cover" style={{ backgroundImage: `url(${background_s})` }}>
       <div className='z-40 w-[60rem] h-[18rem] mt-4 ml-[5.5rem] translate-y-96'>
