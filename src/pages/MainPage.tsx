@@ -28,13 +28,19 @@ import duckBubble from "../assets/images/Duck/DuckBubble.png";
 const cardSImages = [
     cardS_1, cardS_2, cardS_3,
     cardS_4, cardS_5, cardS_6,
-    cardS_7, cardS_8,
+    cardS_7, cardS_8, cardS_1, 
+    cardS_2, cardS_3, cardS_4, 
+    cardS_5, cardS_6, cardS_7, 
+    cardS_8, cardS_1, cardS_2,
 ];
 
 const cardBackImages = [
     cardB_1, cardB_2, cardB_3,
     cardB_4, cardB_5, cardB_6,
-    cardB_7, cardB_8,
+    cardB_7, cardB_8, cardB_1, 
+    cardB_2, cardB_3, cardB_4, 
+    cardB_5, cardB_6, cardB_7, 
+    cardB_8, cardB_1, cardB_2, 
 ];
 
 const MainPage: React.FC = () => {
