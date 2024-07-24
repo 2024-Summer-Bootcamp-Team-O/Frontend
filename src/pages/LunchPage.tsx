@@ -45,12 +45,19 @@ const LunchPage: React.FC = ({}) => {
     const handleButtonClick = () => {
         const audio = new Audio('src/assets/sounds/click.mp3');
         audio.play();
+    
         if (websocket.current) {
-            websocket.current.send(JSON.stringify({ message: inputValue }));
+            const access = localStorage.getItem('access');
+            const messagePayload = {
+                access: access,
+                message: inputValue
+            };
+    
+            websocket.current.send(JSON.stringify(messagePayload));
             setInputValue('');
-            setWebsocketMessage(''); // 기존 대사를 지우기
+            setWebsocketMessage('');
             setMessageCount(prevCount => prevCount + 1);
-            setIsButtonDisabled(true); // 버튼 비활성화
+            setIsButtonDisabled(true);
         }
     };
 

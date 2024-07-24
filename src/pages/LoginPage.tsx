@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../index.css'; 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import background_h from '../assets/images/background/background_h.png'
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-between w-screen h-screen bg-cover bg-main_h">
+    <div className="flex items-center justify-between w-screen h-screen bg-cover bg-main_h" style={{ backgroundImage: `url(${background_h})`  }}>
       <div className='flex self-end'>
         <img src="src/assets/images/background/bg_stand5.png" alt="" />
       </div>

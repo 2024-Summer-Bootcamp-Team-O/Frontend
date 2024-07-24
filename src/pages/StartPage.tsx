@@ -1,6 +1,7 @@
 import React from 'react';
 import '../index.css';
 import { useNavigate } from 'react-router-dom';
+import background_s from '../assets/images/background/background_s.png'
 
 const StartPage: React.FC = () => { 
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const StartPage: React.FC = () => {
 
 
   return (
-    <div className="flex flex-col items-center justify-end w-screen h-screen bg-cover bg-main_s">
+    <div className="flex flex-col items-center justify-end w-screen h-screen bg-cover" style={{ backgroundImage: `url(${background_s})` }}>
       <div className='z-40 w-[60rem] h-[18rem] mt-4 ml-[5.5rem] translate-y-96'>
         <img src="src/assets/images/others/logo_i.png" alt="logo" />
       </div>

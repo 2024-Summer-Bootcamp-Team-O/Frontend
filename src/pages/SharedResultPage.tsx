@@ -32,7 +32,7 @@ const SharedResultPage: React.FC = () => {
 
     const handleButtonClick = () => {
         audio.play();
-        navigate('/main');
+        navigate('/');
     };
 
     return (

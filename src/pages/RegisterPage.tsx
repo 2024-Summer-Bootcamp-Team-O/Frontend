@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import '../index.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import background_h from '../assets/images/background/background_h.png'
 
 const RegisterPage: React.FC = () => {
   const [isIdChecked, setIsIdChecked] = useState(false);
@@ -33,8 +34,8 @@ const RegisterPage: React.FC = () => {
       } 
     } catch (error) {
       if (axios.isAxiosError(error)) 
-      { if (error.response?.status === 409) { setIdCheckMessage('사용 중인 아이디입니다.'); } 
-      else { setIdCheckMessage('아이디 확인 실패!: ' + error.message); } }
+      { if (error.response?.status === 409) { setIsIdChecked(false); setIdCheckMessage('사용 중인 아이디입니다.'); } 
+      else { setIsIdChecked(false); setIdCheckMessage('아이디 확인 실패!: ' + error.message); } }
     }
   };
 
@@ -75,7 +76,7 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-between w-screen h-screen bg-cover bg-main_h">
+    <div className="flex items-center justify-between w-screen h-screen bg-cover" style={{ backgroundImage: `url(${background_h})` }}>
       <div className='flex self-end'>
         <img src="src/assets/images/background/bg_stand5.png" alt="" />
       </div>
