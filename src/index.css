@@ -294,8 +294,8 @@ body {
 }
 
 .custom-cursor {
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   position: absolute;
   pointer-events: none; 
   background: url('./assets/images/others/coffee.png') no-repeat center center;
