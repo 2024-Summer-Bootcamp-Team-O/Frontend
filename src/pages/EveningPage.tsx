@@ -7,7 +7,6 @@ import chatBarImg from '../assets/images/others/Chatbar.png';
 import ELoadingModal from '../components/ELoadingModal';
 import FeedBackEvModal from '../components/FeedBackEvModal';
 import CameraModal from '../components/CameraModal';
-import nice_m_long from '../assets/images/standing/nice_m_long.png';
 import sendbutton_ui from '../assets/images/others/sendbutton_ui.png';
 import sendbutton_ui_a from '../assets/images/others/sendbutton_ui_a.png';
 import click from '../assets/sounds/click.mp3';
@@ -207,7 +206,7 @@ const EveningPage: React.FC = () => {
                 </button>
             </div>
             <div className={`flex items-end justify-center ${isCameraModalOpen ? 'hidden' : ''}`}>
-                <div className={`flex flex-col items-center h-[61.56rem] w-[45.44rem] bg-contain bg-no-repeat fade-in ${isContentVisible ? 'show' : ''}`} style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : nice_m_long})` }}>
+                <div className={`flex flex-col items-center h-[61.56rem] w-[45.44rem] bg-contain bg-no-repeat fade-in ${isContentVisible ? 'show' : ''}`} style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : null})` }}>
                     <div className="flex flex-col items-center justify-center mt-[36.8rem]" style={{width: '86.25rem', height:'11.125rem', background:'rgba(255, 255, 255, 0.85)', borderRadius: '30px', border: '5.5px solid #000',boxSizing: 'border-box'}}>
                         <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>
                     </div>

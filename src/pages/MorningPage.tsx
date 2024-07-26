@@ -4,7 +4,6 @@ import axiosInstance from '../hooks/axiosInstance';
 import MorningImg from "../assets/images/background/office_m.png";
 import CharacterModal, { standing } from '@components/CharacterModal';
 import FeedBackModal from '../components/FeedBackMoModal';
-import nice_m_long from '../assets/images/standing/nice_m_long.png';
 import sendbutton_ui from '../assets/images/others/sendbutton_ui.png';
 import sendbutton_ui_a from '../assets/images/others/sendbutton_ui_a.png';
 import script_ui from '../assets/images/others/script_ui.png';
@@ -203,7 +202,7 @@ const MorningPage: React.FC = () => {
                         </button>
                     </div>
                     <div className="flex items-end justify-center">
-                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== null ? standing[characterId - 1] : nice_m_long})` }}>
+                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== null ? standing[characterId - 1] : null })` }}>
                             <div className='-translate-y-1/2'>
                                 <div className="flex items-center justify-center w-[86.25rem] h-[11.125rem] bg-contain bg-no-repeat" style={{backgroundImage: `url(${script_ui})`}} >
                                     <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>
