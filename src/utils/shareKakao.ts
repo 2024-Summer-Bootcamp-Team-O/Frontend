@@ -8,7 +8,7 @@ export const shareKakao = (route: any, room_id: any) => {
     if (window.Kakao) {
         const kakao = window.Kakao;
         if (!kakao.isInitialized()) {
-            kakao.init(process.env.REACT_APP_KAKAO_KEY); 
+            kakao.init(import.meta.env.VITE_APP_KAKAO_KEY); 
         }
         kakao.Link.sendScrap({
             requestUrl: route, 
