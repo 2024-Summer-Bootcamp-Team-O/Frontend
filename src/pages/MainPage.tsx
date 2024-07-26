@@ -54,7 +54,7 @@ const MainPage: React.FC = () => {
         const refresh = localStorage.getItem('refresh');
         audio.play();
         try {
-            const response = await axios.post('http://localhost:8000/users/logout', {
+            const response = await axios.post('https://rumz.site/api/users/logout', {
                 refresh: refresh
             });
             if (response.status === 205) {

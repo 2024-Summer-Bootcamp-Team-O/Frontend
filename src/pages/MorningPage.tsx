@@ -22,7 +22,7 @@ const MorningPage: React.FC = () => {
         setIsModalOpen(false);
 
         try {
-            const response = await axiosInstance.post("/apps/start", {
+            const response = await axiosInstance.post("/api/apps/start", {
                 character_id: characterId
             });
 
@@ -41,13 +41,7 @@ const MorningPage: React.FC = () => {
         audio.play();
     
         if (websocket.current) {
-            const access = localStorage.getItem('access');
-            const messagePayload = {
-                access: access,
-                message: inputValue
-            };
-    
-            websocket.current.send(JSON.stringify(messagePayload));
+            websocket.current.send(JSON.stringify({ message: inputValue }));
             setInputValue('');
             setWebsocketMessage('');
             setMessageCount(prevCount => prevCount + 1);
@@ -67,7 +61,7 @@ const MorningPage: React.FC = () => {
         setIsFeedbackModalOpen(true); // 피드백 모달 열기
 
         try {
-            const response = await axiosInstance.get('/apps/feedbacks')
+            const response = await axiosInstance.get('/api/apps/feedbacks')
             if (response.status === 201) {
                 console.log('피드백 요청 성공:', response.data);
                 // 필요한 경우 응답 데이터를 처리
@@ -93,10 +87,15 @@ const MorningPage: React.FC = () => {
     }, [inputValue]);
 
     useEffect(() => {
-        websocket.current = new WebSocket('ws://localhost:8000/ws/gpt/');
+        const token = localStorage.getItem("access");
+        websocket.current = new WebSocket('wss://rumz.site/ws/gpt/');
 
         websocket.current.onopen = () => {
-            console.log('WebSocket 연결이 열렸습니다.');
+            if (websocket.current){
+                const authMessage = JSON.stringify({ type: 'auth', token: token });
+                websocket.current.send(authMessage);
+                console.log('WebSocket 연결이 열렸습니다. 인증 메시지를 전송했습니다.');
+            }
         };
 
         websocket.current.onmessage = async(event) => {

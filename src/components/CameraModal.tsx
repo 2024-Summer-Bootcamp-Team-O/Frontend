@@ -42,7 +42,7 @@ const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
             formData.append('image', imageFile);
             try {
                 const token = localStorage.getItem('access');
-                const response = await axios.post('http://localhost:8000/apps/upload', formData, {
+                const response = await axios.post('https://rumz.site/api/apps/upload', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'Authorization': `Bearer ${token}`,

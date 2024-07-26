@@ -17,7 +17,7 @@ const ResultPage: React.FC = () => {
         if (!isMounted.current) {
             const fetchData = async () => {
                 try {
-                    const response = await axiosInstance.get('/apps/results');
+                    const response = await axiosInstance.get('/api/apps/results');
                     setResultData(response.data);
                     setIsModalOpen(false);
                 } catch (error) {
