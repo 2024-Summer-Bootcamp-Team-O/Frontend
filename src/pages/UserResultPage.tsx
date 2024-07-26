@@ -91,7 +91,7 @@ const UserResultPage: React.FC = () => {
                             <div className="space-x-10 mt-7">
                                 <button
                                     type="button"
-                                    className="bg-no-repeat bg-contain" 
+                                    className="bg-contain bg-no-repeat font-dgm text-[1.25rem] text-center w-[9.375rem] h-[3.4375rem] hide-on-capture"
                                     style={{ backgroundImage: `url(${shareButtonUi})` }}
                                     onMouseOver={(e) => (e.currentTarget.style.backgroundImage = `url(${shareButtonUiHover})`)}
                                     onMouseOut={(e) => (e.currentTarget.style.backgroundImage = `url(${shareButtonUi})`)}
@@ -100,7 +100,7 @@ const UserResultPage: React.FC = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    className="bg-no-repeat bg-contain" 
+                                    className="bg-contain bg-no-repeat font-dgm text-[1.25rem] text-center w-[9.375rem] h-[3.4375rem] hide-on-capture"
                                     style={{ backgroundImage: `url(${shareButtonUi})` }}
                                     onMouseOver={(e) => (e.currentTarget.style.backgroundImage = `url(${shareButtonUiHover})`)}
                                     onMouseOut={(e) => (e.currentTarget.style.backgroundImage = `url(${shareButtonUi})`)}
