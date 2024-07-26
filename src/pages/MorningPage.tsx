@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../index.css';
 import axiosInstance from '../hooks/axiosInstance'; 
+import MorningImg from "../assets/images/background/office_m.png";
 import CharacterModal, { standing } from '@components/CharacterModal';
 import FeedBackModal from '../components/FeedBackMoModal';
+import nice_m_long from '../assets/images/standing/nice_m_long.png';
+import sendbutton_ui from '../assets/images/others/sendbutton_ui.png';
+import sendbutton_ui_a from '../assets/images/others/sendbutton_ui_a.png';
+import script_ui from '../assets/images/others/script_ui.png';
+import input_ui from '../assets/images/others/input_ui.png';
+import click from '../assets/sounds/click.mp3';
+
 
 const MorningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [inputValue, setInputValue] = useState('');
-    const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
+    const [buttonImage, setButtonImage] = useState(sendbutton_ui);
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [websocketMessage, setWebsocketMessage] = useState('');
     const [messageQueue, setMessageQueue] = useState<string[]>([]);
@@ -37,7 +45,7 @@ const MorningPage: React.FC = () => {
     };
 
     const handleButtonClick = () => {
-        const audio = new Audio('src/assets/sounds/click.mp3');
+        const audio = new Audio(click);
         audio.play();
     
         if (websocket.current) {
@@ -56,7 +64,7 @@ const MorningPage: React.FC = () => {
     };
 
     const handleFeedbackButtonClick = async() => {
-        const audio = new Audio('src/assets/sounds/click.mp3');
+        const audio = new Audio(click);
         audio.play();
         setIsFeedbackModalOpen(true); // 피드백 모달 열기
 
@@ -80,9 +88,9 @@ const MorningPage: React.FC = () => {
 
     useEffect(() => {
         if (inputValue.trim() !== '') {
-            setButtonImage('src/assets/images/others/sendbutton_ui_a.png');
+            setButtonImage(sendbutton_ui_a);
         } else {
-            setButtonImage('src/assets/images/others/sendbutton_ui.png');
+            setButtonImage(sendbutton_ui);
         }
     }, [inputValue]);
 
@@ -170,7 +178,7 @@ const MorningPage: React.FC = () => {
     }, []);
 
     return (
-        <div className="flex flex-col justify-between w-screen h-screen bg-cover bg-[url('src/assets/images/background/office_m.png')]">
+        <div className="flex flex-col justify-between w-screen h-screen bg-cover" style={{backgroundImage: `url(${MorningImg})`}}>
             {isModalOpen ? (
                 <div className="modal-overlay">
                     <div className="modal-container animate-modal">
@@ -195,12 +203,12 @@ const MorningPage: React.FC = () => {
                         </button>
                     </div>
                     <div className="flex items-end justify-center">
-                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== null ? standing[characterId - 1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
+                        <div className="flex flex-col items-center justify-end animate-fade-in w-[45.44rem] h-[61.56rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== null ? standing[characterId - 1] : nice_m_long})` }}>
                             <div className='-translate-y-1/2'>
-                                <div className="flex items-center justify-center w-[86.25rem] h-[11.125rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/script_ui.png')]">
+                                <div className="flex items-center justify-center w-[86.25rem] h-[11.125rem] bg-contain bg-no-repeat" style={{backgroundImage: `url(${script_ui})`}} >
                                     <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>
                                 </div>
-                                <div className="flex -mt-1 justify-between items-center w-[86.25rem] h-[5.4375rem] bg-contain bg-no-repeat bg-[url('src/assets/images/others/input_ui.png')]">
+                                <div className="flex -mt-1 justify-between items-center w-[86.25rem] h-[5.4375rem] bg-contain bg-no-repeat" style={{backgroundImage: `url(${input_ui})`}} >
                                     <input
                                         type="text"
                                         placeholder="답변을 입력하세요"

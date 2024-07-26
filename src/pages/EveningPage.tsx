@@ -7,12 +7,16 @@ import chatBarImg from '../assets/images/others/Chatbar.png';
 import ELoadingModal from '../components/ELoadingModal';
 import FeedBackEvModal from '../components/FeedBackEvModal';
 import CameraModal from '../components/CameraModal';
+import nice_m_long from '../assets/images/standing/nice_m_long.png';
+import sendbutton_ui from '../assets/images/others/sendbutton_ui.png';
+import sendbutton_ui_a from '../assets/images/others/sendbutton_ui_a.png';
+import click from '../assets/sounds/click.mp3';
 
 const EveningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
     const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 가시성 상태
     const [inputValue, setInputValue] = useState('');
-    const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
+    const [buttonImage, setButtonImage] = useState(sendbutton_ui);
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [isCameraModalOpen, setIsCameraModalOpen] = useState(false); // 카메라 모달 상태 추가
     const [characterId, setCharacterId] = useState<number | null>(null);
@@ -23,7 +27,7 @@ const EveningPage: React.FC = () => {
     const [feedbackMessage, setFeedbackMessage] = useState('');
     const [feedbackQueue, setFeedbackQueue] = useState<string[]>([]);
     const [messageCount, setMessageCount] = useState(0);
-
+    
     const handleCloseModal = async() => {
         setIsModalOpen(false);
         setTimeout(() => {
@@ -44,7 +48,7 @@ const EveningPage: React.FC = () => {
     };
 
     const handleButtonClick = () => {
-        const audio = new Audio('src/assets/sounds/click.mp3');
+        const audio = new Audio(click);
         audio.play();
     
         if (websocket.current) {
@@ -69,7 +73,7 @@ const EveningPage: React.FC = () => {
     };
 
     const handleFeedbackButtonClick = async() => {
-        const audio = new Audio('src/assets/sounds/click.mp3');
+        const audio = new Audio(click);
         audio.play();
         setIsFeedbackModalOpen(true); // 피드백 모달 열기
 
@@ -178,9 +182,9 @@ const EveningPage: React.FC = () => {
     
     useEffect(() => {
         if (inputValue.trim() !== '') {
-            setButtonImage('src/assets/images/others/sendbutton_ui_a.png');
+            setButtonImage(sendbutton_ui_a);
         } else {
-            setButtonImage('src/assets/images/others/sendbutton_ui.png');
+            setButtonImage(sendbutton_ui);
         }
     }, [inputValue]);
     
@@ -203,7 +207,7 @@ const EveningPage: React.FC = () => {
                 </button>
             </div>
             <div className={`flex items-end justify-center ${isCameraModalOpen ? 'hidden' : ''}`}>
-                <div className={`flex flex-col items-center h-[61.56rem] w-[45.44rem] bg-contain bg-no-repeat fade-in ${isContentVisible ? 'show' : ''}`} style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
+                <div className={`flex flex-col items-center h-[61.56rem] w-[45.44rem] bg-contain bg-no-repeat fade-in ${isContentVisible ? 'show' : ''}`} style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : nice_m_long})` }}>
                     <div className="flex flex-col items-center justify-center mt-[36.8rem]" style={{width: '86.25rem', height:'11.125rem', background:'rgba(255, 255, 255, 0.85)', borderRadius: '30px', border: '5.5px solid #000',boxSizing: 'border-box'}}>
                         <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>
                     </div>

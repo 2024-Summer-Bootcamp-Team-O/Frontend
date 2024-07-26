@@ -39,6 +39,8 @@ import duckBubble from "../assets/images/Duck/DuckBubble.png";
 
 import memberCard from "../assets/images/others/memberCard.png"; 
 
+import click from '../assets/sounds/click.mp3';
+
 const cardSImages = [
 cardS_1, cardS_2, cardS_3, 
 cardS_4, cardS_5, cardS_6, 
@@ -72,7 +74,7 @@ const MyPage: React.FC = () => {
   const [cardsData, setCardsData] = useState<CardData[]>([]);
   const [extraCards, setExtraCards] = useState<CardData[]>([]);
   const navigate = useNavigate();
-  const audio = new Audio('src/assets/sounds/click.mp3');
+  const audio = new Audio(click);
   
   useEffect(() => {
     const fetchData = async () => {

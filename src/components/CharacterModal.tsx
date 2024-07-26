@@ -1,31 +1,55 @@
 import React, { useEffect, useState, useRef } from "react";
-import '../index.css'; 
+import silhouette_nice_m from '../assets/images/silhouette/silhouette_nice_m.png';
+import silhouette_nice_w from '../assets/images/silhouette/silhouette_nice_w.png';
+import silhouette_assistant from '../assets/images/silhouette/silhouette_assistant.png';
+import silhouette_om from '../assets/images/silhouette/silhouette_om.png';
+import silhouette_ow from '../assets/images/silhouette/silhouette_ow.png';
+import silhouette_drunken from '../assets/images/silhouette/silhouette_drunken.png';
+import silhouette_employee from '../assets/images/silhouette/silhouette_employee.png';
+import silhouette_intern from '../assets/images/silhouette/silhouette_intern.png';
+
+import standing_nice_m from '../assets/images/standing/nice_m.png';
+import standing_nice_w from '../assets/images/standing/nice_w.png';
+import standing_assistant from '../assets/images/standing/assistant.png';
+import standing_om from '../assets/images/standing/om.png';
+import standing_ow from '../assets/images/standing/ow.png';
+import standing_drunken from '../assets/images/standing/drunken.png';
+import standing_employee from '../assets/images/standing/employee.png';
+import standing_intern from '../assets/images/standing/intern.png';
+
+import bg_office_m from '../assets/images/background/office_m.png';
+import bg_minipage_o from '../assets/images/background/minipage_o.png';
+
+import typing from '../assets/sounds/typing.mp3';
+import roulette from '../assets/sounds/roulette.mp3';
+
+import '../index.css';
 
 interface CharacterModalProps {
     onClose: () => void;
-    character_id: number | null; // number | null 타입을 허용
+    character_id: number | null;
 }
 
 export const silhouette = [
-    'src/assets/images/silhouette/silhouette_nice_m.png',
-    'src/assets/images/silhouette/silhouette_nice_w.png',
-    'src/assets/images/silhouette/silhouette_assistant.png',
-    'src/assets/images/silhouette/silhouette_om.png',
-    'src/assets/images/silhouette/silhouette_ow.png',
-    'src/assets/images/silhouette/silhouette_drunken.png',
-    'src/assets/images/silhouette/silhouette_employee.png',
-    'src/assets/images/silhouette/silhouette_intern.png',
+    silhouette_nice_m,
+    silhouette_nice_w,
+    silhouette_assistant,
+    silhouette_om,
+    silhouette_ow,
+    silhouette_drunken,
+    silhouette_employee,
+    silhouette_intern,
 ];
 
 export const standing = [
-    'src/assets/images/standing/nice_m.png',
-    'src/assets/images/standing/nice_w.png',
-    'src/assets/images/standing/assistant.png',
-    'src/assets/images/standing/om.png',
-    'src/assets/images/standing/ow.png',
-    'src/assets/images/standing/drunken.png',
-    'src/assets/images/standing/employee.png',
-    'src/assets/images/standing/intern.png',
+    standing_nice_m,
+    standing_nice_w,
+    standing_assistant,
+    standing_om,
+    standing_ow,
+    standing_drunken,
+    standing_employee,
+    standing_intern,
 ];
 
 export const CharacterName = [
@@ -39,12 +63,11 @@ export const CharacterName = [
     '인턴 최수민이'
 ];
 
-
 const CharacterModal: React.FC<CharacterModalProps> = ({ onClose, character_id }) => {
     if (character_id === null) {
         return null;
     }
-    
+
     const [currentImage, setCurrentImage] = useState(silhouette[0]);
     const [finalImage, setFinalImage] = useState<string | null>(null);
     const [displayImage, setDisplayImage] = useState<string | null>(null);
@@ -61,7 +84,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({ onClose, character_id }
     const typingSoundRef = useRef<HTMLAudioElement | null>(null);
     const rouletteSoundRef = useRef<HTMLAudioElement | null>(null);
 
-    const predefinedIndex = character_id-1;
+    const predefinedIndex = character_id - 1;
 
     useEffect(() => {
         console.log('Received character_id:', character_id);
@@ -177,15 +200,15 @@ const CharacterModal: React.FC<CharacterModalProps> = ({ onClose, character_id }
                     setTimeout(onClose, 500); 
                 }
             }, 150);
-            
+
             return () => clearInterval(typingIntervalRef.current!);
         }
     }, [animationComplete, characterName, onClose]);
 
     return (
-        <div className="flex items-center justify-center w-screen h-screen bg-cover bg-[url('src/assets/images/background/office_m.png')]">
-            <div className="flex flex-col items-center justify-center w-screen h-screen bg-black bg-cover bg-opacity-70">
-                <div className="flex flex-col items-center justify-between mt-32 w-[58.375rem] h-[42.375rem] bg-contain bg-no-repeat bg-[url('src/assets/images/background/minipage_o.png')]">
+        <div className="flex items-center justify-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${bg_office_m})` }}>
+            <div className="flex flex-col items-center justify-center w-screen h-screen bg-black bg-opacity-70">
+                <div className="flex flex-col items-center justify-between mt-32 w-[58.375rem] h-[42.375rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${bg_minipage_o})` }}>
                     <div className="flex self-start mt-2 ml-9">
                         {animationComplete ? (
                             <p className="text-[2.125rem] text-white font-dgm">출근 완료!</p>
@@ -211,8 +234,8 @@ const CharacterModal: React.FC<CharacterModalProps> = ({ onClose, character_id }
                         {buttonText}
                     </button>
                 )}
-                <audio ref={typingSoundRef} src="src/assets/sounds/typing.mp3" muted />
-                <audio ref={rouletteSoundRef} src="src/assets/sounds/roulette.mp3" muted />
+                <audio ref={typingSoundRef} src={typing} muted />
+                <audio ref={rouletteSoundRef} src={roulette} muted />
             </div>
         </div>
     );

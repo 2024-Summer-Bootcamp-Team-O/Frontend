@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from "react";
+import subway_sound from '../assets/sounds/subway.mp3';
+import city_sunset from '../assets/images/background/city_sunset.png';
+import subway from '../assets/images/background/subway.png';
 import '../index.css';
 
 interface ResultLoadingModalProps {
@@ -12,7 +15,7 @@ const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen, onClose
     useEffect(() => {
         const playAudio = () => {
             if (audioRef.current) {
-                audioRef.current.volume = 0.1; 
+                audioRef.current.volume = 0.1;
                 audioRef.current.play().catch((error) => {
                     console.error("Failed to play audio:", error);
                 });
@@ -46,10 +49,10 @@ const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen, onClose
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
             <div className="relative w-screen h-screen overflow-hidden bg-white">
                 <audio ref={audioRef} loop>
-                    <source src="src/assets/sounds/subway.mp3" type="audio/mpeg" />
+                    <source src={subway_sound} type="audio/mpeg" />
                 </audio>
-                <div className="absolute top-0 left-0 w-[218.5rem] h-[69.8125rem] bg-cover bg-[url('src/assets/images/background/city_sunset.png')] animate-slide"></div>
-                <div className="relative flex items-end justify-center w-screen h-screen bg-cover bg-[url('src/assets/images/background/subway.png')]">
+                <div className="absolute top-0 left-0 w-[218.5rem] h-[69.8125rem] bg-cover animate-slide" style={{ backgroundImage: `url(${city_sunset})` }}></div>
+                <div className="relative flex items-end justify-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${subway})` }}>
                     <div className="flex flex-col items-center justify-center ml-20 animate-scroll-up">
                         <p className="text-white font-dgm text-[4rem]">The End</p>
                     </div>

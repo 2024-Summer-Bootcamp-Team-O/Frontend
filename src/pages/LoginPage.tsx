@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import '../index.css'; 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import background_h from '../assets/images/background/background_h.png'
+import background_h from '../assets/images/background/background_h.png';
+import bg_stand5 from '../assets/images/background/bg_stand5.png';
+import bg_stand6 from '../assets/images/background/bg_stand6.png';
+import click from '../assets/sounds/click.mp3';
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -13,7 +16,7 @@ const LoginPage: React.FC = () => {
   const handleLoginButtonClick = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const audio = new Audio('src/assets/sounds/click.mp3');
+      const audio = new Audio(click);
       audio.play();
 
       const response = await axios.post('https://rumz.site/api/users/login', {
@@ -24,7 +27,7 @@ const LoginPage: React.FC = () => {
       localStorage.setItem('refresh', response.data.refresh);
       navigate('/main');
     } catch (error: any) {
-      if (error.response.status === 400) {
+      if (error.response && error.response.status === 400) {
         setError("아이디 또는 비밀번호가 일치하지 않습니다.");
       } else {
         setError('로그인에 실패했습니다. 다시 시도해주세요.');
@@ -38,9 +41,9 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-between w-screen h-screen bg-cover bg-main_h" style={{ backgroundImage: `url(${background_h})`  }}>
+    <div className="flex items-center justify-between w-screen h-screen bg-cover" style={{ backgroundImage: `url(${background_h})` }}>
       <div className='flex self-end'>
-        <img src="src/assets/images/background/bg_stand5.png" alt="" />
+        <img src={bg_stand5} alt="Background stand 5" />
       </div>
       <div className="rounded-[0.9375rem] bg-white shadow-shadow_tr p-8">
         <form className='w-[36rem] h-[48rem] flex flex-col items-center justify-center' onSubmit={handleLoginButtonClick}>
@@ -84,7 +87,7 @@ const LoginPage: React.FC = () => {
         </form>
       </div>
       <div className='flex self-end'>
-        <img src="src/assets/images/background/bg_stand6.png" alt="" />
+        <img src={bg_stand6} alt="Background stand 6" />
       </div>
     </div>
   );

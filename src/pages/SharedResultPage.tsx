@@ -7,14 +7,14 @@ import memberCard from '../assets/images/others/memberCard_r.png';
 import simulButton from '../assets/images/others/simulbutton_ui.png';
 import simulButtonH from '../assets/images/others/simulbutton_ui_p.png';
 import miniPage from '../assets/images/background/minipage_r.png';
-import clickSound from '../assets/sounds/click.mp3';
+import click from '../assets/sounds/click.mp3';
 import '../index.css';
 
 const SharedResultPage: React.FC = () => {
     const navigate = useNavigate();
     const { room_id } = useParams<{ room_id: string }>();
     const [resultData, setResultData] = useState<{ result: string; image_url: string; name: string } | null>(null);
-    const audio = new Audio(clickSound);
+    const audio = new Audio(click);
 
     useEffect(() => {
         const fetchData = async () => {
