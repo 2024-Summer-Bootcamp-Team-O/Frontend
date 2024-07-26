@@ -16,7 +16,7 @@ const LoginPage: React.FC = () => {
       const audio = new Audio('src/assets/sounds/click.mp3');
       audio.play();
 
-      const response = await axios.post('http://localhost:8000/users/login', {
+      const response = await axios.post('https://rumz.site/api/users/login', {
         email: email,
         password: password
       });

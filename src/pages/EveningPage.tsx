@@ -31,7 +31,7 @@ const EveningPage: React.FC = () => {
         },);
 
         try {
-            const response = await axiosInstance.get('/apps/next')
+            const response = await axiosInstance.get('/api/apps/next')
             if (response.status === 201) {
                 console.log('다음 상황 성공:', response.data);
                 // 필요한 경우 응답 데이터를 처리
@@ -74,7 +74,7 @@ const EveningPage: React.FC = () => {
         setIsFeedbackModalOpen(true); // 피드백 모달 열기
 
         try {
-            const response = await axiosInstance.get ('/apps/feedbacks')
+            const response = await axiosInstance.get ('/api/apps/feedbacks')
             if (response.status === 201) {
                 console.log('피드백 요청 성공:', response.data);
                 // 필요한 경우 응답 데이터를 처리
@@ -97,12 +97,16 @@ const EveningPage: React.FC = () => {
     };
 
     useEffect(() => {
-        websocket.current = new WebSocket('ws://localhost:8000/ws/gpt/');
+        const token = localStorage.getItem("access");
+        websocket.current = new WebSocket('wss://rumz.site/ws/gpt/');
 
         websocket.current.onopen = () => {
-            console.log('WebSocket 연결이 열렸습니다.');
+            if (websocket.current){
+                const authMessage = JSON.stringify({ type: 'auth', token: token });
+                websocket.current.send(authMessage);
+                console.log('WebSocket 연결이 열렸습니다. 인증 메시지를 전송했습니다.');
+            }
         };
-
         websocket.current.onmessage = async(event) => {
             const data = JSON.parse(event.data);
             console.log('받은 메시지:', data);

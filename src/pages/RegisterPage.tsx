@@ -22,7 +22,7 @@ const RegisterPage: React.FC = () => {
 
   const handleIdCheck = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/users/exists', {
+      const response = await axios.get('https://rumz.site/api/users/exists', {
         params: { email: email },
       });
 
@@ -49,7 +49,7 @@ const RegisterPage: React.FC = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8000/users/sign-up', {
+      const response = await axios.post('https://rumz.site/api/users/sign-up', {
         email: email,
         password: password,
         name: name,

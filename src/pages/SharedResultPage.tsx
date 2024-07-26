@@ -19,7 +19,7 @@ const SharedResultPage: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/share/results/${room_id}`);
+                const response = await axios.get(`https://rumz.site/api/share/results/${room_id}`);
                 setResultData(response.data);
                 console.log(response.data);
             } catch (error) {

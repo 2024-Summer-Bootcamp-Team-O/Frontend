@@ -77,7 +77,7 @@ const MyPage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance.get('/users/results');
+        const response = await axiosInstance.get('/api/users/results');
         if (response.data && response.data.data) {
           const updatedRevealedCards = Array(cardSImages.length).fill(false);
           const newExtraCards: CardData[] = [];
@@ -109,7 +109,7 @@ const MyPage: React.FC = () => {
     
     if (clickedCardData) {
       try {
-        const response = await axiosInstance.get(`/users/results/${clickedCardData.room_id}`);
+        const response = await axiosInstance.get(`/api/users/results/${clickedCardData.room_id}`);
         if (response.data) {
           navigate('/userResult', {
             state: {
@@ -130,7 +130,7 @@ const MyPage: React.FC = () => {
     const refresh = localStorage.getItem('refresh');
     audio.play();
     try {
-        const response = await axios.post('http://localhost:8000/users/logout', {
+        const response = await axios.post('https://rumz.site/api/users/logout', {
             refresh: refresh
         });
         if (response.status === 205) {
