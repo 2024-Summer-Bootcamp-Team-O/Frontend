@@ -152,8 +152,8 @@ const RegisterPage: React.FC = () => {
               className="text-2xl rounded-[0.875rem] w-[30rem] h-14 pl-5 bg-[#F0F0F0] text-black placeholder-small font-dgm"
             />
             {confirmPassword && (
-              <p className={`mt-2 ml-2 font:text-l ${passwordMatch ? 'text-green-800' : 'text-red-800'} font-dgm`}>
-                {passwordMatch ? '비밀번호가 일치합니다.' : '비밀번호가 일치하지 않습니다.'}
+              <p className={`mt-2 ml-2 font:text-l ${password.length < 6 || !passwordMatch ? 'text-red-800' : 'text-green-800'} font-dgm`}>
+                {password.length < 6 ? '비밀번호는 6자리 이상이어야 합니다.' : passwordMatch ? '비밀번호가 일치합니다.' : '비밀번호가 일치하지 않습니다.'}
               </p>
             )}
           </div>
