@@ -2,6 +2,8 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import axios from 'axios';
 import Webcam from 'react-webcam';
 import { useNavigate } from 'react-router-dom';
+import strap_s from  '../assets/images/others/strap_s.png';
+import memberCard_s from  '../assets/images/others/memberCard_s.png';
 
 interface CameraModalProps {
     isOpen: boolean;
@@ -72,8 +74,8 @@ const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
     return (
     <div className="fixed top-0 left-0 flex flex-col items-center justify-between w-full h-full bg-black bg-opacity-80">
         <div className="items-center justify-center">
-            <img src="src/assets/images/others/strap_s.png" alt="" className="w-[25.75rem] h-[19rem] z-20" />
-            <div className="flex items-center justify-center w-[25.75rem] h-[37rem] z-10 -mt-10 bg-contain bg-no-repeat bg-[url('src/assets/images/others/memberCard_s.png')]">
+            <img src={strap_s} alt="" className="w-[25.75rem] h-[19rem] z-20" />
+            <div className="flex items-center justify-center w-[25.75rem] h-[37rem] z-10 -mt-10 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${memberCard_s})` }}>
                 <div className="flex flex-col items-center mt-28 justify-self-center">
                     <div className="flex items-center w-[14.75rem] h-[21.5625rem]">
                     {isCaptureEnable ? (

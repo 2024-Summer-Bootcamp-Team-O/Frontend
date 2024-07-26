@@ -4,17 +4,21 @@ import axiosInstance from "../hooks/axiosInstance";
 import LunchImg from "../assets/images/background/LunchImg.png";
 import { standing } from '../components/CharacterModal';
 import chatBarImg from '../assets/images/others/Chatbar.png';
+import sendbutton_ui from '../assets/images/others/sendbutton_ui.png';
+import sendbutton_ui_a from '../assets/images/others/sendbutton_ui_a.png';
+import nice_m_long from '../assets/images/standing/nice_m_long.png';
+import click from '../assets/sounds/click.mp3';
 import LLoadingModal from '../components/LLoadingModal';
 import FeedBackModal from '../components/FeedBackLuModal';
 
-const LunchPage: React.FC = ({}) => {
-    const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
-    const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 가시성 상태
+const LunchPage: React.FC = () => {
+    const [isModalOpen, setIsModalOpen] = useState(true);
+    const [isContentVisible, setIsContentVisible] = useState(false);
     const [inputValue, setInputValue] = useState('');
-    const [buttonImage, setButtonImage] = useState('src/assets/images/others/sendbutton_ui.png');
+    const [buttonImage, setButtonImage] = useState(sendbutton_ui);
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [characterId, setCharacterId] = useState<number | null>(null);
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 버튼 상태 추가
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const websocket = useRef<WebSocket | null>(null);
     const [websocketMessage, setWebsocketMessage] = useState('');
     const [messageQueue, setMessageQueue] = useState<string[]>([]);
@@ -22,18 +26,16 @@ const LunchPage: React.FC = ({}) => {
     const [feedbackQueue, setFeedbackQueue] = useState<string[]>([]);
     const [messageCount, setMessageCount] = useState(0);
     
-
     const handleCloseModal = async() => {
         setIsModalOpen(false);
         setTimeout(() => {
-            setIsContentVisible(true); // 모달이 닫힌 후 콘텐츠를 표시
+            setIsContentVisible(true);
         },);
 
         try {
-            const response = await axiosInstance.get('/api/apps/next')
+            const response = await axiosInstance.get('/api/apps/next');
             if (response.status === 201) {
                 console.log('다음 상황 성공:', response.data);
-                // 필요한 경우 응답 데이터를 처리
             } else {
                 console.error('다음 상황 실패:', response.status, response.statusText);
             }
@@ -43,7 +45,7 @@ const LunchPage: React.FC = ({}) => {
     };
 
     const handleButtonClick = () => {
-        const audio = new Audio('src/assets/sounds/click.mp3');
+        const audio = new Audio(click);
         audio.play();
     
         if (websocket.current) {
@@ -68,15 +70,14 @@ const LunchPage: React.FC = ({}) => {
     };
 
     const handleFeedbackButtonClick = async() => {
-        const audio = new Audio('src/assets/sounds/click.mp3');
+        const audio = new Audio(click);
         audio.play();
-        setIsFeedbackModalOpen(true); // 피드백 모달 열기
+        setIsFeedbackModalOpen(true);
 
         try {
-            const response = await axiosInstance.get('/api/apps/feedbacks')
+            const response = await axiosInstance.get('/api/apps/feedbacks');
             if (response.status === 201) {
                 console.log('피드백 요청 성공:', response.data);
-                // 필요한 경우 응답 데이터를 처리
             } else {
                 console.error('API 요청 실패:', response.status, response.statusText);
             }
@@ -86,8 +87,8 @@ const LunchPage: React.FC = ({}) => {
     };
 
     const handleCloseFeedbackModal = () => {
-        setIsFeedbackModalOpen(false); // 피드백 모달 닫기
-        setFeedbackMessage(''); // 피드백 메시지 초기화
+        setIsFeedbackModalOpen(false);
+        setFeedbackMessage('');
     };
 
     useEffect(() => {
@@ -149,7 +150,7 @@ const LunchPage: React.FC = ({}) => {
                 setWebsocketMessage(prevMessage => prevMessage + messageQueue[0]);
                 setMessageQueue(prevQueue => prevQueue.slice(1));
             }
-        }, 100); // 속도를 조절하려면 이 값을 변경 (100ms로 설정)
+        }, 100);
 
         return () => clearInterval(interval);
     }, [messageQueue]);
@@ -160,7 +161,7 @@ const LunchPage: React.FC = ({}) => {
                 setFeedbackMessage(prevMessage => prevMessage + feedbackQueue[0]);
                 setFeedbackQueue(prevQueue => prevQueue.slice(1));
             }
-        }, 100); // 속도를 조절하려면 이 값을 변경 (100ms로 설정)
+        }, 100);
 
         return () => clearInterval(interval);
     }, [feedbackQueue]);
@@ -174,9 +175,9 @@ const LunchPage: React.FC = ({}) => {
 
     useEffect(() => {
         if (inputValue.trim() !== '') {
-            setButtonImage('src/assets/images/others/sendbutton_ui_a.png');
+            setButtonImage(sendbutton_ui_a);
         } else {
-            setButtonImage('src/assets/images/others/sendbutton_ui.png');
+            setButtonImage(sendbutton_ui);
         }
     }, [inputValue]);
 
@@ -199,8 +200,8 @@ const LunchPage: React.FC = ({}) => {
                 </button>
             </div>
             <div className="flex items-end justify-center">
-                <div className={`flex flex-col items-center bg-contain bg-no-repeat h-[61.56rem] w-[45.44rem] fade-in ${isContentVisible ? 'show' : ''}`} style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : 'src/assets/images/standing/nice_m_long.png'})` }}>
-                    <div className="flex flex-col items-center justify-center  mt-[36.8rem]" style={{width: '86.25rem', height:'11.125rem', background:'rgba(255, 255, 255, 0.85)', borderRadius: '30px', border: '5.5px solid #000',boxSizing: 'border-box'}}>
+                <div className={`flex flex-col items-center bg-contain bg-no-repeat h-[61.56rem] w-[45.44rem] fade-in ${isContentVisible ? 'show' : ''}`} style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : nice_m_long})` }}>
+                    <div className="flex flex-col items-center justify-center mt-[36.8rem]" style={{width: '86.25rem', height:'11.125rem', background:'rgba(255, 255, 255, 0.85)', borderRadius: '30px', border: '5.5px solid #000',boxSizing: 'border-box'}}>
                         <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>
                     </div>
                     <div className="flex w-[86.25rem] h-[5.4375rem] -mt-1 mb-[7.31rem] bg-no-repeat bg-contain" style={{backgroundImage: `url(${chatBarImg})`}} >

@@ -1,8 +1,11 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../index.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import background_h from '../assets/images/background/background_h.png'
+import background_h from '../assets/images/background/background_h.png';
+import bg_stand5 from '../assets/images/background/bg_stand5.png';
+import bg_stand6 from '../assets/images/background/bg_stand6.png';
+import clickSound from '../assets/sounds/click.mp3';
 
 const RegisterPage: React.FC = () => {
   const [isIdChecked, setIsIdChecked] = useState(false);
@@ -33,14 +36,20 @@ const RegisterPage: React.FC = () => {
         setIdCheckMessage('사용 가능한 아이디입니다.');
       } 
     } catch (error) {
-      if (axios.isAxiosError(error)) 
-      { if (error.response?.status === 409) { setIsIdChecked(false); setIdCheckMessage('사용 중인 아이디입니다.'); } 
-      else { setIsIdChecked(false); setIdCheckMessage('아이디 확인 실패!: ' + error.message); } }
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 409) { 
+          setIsIdChecked(false); 
+          setIdCheckMessage('사용 중인 아이디입니다.'); 
+        } else { 
+          setIsIdChecked(false); 
+          setIdCheckMessage('아이디 확인 실패!: ' + error.message); 
+        }
+      }
     }
   };
 
   const handleButtonClick = async() => {
-    const audio = new Audio('src/assets/sounds/click.mp3');
+    const audio = new Audio(clickSound);
     audio.play();
 
     if (!passwordMatch) {
@@ -78,7 +87,7 @@ const RegisterPage: React.FC = () => {
   return (
     <div className="flex items-center justify-between w-screen h-screen bg-cover" style={{ backgroundImage: `url(${background_h})` }}>
       <div className='flex self-end'>
-        <img src="src/assets/images/background/bg_stand5.png" alt="" />
+        <img src={bg_stand5} alt="Background stand" />
       </div>
       <div className="rounded-[0.9375rem] bg-white shadow-shadow_tr p-8">
         <form action="#" method="post" className='w-[35.75rem] h-[47rem] flex flex-col items-center justify-center'>
@@ -86,7 +95,7 @@ const RegisterPage: React.FC = () => {
             회원가입
           </h1>
           <div className='flex flex-col mb-5'>
-            <label className="mb-3 text-black font-dgm text-[1.4375rem]" htmlFor="password">이름</label>
+            <label className="mb-3 text-black font-dgm text-[1.4375rem]" htmlFor="name">이름</label>
             <input
               id="name"
               type="text"
@@ -133,7 +142,7 @@ const RegisterPage: React.FC = () => {
             />
           </div>
           <div className='flex flex-col mb-10'>
-            <label className="mb-3 text-black font-dgm text-[1.4375rem]" htmlFor="password">비밀번호 확인</label>
+            <label className="mb-3 text-black font-dgm text-[1.4375rem]" htmlFor="confirmPassword">비밀번호 확인</label>
             <input
               id="confirmPassword"
               type="password"
@@ -165,7 +174,7 @@ const RegisterPage: React.FC = () => {
         </form>
       </div>
       <div className='flex self-end'>
-        <img src="src/assets/images/background/bg_stand6.png" alt="" />
+        <img src={bg_stand6} alt="Background stand" />
       </div>
     </div>
   );

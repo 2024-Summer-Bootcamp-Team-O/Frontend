@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import '../index.css';
 import ResultLoadingModal from "../components/ResultLoadingModal";
 import { shareKakao } from "../utils/shareKakao";
+import click from '../assets/sounds/click.mp3';
 
 const ResultPage: React.FC = () => {
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [resultData, setResultData] = useState<{ result: string; image_url: string; name: string; room_id: number } | null>(null);
-    const audio = new Audio('src/assets/sounds/click.mp3');
+    const audio = new Audio(click);
     const isMounted = useRef(false);
 
     useEffect(() => {
