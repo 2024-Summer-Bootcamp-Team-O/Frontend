@@ -41,8 +41,9 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Delete Specific File from S3
-        run: aws s3 rm s3://team-o-bucket/index.html
-            aws s3 rm s3://team-o-bucket/assets/ --recursive
+        run: |
+          aws s3 rm s3://team-o-bucket/index.html
+          aws s3 rm s3://team-o-bucket/assets/ --recursive
 
       - name: Deploy to S3
         env: 
