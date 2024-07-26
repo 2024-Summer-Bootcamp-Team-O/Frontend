@@ -15,7 +15,7 @@ jobs:
 
       - name: .env setting
         run: |
-          echo "REACT_APP_KAKAO_KEY=${{ secrets.REACT_APP_KAKAO_KEY }}" >> .env
+          echo "VITE_APP_KAKAO_KEY=${{ secrets.VITE_APP_KAKAO_KEY }}" >> .env
       
       - name: Install nvm
         run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
