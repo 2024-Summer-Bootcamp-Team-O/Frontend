@@ -30,7 +30,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       
-      - name: build
+      - name: Build
+        env:
+          REACT_APP_KAKAO_KEY: ${{ secrets.REACT_APP_KAKAO_KEY }}
         run: yarn build
         
       - name: Configure AWS Credentials
