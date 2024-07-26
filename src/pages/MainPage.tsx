@@ -25,6 +25,8 @@ import backgroundImg from "../assets/images/background/background_h.png";
 import duckImg from "../assets/images/Duck/Duck.png";
 import duckBubble from "../assets/images/Duck/DuckBubble.png";
 
+import click from '../assets/sounds/click.mp3';
+
 const cardSImages = [
     cardS_1, cardS_2, cardS_3,
     cardS_4, cardS_5, cardS_6,
@@ -45,7 +47,7 @@ const cardBackImages = [
 
 const MainPage: React.FC = () => {
     const navigate = useNavigate();
-    const audio = new Audio('src/assets/sounds/click.mp3');
+    const audio = new Audio(click);
     const getRandomCharacterId = () => {
         return Math.floor(Math.random() * 5) + 1; 
     };
