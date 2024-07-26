@@ -43,7 +43,7 @@ const UserResultPage: React.FC = () => {
         audio.play();
         try {
             if (resultData) {
-                shareKakao(`http://localhost:5173/share/`, resultData.room_id);
+                shareKakao(`https://www.rumz.site/share/`, resultData.room_id);
             } else {
                 console.error("Result data is null");
             }

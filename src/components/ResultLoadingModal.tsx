@@ -51,7 +51,12 @@ const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen, onClose
                 <audio ref={audioRef} loop>
                     <source src={subway_sound} type="audio/mpeg" />
                 </audio>
-                <div className="absolute top-0 left-0 w-[218.5rem] h-[69.8125rem] bg-cover animate-slide" style={{ backgroundImage: `url(${city_sunset})` }}></div>
+                <div className="absolute top-0 left-0 flex w-[6824px] h-full bg-cover animate-slide">
+                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${city_sunset})` }}></div>
+                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${city_sunset})` }}></div>
+                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${city_sunset})` }}></div>
+                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${city_sunset})` }}></div>
+                </div>
                 <div className="relative flex items-end justify-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${subway})` }}>
                     <div className="flex flex-col items-center justify-center ml-20 animate-scroll-up">
                         <p className="text-white font-dgm text-[4rem]">The End</p>

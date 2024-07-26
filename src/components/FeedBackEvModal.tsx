@@ -4,6 +4,7 @@ import '../index.css';
 import FeedBackDuck from "../assets/images/Duck/FeedBackDuck.png";
 import FeedBackBubble from "../assets/images/Duck/FeedBackBubble.png";
 import { useNavigate } from 'react-router-dom';
+import click from '../assets/sounds/click.mp3';
 
 interface FeedBackEvModalProps {
     isOpen: boolean;
@@ -16,7 +17,7 @@ const FeedBackEvModal: React.FC<FeedBackEvModalProps> = ({ isOpen, onClose, webs
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
-        const audio = new Audio('src/assets/sounds/click.mp3');
+        const audio = new Audio(click);
         audio.play();
 
         onClose();

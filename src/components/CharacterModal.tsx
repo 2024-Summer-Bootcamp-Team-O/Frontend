@@ -13,9 +13,6 @@ import standing_nice_w from '../assets/images/standing/nice_w.png';
 import standing_assistant from '../assets/images/standing/assistant.png';
 import standing_om from '../assets/images/standing/om.png';
 import standing_ow from '../assets/images/standing/ow.png';
-import standing_drunken from '../assets/images/standing/drunken.png';
-import standing_employee from '../assets/images/standing/employee.png';
-import standing_intern from '../assets/images/standing/intern.png';
 
 import bg_office_m from '../assets/images/background/office_m.png';
 import bg_minipage_o from '../assets/images/background/minipage_o.png';
@@ -47,9 +44,6 @@ export const standing = [
     standing_assistant,
     standing_om,
     standing_ow,
-    standing_drunken,
-    standing_employee,
-    standing_intern,
 ];
 
 export const CharacterName = [
