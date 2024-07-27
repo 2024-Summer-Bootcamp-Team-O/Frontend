@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      screens: {
+        '2k': '1728px', 
+      },
       backgroundImage: {
         'main_s': "url('src/assets/images/background/background_s.png')",
         'main_h': "url('src/assets/images/background/background_h.png')",

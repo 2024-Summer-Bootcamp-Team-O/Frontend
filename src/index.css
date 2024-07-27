@@ -62,11 +62,23 @@ html,body,#root {
   -webkit-text-stroke: 4px black; 
 }
 
-.text-border-norm {
+.text-border-custom {
   position: relative;
   color: transparent;
   display: inline-block;
-  -webkit-text-stroke: 3px black; 
+  -webkit-text-stroke: 3px black;
+}
+
+@media (max-width: 1024px) {
+  .text-border-custom {
+    -webkit-text-stroke: 2px black;
+  }
+}
+
+@media (max-width: 640px) {
+  .text-border-custom {
+    -webkit-text-stroke: 1.5px black;
+  }
 }
 /* Custom Scrollbar Styles */
 .webpage-scrollbar::-webkit-scrollbar {
@@ -293,10 +305,37 @@ body {
 }
 
 .custom-cursor {
-  width: 65px;
-  height: 65px;
   position: absolute;
   pointer-events: none; 
   background: url('./assets/images/others/coffee.png') no-repeat center center;
   background-size: cover;
-  z-index: 1000; }
+  z-index: 1000;
+}
+
+@media (min-width: 1728px) {
+  .custom-cursor {
+    width: 65px;
+    height: 65px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1727px){
+  .custom-cursor {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .custom-cursor {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .custom-cursor {
+    width: 35px;
+    height: 35px;
+  }
+}
