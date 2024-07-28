@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       screens: {
         '2k': '1728px', 
+        '1k': '1512px', 
       },
       backgroundImage: {
         'main_s': "url('src/assets/images/background/background_s.png')",
