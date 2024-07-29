@@ -202,12 +202,17 @@ const CharacterModal: React.FC<CharacterModalProps> = ({ onClose, character_id }
     return (
         <div className="flex items-center justify-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${bg_office_m})` }}>
             <div className="flex flex-col items-center justify-center w-screen h-screen bg-black bg-opacity-70">
-                <div className="flex flex-col items-center justify-between mt-32 w-[58.375rem] h-[42.375rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${bg_minipage_o})` }}>
+                <div className="flex flex-col items-center justify-between 
+                    4k:mt-[5rem] 4k:w-[69.171rem] 4k:h-[50.251rem]
+                    3k:mt-[3rem] 3k:w-[59.119rem] 3k:h-[43.144rem]
+                    2k:mt-10 2k:w-[58.375rem] 2k:h-[42.375rem] 
+                    1k:mt-[1rem] 1k:w-[51.044rem] 1k:h-[37.044rem] 
+                    bg-contain bg-no-repeat" style={{ backgroundImage: `url(${bg_minipage_o})` }}>
                     <div className="flex self-start mt-2 ml-9">
                         {animationComplete ? (
-                            <p className="text-[2.125rem] text-white font-dgm">출근 완료!</p>
+                            <p className="4k:text-[2.5rem] 3k:text-[2.3rem] 2k:text-[2.125rem] 1k:text-[1.8rem] text-white font-dgm">출근 완료!</p>
                         ) : (
-                            <p className="text-[2.125rem] text-white font-dgm">
+                            <p className="4k:text-[2.5rem] k:text-[2.3rem] 2k:text-[2.125rem] 1k:text-[1.8rem] text-white font-dgm">
                                 출근중<span className="dot1">.</span><span className="dot2">.</span><span className="dot3">.</span>
                             </p>
                         )}
@@ -215,14 +220,17 @@ const CharacterModal: React.FC<CharacterModalProps> = ({ onClose, character_id }
                     <img
                         src={displayImage || finalImage || currentImage}
                         alt="실루엣"
-                        className={`w-[20rem] h-[31rem] mb-1 mr-10 ${isFading ? 'animate-fade-in' : ''}`}
+                        className={` 4k:w-[23.696rem] 4k:h-[36.728rem] 4k:mr-[2.9rem]
+                        3k:w-[19.998rem] 3k:h-[30.996rem] 3k:mr-[2.7rem]
+                        2k:w-[20rem] 2k:h-[31rem]  2k:mr-10
+                        1k:w-[17.5rem] 1k:h-[27.125rem] 1k:mr-[2.2rem] mb-1 ${isFading ? 'animate-fade-in' : ''}`}
                     />
                 </div>
                 {animationComplete ? (
-                    <p className="p-ani mt-10 text-[2.8125rem] font-dgm text-white">{displayedText}</p>
+                    <p className="p-ani 4k:mt-14 4k:text-[3.5rem] 3k:mt-[2rem] 3k:text-[3rem] 2k:mt-10 2k:text-[2.8125rem] 1k:mt-8 1k:text-[2.5rem] font-dgm text-white">{displayedText}</p>
                 ) : (
                     <button 
-                        className={`mt-10 text-[2.8125rem] font-dgm text-white ${isButtonClicked ? '' : 'animate-blink'}`}
+                        className={`4k:mt-14 4k:text-[3.5rem] 3k:mt-[2rem] 3k:text-[3rem] 2k:mt-10 2k:text-[2.8125rem] 1k:mt-8 1k:text-[2.5rem] font-dgm text-white ${isButtonClicked ? '' : 'animate-blink'}`}
                         onClick={startAnimation}
                     >
                         {buttonText}
