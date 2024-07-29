@@ -55,21 +55,30 @@ useEffect(() => {
 
     return (
         <div className='fixed top-0 left-0 flex flex-col items-center justify-center w-screen h-screen bg-black bg-opacity-70 '>
-            <div className='flex flex-col mt-20 w-[57.8rem] h-[43.6rem]' style={{backgroundImage:`url(${LLoadingImg})`, backgroundSize:'cover'}}>
-                <div className='flex w-[50rem] h-[6.2rem] mt-[9.00rem] overflow-hidden'>
+            <div className='flex flex-col 4k:mt-[5rem] 4k:w-[69.171rem] 4k:h-[50.251rem]
+                    3k:mt-[3rem] 3k:w-[55rem] 3k:h-[40rem]
+                    2k:mt-10 2k:w-[58.375rem] 2k:h-[42.375rem] 
+                    1k:mt-[1rem] 1k:w-[51.044rem] 1k:h-[37.044rem] ' style={{backgroundImage:`url(${LLoadingImg})`, backgroundSize:'cover'}}>
+                <div className='flex 4k:w-[59.5rem] 4k:h-[10rem] 4k:mt-[11rem]
+                3k:w-[47.8rem] 3k:h-[6.2rem] 3k:mt-[8.35rem]
+                2k:w-[51rem] 2k:h-[6.2rem] 2k:mt-[9rem]  
+                1k:w-[45rem] 1k:h-[6.2rem] 1k:mt-[7.2rem] overflow-hidden'>
                     <div className='flex h-full' style={{width:'100%', transition:'transform 4s linear', transform: animate ? 'translateX(calc(100% - 6.2rem))' : 'translateX(0)'}}>
-                        <img src={HumanImg} alt='Moving Human' className='h-full'/>
+                        <img src={HumanImg} alt='Moving Human' className='4k:w-[6.8rem] 4k:h-[6.8rem] 4k:mt-[0.5rem] 3k:w-[5.5rem] 3k:h-[5.5rem] 3k:mt-[0.6rem] 2k:w-[5.8rem] 2k:h-[5.8rem] 2k:mt-[0.4rem] 1k:w-[5.2rem] 1k:h-[5.2rem] 1k:mt-[0.9rem]'/>
                     </div>
                 </div>
-                <div className='flex w-[51.2rem] h-[3rem] ml-[4.61rem] mt-[0.19rem] overflow-hidden'>
+                <div className='flex 4k:w-[60.9rem] 4k:h-[3.6rem] 4k:ml-[5.7rem] 4k:-mt-[2.65rem]
+                3k:w-[48.6rem] 3k:h-[2.87rem] 3k:ml-[4.5rem] 3k:mt-[0.1rem]
+                2k:w-[52rem] 2k:h-[2.988rem] 2k:ml-[4.61rem] 2k:mt-[0.36rem]
+                1k:w-[45.2rem] 1k:h-[2.6rem] 1k:ml-[4.2rem] 1k:mt-[0.217rem] overflow-hidden'>
                     <div className='flex h-full' style={{width:`${progress}%`, transition:'width 3.0s linear', overflow:'hidden'}}>
                         {Array(Math.ceil(51.2/1.43631)).fill(0).map((_,index) => (
-                            <img key={index} src={LoadingPerImg} alt='Loading Per' className='h-full' style={{width: '1.43631rem'}}/>
+                            <img key={index} src={LoadingPerImg} alt='Loading Per' className='h-full w-[1.43631rem] 4k:w-[3rem]'/>
                         ))}
                     </div>
                 </div>
             </div>
-            <p className="mt-12 text-[2.8125rem] text-white font-dgm">
+            <p className="4k:mt-14 4k:text-[3.5rem] 3k:mt-[2.5rem] 3k:text-[2.5rem] 2k:mt-10 2k:text-[2.5rem] 1k:mt-10 1k:text-[2.3rem] text-white font-dgm">
                 다음 에피소드로 이동 중 <span className="dot1">.</span><span className="dot2">.</span><span className="dot3">.</span>
             </p>
         </div>

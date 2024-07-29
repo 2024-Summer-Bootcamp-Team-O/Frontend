@@ -30,7 +30,7 @@ const LunchPage: React.FC = () => {
         setTimeout(() => {
             setIsContentVisible(true);
         },);
-
+        {/* 
         try {
             const response = await axiosInstance.get('/api/apps/next');
             if (response.status === 201) {
@@ -40,7 +40,7 @@ const LunchPage: React.FC = () => {
             }
         } catch (error) {
             console.error('API 요청 에러:', error);
-        }
+        }*/}
     };
 
     const handleButtonClick = () => {
@@ -72,7 +72,7 @@ const LunchPage: React.FC = () => {
         const audio = new Audio(click);
         audio.play();
         setIsFeedbackModalOpen(true);
-
+        {/* 
         try {
             const response = await axiosInstance.get('/api/apps/feedbacks');
             if (response.status === 201) {
@@ -82,7 +82,7 @@ const LunchPage: React.FC = () => {
             }
         } catch (error) {
             console.error('API 요청 에러:', error);
-        }
+        }*/}
     };
 
     const handleCloseFeedbackModal = () => {
@@ -91,7 +91,7 @@ const LunchPage: React.FC = () => {
     };
 
     useEffect(() => {
-        const token = localStorage.getItem("access");
+        {/*const token = localStorage.getItem("access");
         websocket.current = new WebSocket('wss://rumz.site/ws/gpt/');
 
         websocket.current.onopen = () => {
@@ -140,7 +140,7 @@ const LunchPage: React.FC = () => {
             if (websocket.current) {
                 websocket.current.close();
             }
-        };
+        };*/}
     }, []);
 
     useEffect(() => {
@@ -186,10 +186,12 @@ const LunchPage: React.FC = () => {
             <div className={`flex justify-end p-4 fade-in ${isContentVisible ? 'show' : ''}`}>
                 <button
                     type="button" 
-                    className={`flex items-center justify-center font-dgm text-[2.2rem] text-white mt-7 mr-10 hover:text-[#FFE486] ${messageCount < 3 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    className={`flex items-center justify-center font-dgm text-white hover:text-[#FFE486] 
+                    4k:text-[3rem] 4k:mt-10 4k:mr-28 3k:text-[2.4rem] 3k:mt-10 3k:mr-20 2k:text-[2.2rem] 2k:mt-10 2k:mr-16 1k:text-[2.2rem] 1k:mt-10 1k:mr-16 
+                    ${messageCount < 3 ? 'opacity-50 cursor-not-allowed' : ''}`}
                     onClick={handleFeedbackButtonClick} disabled={messageCount < 3}>
                     피드백 받기 ! 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 26 31" fill="none" className='ml-5'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="26" viewBox="0 0 26 31" fill="none" className='ml-5 4k:w-8 4k:h-10 3k:w-7 3k:h-9 2k:w-6 2k:h-8 1k:w-5 1k:h-7 '>
                     <path d="M5.03009e-06 2.50001V28.4C5.03009e-06 30.375 2.175 31.575 3.85 30.5L24.2 17.55C24.5563 17.3245 24.8497 
                         17.0126 25.0531 16.6433C25.2565 16.2739 25.3631 15.8591 25.3631 15.4375C25.3631 15.0159 25.2565 14.6011 25.0531 
                         14.2317C24.8497 13.8624 24.5563 13.5505 24.2 13.325L3.85 0.40001C3.47293 0.156121 3.03701 0.0185269 2.58825 0.00174343C2.13948 
@@ -199,23 +201,40 @@ const LunchPage: React.FC = () => {
                 </button>
             </div>
             <div className="flex items-end justify-center">
-                <div className={`flex flex-col items-center bg-contain bg-no-repeat h-[61.56rem] w-[45.44rem] fade-in ${isContentVisible ? 'show' : ''}`} style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : null})` }}>
-                    <div className="flex flex-col items-center justify-center mt-[36.8rem]" style={{width: '86.25rem', height:'11.125rem', background:'rgba(255, 255, 255, 0.85)', borderRadius: '30px', border: '5.5px solid #000',boxSizing: 'border-box'}}>
-                        <p className="ml-7 mr-7 mt-3 mb-3 text-black font-dgm text-[2.0rem]">{websocketMessage}</p>
-                    </div>
-                    <div className="flex w-[86.25rem] h-[5.4375rem] -mt-1 mb-[7.31rem] bg-no-repeat bg-contain" style={{backgroundImage: `url(${chatBarImg})`}} >
-                        <input
-                            type="text"
-                            className='flex-grow ml-10 text-4xl text-black bg-transparent border-none outline-none font-dgm'
-                            placeholder="답변을 입력하세요" 
-                            value={inputValue}
-                            onChange={(e) => setInputValue(e.target.value)}
-                            onKeyDown={handleKeyPress}
-                            disabled={isButtonDisabled} 
-                        />
-                        <button className='flex-none' onClick={handleButtonClick} disabled={isButtonDisabled}>
-                            <img src={buttonImage} alt="button" className='w-12 h-12 mr-9'/>
-                        </button>
+                <div className={`flex flex-col items-center justify-end
+                4k:w-[47.775rem] 4k:h-[67.35625rem]
+                3k:w-[35.25rem] 3k:h-[49.75rem] 
+                2k:w-[36.75rem] 2k:h-[51.8125rem] 
+                1k:w-[30.875rem] 1k:h-[43.4375rem] fade-in bg-contain bg-no-repeat ${isContentVisible ? 'show' : ''}`} style={{ backgroundImage: `url(${characterId !== null ? standing[characterId-1] : null})` }}>
+                    <div className='3k:-translate-y-[4.5rem] 2k:-translate-y-20 1k:-translate-y-16'>
+                        <div className="flex flex-col items-center justify-center 
+                        4k:w-[98.07rem] 4k:h-[11.58rem] 4k:border-[5.5px] 4k:rounded-[1.8rem]
+                        3k:w-[76.44rem] 3k:h-[9.8rem] 3k:border-[5.5px] 3k:rounded-[1.7rem]
+                        2k:w-[81.73rem] 2k:h-[9.65rem] 2k:border-[5px] 2k:rounded-[1.6rem]
+                        1k:w-[70.67rem] 1k:h-[7.74rem] 1k:border-[4.5px] 1k:rounded-[1.4rem]
+                        bg-white bg-opacity-85 border-black" >
+                            <p className="4k:pl-12 4k:pr-14 4k:pt-6 4k:pb-6 4k:text-[2.25rem] 3k:pl-10 3k:pr-12 3k:pt-4 3k:pb-4 3k:text-[1.8rem] 2k:pl-4 2k:pr-7 2k:pt-3 2k:pb-3 2k:text-[1.7rem] 1k:pl-4 1k:pr-7 1k:pt-4 1k:pb-4 1k:text-[1.5rem] 
+                            text-black font-dgm ">{websocketMessage}</p>
+                        </div>
+                        <div className="flex items-center justify-between
+                        4k:-mt-1 4k:w-[98.07rem] 4k:h-[5.6rem] 4k:border-[5.5px] 4k:rounded-[1.8rem]
+                        3k:-mt-1 3k:w-[76.44rem] 3k:h-[4.8rem] 3k:border-[5.5px] 3k:rounded-[1.7rem]
+                        2k:-mt-1 2k:w-[81.73rem] 2k:h-[4.67rem] 2k:border-[4.5px] 2k:rounded-[1.6rem]
+                        1k:-mt-1 1k:w-[70.67rem] 1k:h-[3.78rem] 1k:border-[4px] 1k:rounded-[1.4rem]
+                        border-black bg-cover bg-no-repeat" style={{backgroundImage: "linear-gradient(to left, #C7ECEE, #DAE3E9 32.9552%, #E2E9FC 53.8801%, #F0F8F6 67.1105%, #F1F9DF)"}}>
+                            <input
+                                type="text"
+                                placeholder="답변을 입력하세요"
+                                className='flex-grow 4k:mr-1 4k:text-[2.25rem] 3k:mr-1 3k:text-[1.8rem] 2k:ml-10 2k:mr-10 2k:text-[1.7rem] 1k:ml-5 1k:mr-32 1k:text-[1.5rem] text-black bg-transparent border-none outline-none font-dgm'
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
+                                onKeyDown={handleKeyPress}
+                                disabled={isButtonDisabled} 
+                            />
+                            <button className='' onClick={handleButtonClick} disabled={isButtonDisabled}>
+                                <img src={buttonImage} alt="button" className='4k:w-10 4k:h-10 4k:mr-10 3k:w-10 3k:h-10 3k:mr-10 2k:w-10 2k:h-10 2k:mr-8 1k:h-9 1k:w-9 1k:mr-7' />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
