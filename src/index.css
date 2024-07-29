@@ -298,12 +298,39 @@ html,body,#root {
   font-size: 1.25rem;
 }
 
+@media (max-width: 1920px) {
+  .placeholder-normal::placeholder {
+    font-size: 1.75rem;
+  }
+  .placeholder-small::placeholder {
+    font-size: 1.5rem;
+  }
+  .p-ani{
+    height: 4.125rem; 
+  }
+}
+
+@media (max-width: 1728px) {
+  .placeholder-normal::placeholder {
+    font-size: 1.5rem;
+  }
+  .placeholder-small::placeholder {
+    font-size: 1.25rem;
+  }
+  .p-ani{
+    height: 4.125rem; 
+  }
+}
+
 @media (max-width: 1512px) {
   .placeholder-normal::placeholder {
     font-size: 1.25rem;
   }
   .placeholder-small::placeholder {
     font-size: 1rem;
+  }
+  .p-ani{
+    height: 4.125rem; 
   }
 }
 
@@ -315,6 +342,9 @@ html,body,#root {
   .placeholder-small::placeholder {
     font-size: 0.7rem;
   }
+  .p-ani{
+    height: 4.125rem; 
+  }
 }
 
 @media (max-width: 768px) {
@@ -324,6 +354,9 @@ html,body,#root {
 
   .placeholder-small::placeholder {
     font-size: 0.5rem;
+  }
+  .p-ani{
+    height: 4.125rem; 
   }
 }
 
