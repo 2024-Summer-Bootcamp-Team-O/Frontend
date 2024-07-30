@@ -87,17 +87,93 @@ html,body,#root {
 
 .webpage-scrollbar::-webkit-scrollbar-track {
   background: url('./assets/images/scrollbar_track.png') no-repeat center center; /* Background image for the track */
-  background-size: 2.0rem 34.3rem;
+  background-size: 2.0rem 34.4rem;
 }
 
 .webpage-scrollbar::-webkit-scrollbar-thumb {
   background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image for the thumb */
-  background-size: 2.0rem 4rem; 
+  background-size: 2.0rem 5rem; 
 }
 
 .webpage-scrollbar::-webkit-scrollbar-thumb:hover {
   background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image when hovered */
-  background-size: 2.0rem 4rem;
+  background-size: 2.0rem 5rem;
+}
+
+/* 1k 해상도 */
+@media (min-width: 1512px) and (max-width: 1727px) {
+  .webpage-scrollbar::-webkit-scrollbar {
+    width: 2.0rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-track {
+    background-size: 2.0rem 34.3rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-thumb {
+    background-size: 2.0rem 4rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-size: 2.0rem 4rem;
+  }
+}
+
+/* 2k 해상도 */
+@media (min-width: 1728px) and (max-width: 1919px) {
+  .webpage-scrollbar::-webkit-scrollbar {
+    width: 2.3rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-track {
+    background-size: 2.3rem 41rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-thumb {
+    background-size: 2.3rem 5rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-size: 2.3rem 5rem;
+  }
+}
+
+/* 3k 해상도 */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  .webpage-scrollbar::-webkit-scrollbar {
+    width: 2.5rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-track {
+    background-size: 2.5rem 38.75rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-thumb {
+    background-size: 2.5rem 5rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-size: 2.5rem 5rem;
+  }
+}
+
+/* 4k 해상도 */
+@media (min-width: 2560px) {
+  .webpage-scrollbar::-webkit-scrollbar {
+    width: 2.5rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-track {
+    background-size: 2.5rem 45rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-thumb {
+    background-size: 2.5rem 5rem;
+  }
+
+  .webpage-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-size: 2.5rem 5rem;
+  }
 }
 
 

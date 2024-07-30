@@ -91,7 +91,7 @@ const MainPage: React.FC = () => {
                             className='flex items-center justify-center text-[2rem] font-dgm text-black hover:text-[#3735A3] 1k:text-[1.5rem] 2k:text-[2.2rem] 3k:text-[2.3rem] 4k:text-[]'
                             onClick={handleLogOut}>
                             로그아웃
-                            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="41" viewBox="0 0 31 41" fill="none" className="ml-3 1k:w-[1.5rem] 1k:h-[2.0rem] 2k:w-[2.7rem] 2k:h-[2.7rem] 3k:w-[2.8rem] 3k:h-[2.8rem] 3k:mt-[0.2rem]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="31" height="41" viewBox="0 0 31 41" fill="none" className="ml-3 1k:w-[1.5rem] 1k:h-[2.0rem] 1k:mt-[0.3rem] 2k:w-[2.7rem] 2k:h-[2.7rem] 3k:w-[2.8rem] 3k:h-[2.8rem] 3k:mt-[0.2rem]">
                                 <path d="M0 6.14943V34.8494C0 35.3931 0.217738 35.9145 0.605313 36.299C0.992888 36.6834 1.51855 36.8994 2.06667 36.8994H8.26667V32.7994H4.13333V8.19943H8.26667V4.09943H2.06667C1.51855 4.09943 0.992888 4.31541 0.605313 4.69986C0.217738 5.08431 0 5.60574 0 6.14943ZM29.4335 4.16093L12.9001 0.0609338C12.5955 -0.0144226 12.2776 -0.01996 11.9706 0.0447422C11.6635 0.109444 11.3753 0.242686 11.1279 0.434353C10.8805 0.62602 10.6804 0.871076 10.5427 1.15092C10.405 1.43076 10.3334 1.73804 10.3333 2.04943V38.9494C10.3326 39.2611 10.4037 39.5688 10.5411 39.849C10.6785 40.1293 10.8787 40.3747 11.1263 40.5665C11.3739 40.7583 11.6625 40.8915 11.9699 40.9559C12.2773 41.0203 12.5955 41.0141 12.9001 40.9379L29.4335 36.8379C29.8808 36.7273 30.2779 36.4714 30.5618 36.1111C30.8456 35.7508 30.9999 35.3067 31 34.8494V6.14943C30.9999 5.69215 30.8456 5.24805 30.5618 4.88773C30.2779 4.52742 29.8808 4.27159 29.4335 4.16093ZM20.6667 20.8848C20.6429 21.4127 20.4147 21.911 20.0298 22.2762C19.6448 22.6414 19.1327 22.8452 18.6 22.8452C18.0673 22.8452 17.5552 22.6414 17.1702 22.2762C16.7853 21.911 16.5571 21.4127 16.5333 20.8848V20.112C16.5336 19.5683 16.7516 19.047 17.1394 18.6627C17.5271 18.2784 18.0529 18.0627 18.601 18.063C19.1491 18.0633 19.6747 18.2795 20.0621 18.6642C20.4495 19.0488 20.6669 19.5703 20.6667 20.114V20.8848Z" fill="currentColor"/>
                             </svg>
                         </button>
@@ -107,9 +107,21 @@ const MainPage: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col w-[70.5rem] 1k:w-[58.5rem] 2k:w-[70.5rem] 3k:w-[72rem]">
-                    <div className="w-[67.3rem] h-[51.43rem] mr-[3.33rem] mt-[9.06rem] 1k:w-[50.5rem] 1k:h-[38.5rem] 1k:mr-[6rem] 1k:mt-[6.5rem] 2k:w-[59.875rem] 2k:h-[45.7rem] 2k:mt-[8rem] 3k:w-[57.15rem] 3k:h-[43.6rem]" style={{ backgroundImage: `url(${characterPageImg})`, backgroundSize: 'cover' }}>
-                        <div className="w-full 1k:h-[4.0rem] 2k:h-[4.7rem] 3k:h-[4.57rem]"></div> 
-                        <div className="w-[67rem] h-[45.9rem] 1k:w-[50.21rem] 1k:h-[34.5rem] 2k:w-[59.5rem] 2k:h-[41.2rem] 3k:w-[56.8rem] 3k:h-[39.03rem]">
+                    <div className='flex justify-end'>
+                        <button
+                            type="button" 
+                            className='flex items-center justify-center text-[2.5rem] font-dgm mt-[1.5rem] mb-[1.7rem] mr-[3.0rem] text-black hover:text-[#3735A3] 1k:mr-[3.0rem] 1k:mt-[2.2rem] 1k:text-[1.5rem] 2k:text-[2.2rem] 2k:mr-[3.5rem] 2k:mt-[2.5rem] 3k:text-[2.3rem] 3k:mr-[3.8rem] 3k:mt-[2.85rem]'
+                            onClick={handleButtonClick}>
+                            마이페이지 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="41" height="41" viewBox="0 0 41 41" fill="none" className='1k:w-[2.3rem] 1k:h-[2.3rem] 1k:ml-[0.5rem] 1k:mt-[0.4rem] 2k:w-[3.0rem] 2k:h-[3.0rem] 2k:ml-[0.7rem] 2k:mt-[0.4rem] 3k:w-[3.4rem] 3k:h-[3.4rem]'>
+                                <path d="M7.45384 3.72705H33.5447V5.59069H35.4084V7.45432H37.272V33.5452H35.4084V35.4089H33.5447V37.2725H7.45384V35.4089H5.5902V33.5452H3.72656V7.45432H5.5902V5.59069H7.45384V3.72705ZM7.45384 29.818H9.31747V27.9543H13.0447V26.0907H27.9538V27.9543H31.6811V29.818H33.5447V9.31796H31.6811V7.45432H9.31747V9.31796H7.45384V29.818ZM29.8175 33.5452V31.6816H26.0902V29.818H14.9084V31.6816H11.1811V33.5452H29.8175ZM16.772 9.31796H24.2266V11.1816H26.0902V13.0452H27.9538V20.4998H26.0902V22.3634H24.2266V24.2271H16.772V22.3634H14.9084V20.4998H13.0447V13.0452H14.9084V11.1816H16.772V9.31796ZM22.3629 14.9089V13.0452H18.6357V14.9089H16.772V18.6361H18.6357V20.4998H22.3629V18.6361H24.2266V14.9089H22.3629Z" 
+                                fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="w-[67.3rem] h-[51.43rem] mr-[3.33rem] 1k:w-[50.5rem] 1k:h-[38.5rem] 1k:mr-[6rem] 2k:w-[59.875rem] 2k:h-[45.7rem] 3k:w-[57.15rem] 3k:h-[43.6rem]" style={{ backgroundImage: `url(${characterPageImg})`, backgroundSize: 'cover' }}>
+                        <div className="w-full 1k:h-[4.02rem] 2k:h-[4.77rem] 3k:h-[4.59rem]"></div> 
+                        <div className="w-[67rem] h-[45.9rem] 1k:w-[50.21rem] 1k:h-[34.5rem] 2k:w-[59.6rem] 2k:h-[41.2rem] 3k:w-[56.8rem] 3k:h-[39.03rem]">
                             <div className="webpage-scrollbar overflow-y-auto h-[34.2rem] pt-[2.5rem] pr-[3.5rem] pl-[3.5rem] grid grid-cols-3 gap-7 1k:h-[34.28rem] 1k:pt-[1.5rem] 1k:pr-[2.0rem] 1k:pl-[2.0rem] 2k:h-[40.6rem] 2k:pt-[2.0rem] 2k:pl-[2.5rem] 2k:pr-[2.7rem] 3k:h-[38.73rem] 3k:pt-[2.3rem] 3k:pl-[2.3rem] 3k:pr-[2.5rem]">
                                 {cardSImages.map((image, index) => (
                                     <div key={index} className="mb-1 flip-card">
