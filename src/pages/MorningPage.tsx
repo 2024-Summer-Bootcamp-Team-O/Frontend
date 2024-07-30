@@ -187,7 +187,7 @@ const MorningPage: React.FC = () => {
                         <button
                             type="button"
                             className={`flex items-center justify-center font-dgm text-white hover:text-[#FFE486]
-                            4k:text-[3rem] 4k:mt-10 4k:mr-28 3k:text-[2.4rem] 3k:mt-10 3k:mr-20 2k:text-[2.2rem] 2k:mt-10 2k:mr-16 1k:text-[2.2rem] 1k:mt-10 1k:mr-16 
+                            4k:text-[3rem] 4k:mt-10 4k:mr-28 3k:text-[2.4rem] 3k:mt-10 3k:mr-20 2k:text-[2.2rem] 2k:mt-10 2k:mr-16 1k:text-[1.8rem] 1k:mt-8 1k:mr-16 
                             ${messageCount < 3 ? 'opacity-50 cursor-not-allowed' : ''}`}
                             onClick={handleFeedbackButtonClick} disabled={messageCount < 3}>
                             피드백 받기 !
@@ -207,7 +207,7 @@ const MorningPage: React.FC = () => {
                         2k:w-[36.75rem] 2k:h-[51.8125rem] 
                         1k:w-[30.875rem] 1k:h-[43.4375rem]
                         bg-contain bg-no-repeat" style={{ backgroundImage: `url(${characterId !== null ? standing[characterId - 1] : null })` }}>
-                            <div className='3k:-translate-y-[4.5rem] 2k:-translate-y-20 1k:-translate-y-16'>
+                            <div className='4k:-translate-y-[8rem] 3k:-translate-y-[6.5rem] 2k:-translate-y-[6rem] 1k:-translate-y-[5rem]'>
                                 <div className="flex items-center justify-center 
                                 4k:w-[98.07rem] 4k:h-[11.58rem] 4k:border-[5.5px] 4k:rounded-[1.8rem]
                                 3k:w-[76.44rem] 3k:h-[9.8rem] 3k:border-[5.5px] 3k:rounded-[1.7rem]

@@ -45,22 +45,22 @@ const FeedBackEvModal: React.FC<FeedBackEvModalProps> = ({ isOpen, onClose, webs
         <div className={`fixed top-0 left-0 flex w-screen h-screen bg-black bg-opacity-80 ${isOpen ? 'modal-overlay' : ''}`}>
             <div className='flex flex-col 4k:w-[60rem] 3k:w-[50rem] 2k:w-[42.685rem] 1k:w-[34.685rem] h-full justify-end items-center'>
                 <img src={FeedBackDuck} alt='FeedBackDuck' className={`4k:w-[42.45rem] 4k:h-[56.175rem] 4k:mb-[4.25rem] 4k:ml-[10rem]
-                3k:w-[32rem] 3k:h-[42rem] 3k:mb-[3rem] 3k:ml-[8rem]
-                2k:w-[35.375rem] 2k:h-[46.8125rem] 2k:mb-[4.25rem] 2k:ml-[10rem] 
-                1k:w-[28rem] 1k:h-[37rem] 1k:mb-[2rem] 1k:ml-[10rem] 
+                3k:w-[28rem] 3k:h-[38rem] 3k:mb-[3rem] 3k:ml-[8rem]
+                2k:w-[29rem] 2k:h-[39rem] 2k:mb-[3.5rem] 2k:ml-[10rem] 
+                1k:w-[26rem] 1k:h-[34.5rem] 1k:mb-[2rem] 1k:ml-[10rem] 
                 ${isOpen ? 'duck-image' : ''}`}/>
             </div>
             <div className='flex flex-grow flex-col w-[65.31rem] h-full '>
-                <div className={`flex flex-col items-center justify-center w-[57rem] h-[23.47rem] 
-                4k:-ml-[12rem] 4k:mt-[11rem]
-                3k:-ml-[10rem] 3k:mt-[6.81rem]
-                2k:-ml-[4rem] 2k:mt-[6.81rem]
-                1k:-ml-[2rem] 1k:mt-[6.81rem] ${isOpen ? 'bubble' : ''}`} style={{background:`url(${FeedBackBubble})`, backgroundSize:'contain', backgroundRepeat: 'no-repeat'}}>
+                <div className={`flex flex-col items-center justify-center 
+                4k:-ml-[4rem] 4k:mt-[10rem] 4k:w-[60rem] 4k:h-[23.6rem]
+                3k:-ml-[8rem] 3k:mt-[6.5rem] 3k:w-[48rem] 3k:h-[23.2rem]
+                2k:-ml-[5rem] 2k:mt-[7.8rem] 2k:w-[48rem] 2k:h-[22rem]
+                1k:-ml-[2rem] 1k:mt-[6.81rem] 1k:w-[43rem] 1k:h-[23.6rem]  ${isOpen ? 'bubble' : ''}`} style={{background:`url(${FeedBackBubble})`, backgroundSize:'cover', backgroundRepeat: 'no-repeat'}}>
                     {showText && (
-                        <p className="4k:ml-12 4k:mr-10 4k:-mt-[5rem] 4k:mb-3 4k:text-[2.5rem]
-                        3k:ml-10 3k:mr-44 3k:-mt-[3rem] 3k:mb-3 3k:text-[2.2rem]
-                        2k:ml-7 2k:mr-32 2k:-mt-[3rem] 2k:mb-3 2k:text-[2.3rem]
-                        1k:ml-7 1k:mr-64 1k:-mt-[2.5rem] 1k:mb-3 1k:text-[1.9rem] text-black font-dgm ">{websocketMessage}</p>
+                        <p className="4k:ml-10 4k:mr-10 4k:-mt-[5rem] 4k:mb-3 4k:text-[2.5rem]
+                        3k:ml-10 3k:mr-10 3k:-mt-[3rem] 3k:mb-3 3k:text-[2.2rem]
+                        2k:ml-8 2k:mr-8 2k:-mt-[3rem] 2k:mb-3 2k:text-[2.1rem]
+                        1k:ml-7 1k:mr-7 1k:-mt-[2.5rem] 1k:mb-3 1k:text-[1.9rem] text-black font-dgm ">{websocketMessage}</p>
                     )}
                 </div>
                 <div className="flex flex-col w-full h-[39.17rem] justify-end items-end">
