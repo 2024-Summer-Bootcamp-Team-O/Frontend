@@ -54,11 +54,17 @@ const MainPage: React.FC = () => {
 
     const handleLogOut = async () => {
         const refresh = localStorage.getItem('refresh');
+        const access = localStorage.getItem('access');
         audio.play();
         try {
-            const response = await axios.post('https://rumz.site/api/users/logout', {
-                refresh: refresh
-            });
+            const response = await axios.post('https://rumz.site/api/users/logout',{
+                refresh: refresh, 
+                },{
+                    headers: {
+                        Authorization: `Bearer ${access}`, 
+                    },
+                }
+            );
             if (response.status === 205) {
                 console.log('로그아웃 성공:', response.data);
                 localStorage.removeItem('refresh');
@@ -81,6 +87,10 @@ const MainPage: React.FC = () => {
             navigate('/morning', { state: { character_id: randomCharacterId } });
         }
 
+    const handleMyButtonClick = async () => {
+            audio.play();
+            navigate('/mypage')
+        }
     return (
         <div className="flex justify-center w-screen h-screen" style={{backgroundImage: `url(${backgroundImg})`,backgroundSize:'cover'}}>
             <div className="flex w-[108rem] place-content-between 1k:w-[94.5rem] 1k:h-[51.5rem] 2k:w-[108rem] 2k:h-[59.9375rem] 3k:w-[120rem] 3k:h-[57.5625rem] 4k:w-[160rem] 4k:h-[79.4375rem]">
@@ -111,7 +121,7 @@ const MainPage: React.FC = () => {
                         <button
                             type="button" 
                             className='flex items-center justify-center text-[2.5rem] font-dgm mt-[1.5rem] mb-[1.7rem] mr-[3.0rem] text-black hover:text-[#3735A3] 1k:mr-[3.0rem] 1k:mt-[2.2rem] 1k:text-[1.5rem] 2k:text-[2.0rem] 2k:mr-[3.5rem] 2k:mt-[2.7rem] 3k:text-[2.3rem] 3k:mr-[3.8rem] 3k:mt-[2.85rem] 4k:text-[2.9rem] 4k:mr-[6.63rem] 4k:mt-[4.4rem]'
-                            onClick={handleButtonClick}>
+                            onClick={handleMyButtonClick}>
                             마이페이지 
                             <svg xmlns="http://www.w3.org/2000/svg" width="41" height="41" viewBox="0 0 41 41" fill="none" className='1k:w-[2.3rem] 1k:h-[2.3rem] 1k:ml-[0.5rem] 1k:mt-[0.4rem] 2k:w-[2.8rem] 2k:h-[2.8rem] 2k:ml-[0.7rem] 2k:mt-[0.4rem] 3k:w-[3.4rem] 3k:h-[3.4rem] 4k:w-[4.0rem] 4k:h-[4.0rem] 4k:mt-[0.5rem]'>
                                 <path d="M7.45384 3.72705H33.5447V5.59069H35.4084V7.45432H37.272V33.5452H35.4084V35.4089H33.5447V37.2725H7.45384V35.4089H5.5902V33.5452H3.72656V7.45432H5.5902V5.59069H7.45384V3.72705ZM7.45384 29.818H9.31747V27.9543H13.0447V26.0907H27.9538V27.9543H31.6811V29.818H33.5447V9.31796H31.6811V7.45432H9.31747V9.31796H7.45384V29.818ZM29.8175 33.5452V31.6816H26.0902V29.818H14.9084V31.6816H11.1811V33.5452H29.8175ZM16.772 9.31796H24.2266V11.1816H26.0902V13.0452H27.9538V20.4998H26.0902V22.3634H24.2266V24.2271H16.772V22.3634H14.9084V20.4998H13.0447V13.0452H14.9084V11.1816H16.772V9.31796ZM22.3629 14.9089V13.0452H18.6357V14.9089H16.772V18.6361H18.6357V20.4998H22.3629V18.6361H24.2266V14.9089H22.3629Z" 
