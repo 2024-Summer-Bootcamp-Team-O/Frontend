@@ -160,15 +160,15 @@ html,body,#root {
 /* 4k 해상도 */
 @media (min-width: 2560px) {
   .webpage-scrollbar::-webkit-scrollbar {
-    width: 2.5rem;
+    width: 2.7rem;
   }
 
   .webpage-scrollbar::-webkit-scrollbar-track {
-    background-size: 2.5rem 45rem;
+    background-size: 2.7rem 50.6rem;
   }
 
   .webpage-scrollbar::-webkit-scrollbar-thumb {
-    background-size: 2.5rem 5rem;
+    background-size: 2.7rem 5rem;
   }
 
   .webpage-scrollbar::-webkit-scrollbar-thumb:hover {
