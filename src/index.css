@@ -82,22 +82,22 @@ html,body,#root {
 }
 /* Custom Scrollbar Styles */
 .webpage-scrollbar::-webkit-scrollbar {
-  width: 2.2rem;
+  width: 2.0rem;
 }
 
 .webpage-scrollbar::-webkit-scrollbar-track {
   background: url('./assets/images/scrollbar_track.png') no-repeat center center; /* Background image for the track */
-  background-size: 2.2rem 45.7rem;
+  background-size: 2.0rem 34.3rem;
 }
 
 .webpage-scrollbar::-webkit-scrollbar-thumb {
   background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image for the thumb */
-  background-size: 2.2rem 5.5rem; 
+  background-size: 2.0rem 4rem; 
 }
 
 .webpage-scrollbar::-webkit-scrollbar-thumb:hover {
   background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image when hovered */
-  background-size: 2.2rem 5.5rem;
+  background-size: 2.0rem 4rem;
 }
 
 
