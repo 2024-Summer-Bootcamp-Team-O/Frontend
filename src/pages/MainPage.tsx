@@ -54,10 +54,12 @@ const MainPage: React.FC = () => {
 
     const handleLogOut = async () => {
         const refresh = localStorage.getItem('refresh');
+        const access = localStorage.getItem('access');
         audio.play();
         try {
             const response = await axios.post('https://rumz.site/api/users/logout', {
-                refresh: refresh
+                refresh: refresh,
+                access: access
             });
             if (response.status === 205) {
                 console.log('로그아웃 성공:', response.data);
