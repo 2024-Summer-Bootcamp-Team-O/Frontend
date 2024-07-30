@@ -376,10 +376,10 @@ html,body,#root {
 
 @media (max-width: 1920px) {
   .placeholder-normal::placeholder {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
   .placeholder-small::placeholder {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
   .p-ani{
     height: 4.125rem; 
@@ -391,7 +391,7 @@ html,body,#root {
     font-size: 1.5rem;
   }
   .placeholder-small::placeholder {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
   }
   .p-ani{
     height: 4.125rem; 
