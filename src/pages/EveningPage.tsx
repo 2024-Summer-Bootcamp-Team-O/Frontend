@@ -1,20 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import '../index.css';
 import axiosInstance from "../hooks/axiosInstance";
-import EveningImg from "../assets/images/background/EveningPage.png";
 import { standing } from '../components/CharacterModal';
 import ELoadingModal from '../components/ELoadingModal';
 import FeedBackEvModal from '../components/FeedBackEvModal';
 import CameraModal from '../components/CameraModal';
-import sendbutton_ui from '../assets/images/others/sendbutton_ui.png';
-import sendbutton_ui_a from '../assets/images/others/sendbutton_ui_a.png';
 import click from '../assets/sounds/click.mp3';
 
 const EveningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true); // 페이지 로드 시 모달이 열리도록 초기값을 true로 설정
     const [isContentVisible, setIsContentVisible] = useState(false); // 콘텐츠 가시성 상태
     const [inputValue, setInputValue] = useState('');
-    const [buttonImage, setButtonImage] = useState(sendbutton_ui);
+    const [buttonImage, setButtonImage] = useState('https://d2skuaswcwq39b.cloudfront.net/baseimage/sendbutton_ui.png');
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [isCameraModalOpen, setIsCameraModalOpen] = useState(false); // 카메라 모달 상태 추가
     const [characterId, setCharacterId] = useState<number | null>(null);
@@ -180,14 +177,14 @@ const EveningPage: React.FC = () => {
     
     useEffect(() => {
         if (inputValue.trim() !== '') {
-            setButtonImage(sendbutton_ui_a);
+            setButtonImage('https://d2skuaswcwq39b.cloudfront.net/baseimage/sendbutton_ui_a.png');
         } else {
-            setButtonImage(sendbutton_ui);
+            setButtonImage('https://d2skuaswcwq39b.cloudfront.net/baseimage/sendbutton_ui.png');
         }
     }, [inputValue]);
     
     return (
-        <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${EveningImg})`, backgroundSize:'cover'}}>
+        <div className="flex flex-col justify-between w-screen h-screen" style={{backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/EveningPage.png'})`, backgroundSize:'cover'}}>
             {isModalOpen && <ELoadingModal isOpen={isModalOpen} onClose={handleCloseModal} />}
             <div className={`flex justify-end p-4 fade-in ${isContentVisible && !isCameraModalOpen ? 'show' : ''}`}>
                 <button

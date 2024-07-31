@@ -1,18 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../index.css';
 import axiosInstance from '../hooks/axiosInstance'; 
-import MorningImg from "../assets/images/background/office_m.png";
-import CharacterModal, { standing } from '@components/CharacterModal';
+import CharacterModal, { standing } from '../components/CharacterModal';
 import FeedBackModal from '../components/FeedBackMoModal';
-import sendbutton_ui from '../assets/images/others/sendbutton_ui.png';
-import sendbutton_ui_a from '../assets/images/others/sendbutton_ui_a.png';
 import click from '../assets/sounds/click.mp3';
-
 
 const MorningPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [inputValue, setInputValue] = useState('');
-    const [buttonImage, setButtonImage] = useState(sendbutton_ui);
+    const [buttonImage, setButtonImage] = useState('https://d2skuaswcwq39b.cloudfront.net/baseimage/sendbutton_ui.png');
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
     const [websocketMessage, setWebsocketMessage] = useState('');
     const [messageQueue, setMessageQueue] = useState<string[]>([]);
@@ -84,9 +80,9 @@ const MorningPage: React.FC = () => {
 
     useEffect(() => {
         if (inputValue.trim() !== '') {
-            setButtonImage(sendbutton_ui_a);
+            setButtonImage('https://d2skuaswcwq39b.cloudfront.net/baseimage/sendbutton_ui_a.png');
         } else {
-            setButtonImage(sendbutton_ui);
+            setButtonImage('https://d2skuaswcwq39b.cloudfront.net/baseimage/sendbutton_ui.png');
         }
     }, [inputValue]);
 
@@ -174,7 +170,7 @@ const MorningPage: React.FC = () => {
     }, []);
 
     return (
-        <div className="flex flex-col justify-between w-screen h-screen bg-cover" style={{backgroundImage: `url(${MorningImg})`}}>
+        <div className="flex flex-col justify-between w-screen h-screen bg-cover" style={{backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/office_m.png'})`}}>
             {isModalOpen ? (
                 <div className="modal-overlay">
                     <div className="modal-container animate-modal">

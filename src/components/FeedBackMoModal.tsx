@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'; 
 import '../index.css';
-import FeedBackDuck from "../assets/images/Duck/FeedBackDuck.png";
-import FeedBackBubble from "../assets/images/Duck/FeedBackBubble.png";
 import { useNavigate } from 'react-router-dom';
 import click from '../assets/sounds/click.mp3';
 
@@ -44,7 +42,7 @@ const FeedBackMoModal: React.FC<FeedBackMoModalProps> = ({ isOpen, onClose, webs
     return (
         <div className={`fixed top-0 left-0 flex w-screen h-screen bg-black bg-opacity-80 ${isOpen ? 'modal-overlay' : ''}`}>
             <div className='flex flex-col 4k:w-[60rem] 3k:w-[50rem] 2k:w-[42.685rem] 1k:w-[34.685rem] h-full justify-end items-center'>
-                <img src={FeedBackDuck} alt='FeedBackDuck' className={`4k:w-[42.45rem] 4k:h-[56.175rem] 4k:mb-[4.25rem] 4k:ml-[10rem]
+                <img src={'https://d2skuaswcwq39b.cloudfront.net/baseimage/FeedBackDuck.png'} alt='FeedBackDuck' className={`4k:w-[42.45rem] 4k:h-[56.175rem] 4k:mb-[4.25rem] 4k:ml-[10rem]
                 3k:w-[28rem] 3k:h-[38rem] 3k:mb-[3rem] 3k:ml-[8rem]
                 2k:w-[29rem] 2k:h-[39rem] 2k:mb-[3.5rem] 2k:ml-[10rem] 
                 1k:w-[26rem] 1k:h-[34.5rem] 1k:mb-[2rem] 1k:ml-[10rem] 
@@ -55,7 +53,7 @@ const FeedBackMoModal: React.FC<FeedBackMoModalProps> = ({ isOpen, onClose, webs
                 4k:-ml-[4rem] 4k:mt-[10rem] 4k:w-[60rem] 4k:h-[23.6rem]
                 3k:-ml-[8rem] 3k:mt-[6.5rem] 3k:w-[48rem] 3k:h-[23.2rem]
                 2k:-ml-[5rem] 2k:mt-[7.8rem] 2k:w-[48rem] 2k:h-[22rem]
-                1k:-ml-[2rem] 1k:mt-[6.81rem] 1k:w-[43rem] 1k:h-[23.6rem]  ${isOpen ? 'bubble' : ''}`} style={{background:`url(${FeedBackBubble})`, backgroundSize:'cover', backgroundRepeat: 'no-repeat'}}>
+                1k:-ml-[2rem] 1k:mt-[6.81rem] 1k:w-[43rem] 1k:h-[23.6rem]  ${isOpen ? 'bubble' : ''}`} style={{background:`url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/FeedBackBubble.png'})`, backgroundSize:'cover', backgroundRepeat: 'no-repeat'}}>
                     {showText && (
                         <p className="4k:ml-10 4k:mr-10 4k:-mt-[5rem] 4k:mb-3 4k:text-[2.5rem]
                         3k:ml-10 3k:mr-10 3k:-mt-[3rem] 3k:mb-3 3k:text-[2.2rem]

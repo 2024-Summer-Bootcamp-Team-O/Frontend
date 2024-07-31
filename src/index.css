@@ -92,17 +92,17 @@ html,body,#root {
 }
 
 .webpage-scrollbar::-webkit-scrollbar-track {
-  background: url('./assets/images/scrollbar_track.png') no-repeat center center; /* Background image for the track */
+  background: url('https://d2skuaswcwq39b.cloudfront.net/baseimage/scrollbar_track.png') no-repeat center center; /* Background image for the track */
   background-size: 2.0rem 34.4rem;
 }
 
 .webpage-scrollbar::-webkit-scrollbar-thumb {
-  background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image for the thumb */
+  background: url('https://d2skuaswcwq39b.cloudfront.net/baseimage/scrollbar_thumb.png') no-repeat center center; /* Background image for the thumb */
   background-size: 2.0rem 5rem; 
 }
 
 .webpage-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: url('./assets/images/scrollbar_thumb.png') no-repeat center center; /* Background image when hovered */
+  background: url('https://d2skuaswcwq39b.cloudfront.net/baseimage/scrollbar_thumb.png') no-repeat center center; /* Background image when hovered */
   background-size: 2.0rem 5rem;
 }
 
@@ -451,7 +451,7 @@ body {
 .custom-cursor {
   position: absolute;
   pointer-events: none; 
-  background: url('./assets/images/others/coffee.png') no-repeat center center;
+  background: url('https://d2skuaswcwq39b.cloudfront.net/baseimage/coffee.png') no-repeat center center;
   background-size: cover;
   z-index: 1000;
 }

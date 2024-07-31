@@ -2,47 +2,48 @@ import React from 'react';
 import '../index.css'; 
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import cardS_1 from "../assets/images/Character/cardS_1.png";
-import cardS_2 from "../assets/images/Character/cardS_2.png";
-import cardS_3 from "../assets/images/Character/cardS_3.png";
-import cardS_4 from "../assets/images/Character/cardS_4.png";
-import cardS_5 from "../assets/images/Character/cardS_5.png";
-import cardS_6 from "../assets/images/Character/cardS_6.png";
-import cardS_7 from "../assets/images/Character/cardS_7.png";
-import cardS_8 from "../assets/images/Character/cardS_8.png";
-
-import cardB_1 from "../assets/images/Character/cardB_1.png";
-import cardB_2 from "../assets/images/Character/cardB_2.png";
-import cardB_3 from "../assets/images/Character/cardB_3.png";
-import cardB_4 from "../assets/images/Character/cardB_4.png";
-import cardB_5 from "../assets/images/Character/cardB_5.png";
-import cardB_6 from "../assets/images/Character/cardB_6.png";
-import cardB_7 from "../assets/images/Character/cardB_7.png";
-import cardB_8 from "../assets/images/Character/cardB_8.png";
-
-import characterPageImg from "../assets/images/Character/characterPage.png";
-import backgroundImg from "../assets/images/background/background_h.png";
-import duckImg from "../assets/images/Duck/Duck.png";
-import duckBubble from "../assets/images/Duck/DuckBubble.png";
-
 import click from '../assets/sounds/click.mp3';
 
 const cardSImages = [
-    cardS_1, cardS_2, cardS_3,
-    cardS_4, cardS_5, cardS_6,
-    cardS_7, cardS_8, cardS_1, 
-    cardS_2, cardS_3, cardS_4, 
-    cardS_5, cardS_6, cardS_7, 
-    cardS_8, cardS_1, cardS_2,
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_1.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_2.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_3.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_4.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_5.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_6.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_7.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_8.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_1.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_2.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_3.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_4.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_5.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_6.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_7.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_8.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_1.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardS_2.png',
 ];
 
 const cardBackImages = [
-    cardB_1, cardB_2, cardB_3,
-    cardB_4, cardB_5, cardB_6,
-    cardB_7, cardB_8, cardB_1, 
-    cardB_2, cardB_3, cardB_4, 
-    cardB_5, cardB_6, cardB_7, 
-    cardB_8, cardB_1, cardB_2, 
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_1.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_2.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_3.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_4.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_5.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_6.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_7.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_8.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_1.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_2.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_3.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_4.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_5.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_6.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_7.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_8.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_1.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/cardB_2.png',
 ];
 
 const MainPage: React.FC = () => {
@@ -89,10 +90,10 @@ const MainPage: React.FC = () => {
 
     const handleMyButtonClick = async () => {
             audio.play();
-            navigate('/mypage')
+            navigate('/myPage')
         }
     return (
-        <div className="flex justify-center w-screen h-screen" style={{backgroundImage: `url(${backgroundImg})`,backgroundSize:'cover'}}>
+        <div className="flex justify-center w-screen h-screen" style={{backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/background_h.png'})`,backgroundSize:'cover'}}>
             <div className="flex w-[108rem] place-content-between 1k:w-[94.5rem] 1k:h-[51.5rem] 2k:w-[108rem] 2k:h-[59.9375rem] 3k:w-[120rem] 3k:h-[57.5625rem] 4k:w-[160rem] 4k:h-[79.4375rem]">
                 <div className="flex flex-col justify-end 1k:w-[36rem] 1k:h-[51.5rem] 2k:w-[40.63rem] 2k:h-[59.937rem] 3k:w-[48rem] 3k:h-[57.5625rem] 4k:w-[67.31rem] 4k:h-[79.4375rem]">
                     <div className="1k:pl-[3.06rem] 1k:pb-[2.3rem] 2k:pb-[2.5rem] 2k:pl-[3.5rem] 3k:pb-[1.5rem] 3k:pl-[3.7rem] 4k:pl-[6.06rem]">
@@ -106,14 +107,14 @@ const MainPage: React.FC = () => {
                             </svg>
                         </button>
                     </div>
-                    <div className="bg-cover bg-no-repeat 1k:w-[23.56rem] 1k:h-[11rem] 1k:ml-[9rem] 1k:mr-[5.46rem] 1k:pt-[0.9rem] 1k:pl-[0.1rem] 2k:w-[27rem] 2k:h-[12rem] 2k:mb-[0.7rem] 2k:mt-[0.5rem] 2k:mr-[1.0rem] 2k:pt-[1.1rem] 2k:pr-[0.15rem] 3k:w-[25rem] 3k:h-[11.5rem] 3k:-mb-[1.2rem] 3k:ml-[13rem] 3k:pt-[0.8rem] 4k:w-[32rem] 4k:h-[14.72rem] 4k:ml-[24.5rem] 4k:pt-[1.1rem] 4k:mb-[0.01rem]" style={{ backgroundImage: `url(${duckBubble})` }}>
+                    <div className="bg-cover bg-no-repeat 1k:w-[23.56rem] 1k:h-[11rem] 1k:ml-[9rem] 1k:mr-[5.46rem] 1k:pt-[0.9rem] 1k:pl-[0.1rem] 2k:w-[27rem] 2k:h-[12rem] 2k:mb-[0.7rem] 2k:mt-[0.5rem] 2k:mr-[1.0rem] 2k:pt-[1.1rem] 2k:pr-[0.15rem] 3k:w-[25rem] 3k:h-[11.5rem] 3k:-mb-[1.2rem] 3k:ml-[13rem] 3k:pt-[0.8rem] 4k:w-[32rem] 4k:h-[14.72rem] 4k:ml-[24.5rem] 4k:pt-[1.1rem] 4k:mb-[0.01rem]" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/DuckBubble.png'})` }}>
                         <p className="text-black text-center font-dgm text-[1.625rem] not-italic font-normal leading-normal tracking-[-0.04875rem] whitespace-pre-line 1k:text-[1.35rem] 2k:text-[1.55rem] 3k:text-[1.5rem] 4k:text-[1.9rem]">
                             나는 MZ요정일세 ! <br />
                             자네는 깨어있는 MZ라고 생각하나? <br />
                             내가 한번 시험해보겠네.
                         </p>
                     </div>
-                    <img src={duckImg} alt="duck" className=" 1k:w-[25rem] 1k:h-[32rem] 1k:mb-[1.44rem] 1k:ml-[7rem] 1k:mr-[4.16rem] 2k:w-[29.5rem] 2k:h-[36.5rem] 2k:mb-[1.9rem] 3k:w-[29.5rem] 3k:h-[37rem] 3k:ml-[11.3rem] 4k:w-[39rem] 4k:h-[51.375rem] 4k:ml-[20rem] 4k:mb-[2.5rem]"/>
+                    <img src={'https://d2skuaswcwq39b.cloudfront.net/baseimage/Duck.png'} alt="duck" className=" 1k:w-[25rem] 1k:h-[32rem] 1k:mb-[1.44rem] 1k:ml-[7rem] 1k:mr-[4.16rem] 2k:w-[29.5rem] 2k:h-[36.5rem] 2k:mb-[1.9rem] 3k:w-[29.5rem] 3k:h-[37rem] 3k:ml-[11.3rem] 4k:w-[39rem] 4k:h-[51.375rem] 4k:ml-[20rem] 4k:mb-[2.5rem]"/>
                 </div>
 
                 <div className="flex flex-col w-[70.5rem] 1k:w-[58.5rem] 2k:w-[70.5rem] 3k:w-[72rem] 4k:w-[92.69rem]">
@@ -129,7 +130,7 @@ const MainPage: React.FC = () => {
                             </svg>
                         </button>
                     </div>
-                    <div className="w-[67.3rem] h-[51.43rem] mr-[3.33rem] 1k:w-[50.5rem] 1k:h-[38.5rem] 1k:mr-[6rem] 2k:w-[59.875rem] 2k:h-[45.7rem] 3k:w-[57.15rem] 3k:h-[43.6rem] 4k:w-[74.7rem] 4k:h-[57rem] 4k:mt-[1.5rem]" style={{ backgroundImage: `url(${characterPageImg})`, backgroundSize: 'cover' }}>
+                    <div className="w-[67.3rem] h-[51.43rem] mr-[3.33rem] 1k:w-[50.5rem] 1k:h-[38.5rem] 1k:mr-[6rem] 2k:w-[59.875rem] 2k:h-[45.7rem] 3k:w-[57.15rem] 3k:h-[43.6rem] 4k:w-[74.7rem] 4k:h-[57rem] 4k:mt-[1.5rem]" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/characterPage.png'})`, backgroundSize: 'cover' }}>
                         <div className="w-full 1k:h-[4.02rem] 2k:h-[4.77rem] 3k:h-[4.59rem] 4k:h-[5.95rem]"></div> 
                         <div className="w-[67rem] h-[45.9rem] 1k:w-[50.21rem] 1k:h-[34.5rem] 2k:w-[59.6rem] 2k:h-[41.2rem] 3k:w-[56.8rem] 3k:h-[39.03rem] 4k:w-[74.28rem] 4k:h-[51rem]">
                             <div className="webpage-scrollbar overflow-y-auto h-[34.2rem] pt-[2.5rem] pr-[3.5rem] pl-[3.5rem] grid grid-cols-3 gap-7 1k:h-[34.28rem] 1k:pt-[1.5rem] 1k:pr-[2.0rem] 1k:pl-[2.0rem] 2k:h-[40.6rem] 2k:pt-[2.0rem] 2k:pl-[2.5rem] 2k:pr-[2.7rem] 3k:h-[38.73rem] 3k:pt-[2.3rem] 3k:pl-[2.3rem] 3k:pr-[2.5rem] 4k:h-[50.66rem] 4k:pt-[2.5rem] 4k:pl-[3.0rem] 4k:pr-[3.0rem]">

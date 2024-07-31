@@ -2,8 +2,6 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import axios from 'axios';
 import Webcam from 'react-webcam';
 import { useNavigate } from 'react-router-dom';
-import strap_s from  '../assets/images/others/strap_s.png';
-import memberCard_s from  '../assets/images/others/memberCard_s.png';
 
 interface CameraModalProps {
     isOpen: boolean;
@@ -74,13 +72,13 @@ const CameraModal: React.FC<CameraModalProps> = ({ isOpen, onClose }) => {
     return (
     <div className="fixed top-0 left-0 flex flex-col items-center justify-between w-full h-full bg-black bg-opacity-80">
         <div className="items-center justify-center">
-            <img src={strap_s} alt="" className="4k:w-[28.55rem] 4k:h-[21rem] 3k:w-[24.41rem] 3k:h-[13rem] 2k:w-[22.5rem] 2k:h-[15rem] 1k:w-[19.69875rem] 1k:h-[13rem] z-20" />
+            <img src={'https://d2skuaswcwq39b.cloudfront.net/baseimage/strap_s.png'} alt="" className="4k:w-[28.55rem] 4k:h-[21rem] 3k:w-[24.41rem] 3k:h-[13rem] 2k:w-[22.5rem] 2k:h-[15rem] 1k:w-[19.69875rem] 1k:h-[13rem] z-20" />
             <div className="flex items-center justify-center 
             4k:w-[28.55rem] 4k:h-[41.03rem] 4k:-mt-[2.8rem] 
             3k:w-[24.41rem] 3k:h-[35.08rem] 3k:-mt-[2.4rem]  
             2k:w-[22.5rem] 2k:h-[32.38rem] 2k:-mt-8 
             1k:w-[19.69875rem] 1k:h-[28.305rem] 1k:-mt-8
-            z-10 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${memberCard_s})` }}>
+            z-10 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/memberCard_s.png'})` }}>
                 <div className="flex flex-col items-center 4k:mt-[9.2rem] 3k:mt-[6rem] 2k:mt-[8rem] 1k:mt-[9.5rem] justify-self-center">
                     <div className="flex items-center w-[8.7rem] h-[12.74rem]  4k:w-[16.225rem] 4k:h-[23.71875rem] 3k:w-[14.0125rem] 3k:h-[20.48rem] 2k:w-[13.272rem] 2k:h-[19.368rem] 1k:w-[11.62rem] 1k:h-[16.96rem] ">
                     {isCaptureEnable ? (
