@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import '../index.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import background_h from '../assets/images/background/background_h.png';
-import bg_stand5 from '../assets/images/background/bg_stand5.png';
-import bg_stand6 from '../assets/images/background/bg_stand6.png';
 import clickSound from '../assets/sounds/click.mp3';
 
 const RegisterPage: React.FC = () => {
@@ -92,9 +89,9 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-between w-screen h-screen bg-cover" style={{ backgroundImage: `url(${background_h})` }}>
+    <div className="flex items-center justify-between w-screen h-screen bg-cover" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/background_h.png'})` }}>
       <div className='flex self-end'>
-        <img src={bg_stand5} alt="Background stand" className="4k:w-[27.2rem] 3k:w-[20rem] 2k:w-[20.8rem] 1k:w-[18rem] lg:w-[15rem] md:w-[11rem] "/>
+        <img src={'https://d2skuaswcwq39b.cloudfront.net/baseimage/bg_stand5.png'} alt="Background stand" className="4k:w-[27.2rem] 3k:w-[20rem] 2k:w-[20.8rem] 1k:w-[18rem] lg:w-[15rem] md:w-[11rem] "/>
       </div>
       <div className="4k:rounded-[1rem] 3k:rounded-[0.95rem] 2k:rounded-[0.9375rem] 1k:rounded-[0.8rem] lg:rounded-[0.5rem] md:rounded-[0.3rem] bg-white shadow-shadow_tr p-8">
         <form action="#" method="post" className='4k:w-[35.75rem] 4k:h-[49rem] 3k:w-[30rem] 3k:h-[42rem] 2k:w-[30rem] 2k:h-[42rem] 1k:w-[25rem] 1k:h-[36rem] lg:w-[18rem] lg:h-[26rem] md:w-[13rem] md:h-[18rem] flex flex-col items-center justify-center'>
@@ -226,7 +223,7 @@ const RegisterPage: React.FC = () => {
         </form>
       </div>
       <div className='flex self-end'>
-        <img src={bg_stand6} alt="Background stand" className="4k:w-[28rem] 4k:h-[67rem] 3k:w-[21rem] 3k:h-[50rem] 2k:w-[21rem] 2k:h-[52rem] 1k:w-[18rem] 1k:h-[45rem] lg:w-[14rem] md:w-[10.6rem] "/>
+        <img src={'https://d2skuaswcwq39b.cloudfront.net/baseimage/bg_stand6.png'} alt="Background stand" className="4k:w-[28rem] 4k:h-[67rem] 3k:w-[21rem] 3k:h-[50rem] 2k:w-[21rem] 2k:h-[52rem] 1k:w-[18rem] 1k:h-[45rem] lg:w-[14rem] md:w-[10.6rem] "/>
       </div>
     </div>
   );

@@ -1,26 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import silhouette_nice_m from '../assets/images/silhouette/silhouette_nice_m.png';
-import silhouette_nice_w from '../assets/images/silhouette/silhouette_nice_w.png';
-import silhouette_assistant from '../assets/images/silhouette/silhouette_assistant.png';
-import silhouette_om from '../assets/images/silhouette/silhouette_om.png';
-import silhouette_ow from '../assets/images/silhouette/silhouette_ow.png';
-import silhouette_drunken from '../assets/images/silhouette/silhouette_drunken.png';
-import silhouette_employee from '../assets/images/silhouette/silhouette_employee.png';
-import silhouette_intern from '../assets/images/silhouette/silhouette_intern.png';
-
-import standing_nice_m from '../assets/images/standing/nice_m.png';
-import standing_nice_w from '../assets/images/standing/nice_w.png';
-import standing_assistant from '../assets/images/standing/assistant.png';
-import standing_om from '../assets/images/standing/om.png';
-import standing_ow from '../assets/images/standing/ow.png';
-
-import bg_office_m from '../assets/images/background/office_m.png';
-import bg_minipage_o from '../assets/images/background/minipage_o.png';
-
+import '../index.css';
 import typing from '../assets/sounds/typing.mp3';
 import roulette from '../assets/sounds/roulette.mp3';
-
-import '../index.css';
 
 interface CharacterModalProps {
     onClose: () => void;
@@ -28,22 +9,22 @@ interface CharacterModalProps {
 }
 
 export const silhouette = [
-    silhouette_nice_m,
-    silhouette_nice_w,
-    silhouette_assistant,
-    silhouette_om,
-    silhouette_ow,
-    silhouette_drunken,
-    silhouette_employee,
-    silhouette_intern,
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/silhouette_nice_m.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/silhouette_nice_w.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/silhouette_assistant.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/silhouette_om.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/silhouette_ow.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/silhouette_drunken.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/silhouette_employee.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/silhouette_intern.png',
 ];
 
 export const standing = [
-    standing_nice_m,
-    standing_nice_w,
-    standing_assistant,
-    standing_om,
-    standing_ow,
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/standing_nice_m.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/standing_nice_w.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/standing_assistant.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/standing_om.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/standing_ow.png',
 ];
 
 export const CharacterName = [
@@ -200,14 +181,14 @@ const CharacterModal: React.FC<CharacterModalProps> = ({ onClose, character_id }
     }, [animationComplete, characterName, onClose]);
 
     return (
-        <div className="flex items-center justify-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${bg_office_m})` }}>
+        <div className="flex items-center justify-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/office_m'})` }}>
             <div className="flex flex-col items-center justify-center w-screen h-screen bg-black bg-opacity-70">
                 <div className="flex flex-col items-center justify-between 
                     4k:mt-[4.5rem] 4k:w-[62.254rem] 4k:h-[45.226rem]
                     3k:mt-[2.7rem] 3k:w-[53.207rem] 3k:h-[38.83rem]
                     2k:mt-[2.25rem] 2k:w-[52.538rem] 2k:h-[38.138rem]
                     1k:mt-[0.9rem] 1k:w-[45.94rem] 1k:h-[33.34rem]
-                    bg-contain bg-no-repeat" style={{ backgroundImage: `url(${bg_minipage_o})` }}>
+                    bg-contain bg-no-repeat" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/minipage_o.png'})` }}>
                     <div className="flex self-start 2k:mt-2 2k:ml-8 1k:mt-2 1k:ml-7">
                         {animationComplete ? (
                             <p className="4k:text-[2.3rem] 3k:text-[2rem] 2k:text-[1.9rem] 1k:text-[1.7rem] text-white font-dgm">출근 완료!</p>

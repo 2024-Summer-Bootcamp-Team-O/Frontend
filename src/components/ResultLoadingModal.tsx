@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import subway_sound from '../assets/sounds/subway.mp3';
-import city_sunset from '../assets/images/background/city_sunset.png';
-import subway from '../assets/images/background/subway.png';
 import '../index.css';
 
 interface ResultLoadingModalProps {
@@ -52,12 +50,12 @@ const ResultLoadingModal: React.FC<ResultLoadingModalProps> = ({ isOpen, onClose
                     <source src={subway_sound} type="audio/mpeg" />
                 </audio>
                 <div className="absolute top-0 left-0 flex w-[6824px] h-full bg-cover animate-slide">
-                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${city_sunset})` }}></div>
-                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${city_sunset})` }}></div>
-                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${city_sunset})` }}></div>
-                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${city_sunset})` }}></div>
+                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/city_sunset.png'})` }}></div>
+                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/city_sunset.png'})` }}></div>
+                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/city_sunset.png'})` }}></div>
+                    <div className="w-[1704px] h-full bg-cover" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/city_sunset.png'})` }}></div>
                 </div>
-                <div className="relative flex items-end justify-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${subway})` }}>
+                <div className="relative flex items-end justify-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/subway.png'})` }}>
                     <div className="flex flex-col items-center justify-center ml-20 animate-scroll-up">
                         <p className="text-white font-dgm text-[4rem]">The End</p>
                     </div>
