@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
 import click from '../assets/sounds/click.mp3';
+import minipage_r from '../assets/images/minipage_r.png'
 import '../index.css';
+
 
 const SharedResultPage: React.FC = () => {
     const navigate = useNavigate();
@@ -41,7 +43,7 @@ const SharedResultPage: React.FC = () => {
                         </div>
                     </div>
                     <div className="flex flex-col items-end">
-                        <div id="Page" className="flex flex-col items-center justify-center mr-5 w-[50rem] h-[50rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/minipage_r.png'})` }}>
+                        <div id="Page" className="flex flex-col items-center justify-center mr-5 w-[50rem] h-[50rem] bg-contain bg-no-repeat" style={{ backgroundImage: `url(${minipage_r})` }}>
                             <div className="flex justify-center w-[43rem] h-[35rem] mt-20 mr-5 border-solid border-2 border-black">
                                 <p className="font-dgm text-[1.625rem] mt-6 mb-6 mr-4 ml-4">
                                     {resultData.result}

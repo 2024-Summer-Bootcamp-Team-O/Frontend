@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../index.css';
 import ResultLoadingModal from "../components/ResultLoadingModal";
 import { shareKakao } from "../utils/shareKakao";
+import minipage_r from '../assets/images/minipage_r.png'
 import click from '../assets/sounds/click.mp3';;
 
 const ResultPage: React.FC = () => {
@@ -98,7 +99,7 @@ const ResultPage: React.FC = () => {
                             </svg>
                         </button>
                         </div>
-                        <div id="Page" className="flex flex-col items-center justify-center  w-[50rem] h-[50rem] bg-cover bg-no-repeat 1k:w-[39.7rem] 1k:h-[39.79rem] 1k:ml-[2rem] 1k:mt-[1rem] 2k:w-[45rem] 2k:h-[45rem] 2k:mt-[1.5rem] 3k:h-[44rem] 3k:w-[44rem] 3k:-mt-[0.1rem] 4k:bg-cover 4k:w-[59rem] 4k:h-[59rem] 4k:mt-[2rem]" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/minipage_r.png'})` }}>
+                        <div id="Page" className="flex flex-col items-center justify-center  w-[50rem] h-[50rem] bg-cover bg-no-repeat 1k:w-[39.7rem] 1k:h-[39.79rem] 1k:ml-[2rem] 1k:mt-[1rem] 2k:w-[45rem] 2k:h-[45rem] 2k:mt-[1.5rem] 3k:h-[44rem] 3k:w-[44rem] 3k:-mt-[0.1rem] 4k:bg-cover 4k:w-[59rem] 4k:h-[59rem] 4k:mt-[2rem]" style={{ backgroundImage: `url(${minipage_r})` }}>
                             <div className="flex justify-center w-[43rem] h-[35rem] mt-20 mr-5 border-solid border-2 border-black 1k:w-[34.5rem] 1k:h-[29rem] 1k:mt-[4rem] 1k:mr-[1.7rem] 2k:w-[38.5rem] 2k:h-[32rem] 2k:mt-[5rem] 3k:w-[37.3rem] 3k:h-[31.5rem] 4k:w-[49.5rem] 4k:h-[43rem] 4k:mr-[2.5rem] 4k:mt-[6.5rem]">
                                 <p className="font-dgm mt-6 mb-6 mr-4 ml-4 1k:text-[1.25rem] 1k:mt-[0.7rem] 1k:mr-[0.7rem] 1k:ml-[0.7rem] 2k:text-[1.4rem] 2k:mr-[0.8rem] 2k:ml-[0.8rem] 2k:mt-[0.8rem] 4k:text-[1.8rem] 4k:mr-[0.9rem] 4k:ml-[0.9rem] 4k:mt-[0.9rem]">
                                     {resultData.result}

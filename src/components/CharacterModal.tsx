@@ -20,11 +20,11 @@ export const silhouette = [
 ];
 
 export const standing = [
-    'https://d2skuaswcwq39b.cloudfront.net/baseimage/standing_nice_m.png',
-    'https://d2skuaswcwq39b.cloudfront.net/baseimage/standing_nice_w.png',
-    'https://d2skuaswcwq39b.cloudfront.net/baseimage/standing_assistant.png',
-    'https://d2skuaswcwq39b.cloudfront.net/baseimage/standing_om.png',
-    'https://d2skuaswcwq39b.cloudfront.net/baseimage/standing_ow.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/nice_m.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/nice_w.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/assistant.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/om.png',
+    'https://d2skuaswcwq39b.cloudfront.net/baseimage/ow.png',
 ];
 
 export const CharacterName = [
@@ -181,7 +181,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({ onClose, character_id }
     }, [animationComplete, characterName, onClose]);
 
     return (
-        <div className="flex items-center justify-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/office_m'})` }}>
+        <div className="flex items-center justify-center w-screen h-screen bg-cover" style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/office_m.png'})` }}>
             <div className="flex flex-col items-center justify-center w-screen h-screen bg-black bg-opacity-70">
                 <div className="flex flex-col items-center justify-between 
                     4k:mt-[4.5rem] 4k:w-[62.254rem] 4k:h-[45.226rem]

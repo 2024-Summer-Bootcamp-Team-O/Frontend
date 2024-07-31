@@ -90,7 +90,7 @@ const MainPage: React.FC = () => {
 
     const handleMyButtonClick = async () => {
             audio.play();
-            navigate('/mypage')
+            navigate('/myPage')
         }
     return (
         <div className="flex justify-center w-screen h-screen" style={{backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/background_h.png'})`,backgroundSize:'cover'}}>
