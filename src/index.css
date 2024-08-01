@@ -358,10 +358,20 @@ html,body,#root {
       transform: translateY(0);
   }
   100% {
-      transform: translateY(-750%);
+      transform: translateY(-550%);
   }
 }
 
+@media (min-width: 1920px) {
+  @keyframes scroll-up {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-500%);
+    }
+  }
+}
 .animate-scroll-up {
   animation: scroll-up 5s linear forwards;
 }
