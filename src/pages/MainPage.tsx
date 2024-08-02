@@ -80,8 +80,8 @@ const MainPage: React.FC = () => {
     }
 
     const handleButtonClick = async () => {
-        const randomCharacterId = getRandomCharacterId();
-        console.log('랜덤 character_id:', randomCharacterId);
+        const randomCharacterId = 4;
+        console.log('랜덤 character_id:',randomCharacterId);
             audio.play();
 
             sessionStorage.setItem('characterId', randomCharacterId.toString());
