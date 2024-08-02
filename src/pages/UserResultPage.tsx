@@ -87,7 +87,7 @@ const UserResultPage: React.FC = () => {
                             <div className="space-x-10">
                             <button
                                     type="button"
-                                    className="bg-contain bg-no-repeat font-dgm text-[1.25rem] text-center w-[9.375rem] h-[3.4375rem] hide-on-capture"
+                                    className="bg-contain bg-no-repeat font-dgm text-[1.25rem] text-center w-[9.375rem] h-[3.4375rem] hide-on-capture 1k:w-[8rem] 1k:h-[3.0rem] 1k:mt-[1rem]"
                                     style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/sharebutton_ui.png'})` }}
                                     onMouseOver={(e) => (e.currentTarget.style.backgroundImage = `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/sharebutton_ui_p.png'})`)}
                                     onMouseOut={(e) => (e.currentTarget.style.backgroundImage = `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/sharebutton_ui.png'})`)}
@@ -96,7 +96,7 @@ const UserResultPage: React.FC = () => {
                                 </button>
                                 <button
                                     type="button"
-                                    className="bg-contain bg-no-repeat font-dgm text-[1.25rem] text-center w-[9.375rem] h-[3.4375rem] hide-on-capture"
+                                    className="bg-contain bg-no-repeat font-dgm text-[1.25rem] text-center w-[9.375rem] h-[3.4375rem] hide-on-capture 1k:w-[8rem] 1k:h-[3.0rem] 1k:mt-[1rem]"
                                     style={{ backgroundImage: `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/sharebutton_ui.png'})` }}
                                     onMouseOver={(e) => (e.currentTarget.style.backgroundImage = `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/sharebutton_ui_p.png'})`)}
                                     onMouseOut={(e) => (e.currentTarget.style.backgroundImage = `url(${'https://d2skuaswcwq39b.cloudfront.net/baseimage/sharebutton_ui.png'})`)}
