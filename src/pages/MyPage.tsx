@@ -178,11 +178,11 @@ const MyPage: React.FC = () => {
                         {revealedCards[index] ? (
                           <button type="button" className="w-full h-full">
                             <div className="flex flex-col items-center justify-center w-full h-full" style={{ backgroundImage: `url(${cardRealBackImage})`, backgroundSize: 'cover' }}>
-                              <div className="flex w-[9.75rem] h-[12.75rem] mt-[1.5rem] ">
+                              <div className="flex w-[9.75rem] h-[12.75rem] mt-[1.5rem] 1k:h-[10rem] 1k:w-[7rem]">
                                 <img src={cardsData.find((item) => Number(item.character_id) - 1 === index)?.image_url} alt="userPhoto" className="object-cover w-full h-full" />
                               </div>
                               <div className="mt-[0.38rem] w-[8rem] h-[1.9375rem]">
-                                <p className="text-black text-center font-dnf text-[1.2rem] font-normal leading-normal tracking-[0.5em]">
+                                <p className="text-black text-center font-dnf text-[1.2rem] font-normal leading-normal tracking-[0.5em] 1k:ml-[0.6rem]">
                                   {cardsData.find((item) => Number(item.character_id) - 1 === index)?.name}
                                 </p>
                               </div>
