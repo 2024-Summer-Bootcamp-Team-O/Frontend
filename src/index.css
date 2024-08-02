@@ -10,6 +10,13 @@ html,body,#root {
   overflow: hidden;
 }
 
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
 @font-face {
   font-family: 'DNFBitBitv2';
   src: url('./assets/fonts/DNFBitBitv2.otf') format('opentype');
